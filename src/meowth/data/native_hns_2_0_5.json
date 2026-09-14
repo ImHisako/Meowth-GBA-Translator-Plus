@@ -1,0 +1,4662 @@
+{
+  "id": "hns-2.0.5",
+  "name": "Heart and Soul 2.0.5",
+  "sha256": "edf76ecf2a1c23a65c62ab63b1c0e775965978c81baeed20e249e96b3417679b",
+  "sources": [
+    "https://github.com/PokemonHnS-Development/pokehns-expansion/blob/master/src/challenge_menu.c",
+    "https://github.com/PokemonHnS-Development/pokehns-expansion/blob/master/src/oak_speech_hns.c"
+  ],
+  "entries": [
+    {
+      "address": "0x4b43ec",
+      "byte_length": 11,
+      "original": "CHALLENGES",
+      "pointer_sources": [
+        "0x4b42fc"
+      ],
+      "id": "hns_native_4b43ec",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "bdc2bbc6c6bfc8c1bfcdff",
+      "translations": {
+        "it": "SFIDE"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b43f8",
+      "byte_length": 11,
+      "original": "DIFFICULTY",
+      "pointer_sources": [
+        "0x4b42f0"
+      ],
+      "id": "hns_native_4b43f8",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "bec3c0c0c3bdcfc6ced3ff",
+      "translations": {
+        "it": "DIFFICOLTÀ"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b4404",
+      "byte_length": 9,
+      "original": "NUZLOCKE",
+      "pointer_sources": [
+        "0x4b42e4"
+      ],
+      "id": "hns_native_4b4404",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "c8cfd4c6c9bdc5bfff",
+      "translations": {
+        "it": "NUZLOCKE"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b4410",
+      "byte_length": 11,
+      "original": "RANDOMIZER",
+      "pointer_sources": [
+        "0x4b42d8"
+      ],
+      "id": "hns_native_4b4410",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "ccbbc8bec9c7c3d4bfccff",
+      "translations": {
+        "it": "CASUALITÀ"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b441c",
+      "byte_length": 9,
+      "original": "FEATURES",
+      "pointer_sources": [
+        "0x4b42cc"
+      ],
+      "id": "hns_native_4b441c",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "c0bfbbcecfccbfcdff",
+      "translations": {
+        "it": "FUNZIONI"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b4428",
+      "byte_length": 5,
+      "original": "MODE",
+      "pointer_sources": [
+        "0x4b42c0"
+      ],
+      "id": "hns_native_4b4428",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "c7c9bebfff",
+      "translations": {
+        "it": "MODALITÀ"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b44b0",
+      "byte_length": 5,
+      "original": "SAVE",
+      "pointer_sources": [
+        "0x4b44a0"
+      ],
+      "id": "hns_native_4b44b0",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "cdbbd0bfff",
+      "translations": {
+        "it": "SALVA"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b44b8",
+      "byte_length": 13,
+      "original": "MIRROR THIEF",
+      "pointer_sources": [
+        "0x4b4490"
+      ],
+      "id": "hns_native_4b44b8",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "c7c3ccccc9cc00cec2c3bfc0ff",
+      "translations": {
+        "it": "RUBA SQUADRA"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b44c8",
+      "byte_length": 12,
+      "original": "MIRROR MODE",
+      "pointer_sources": [
+        "0x4b4480"
+      ],
+      "id": "hns_native_4b44c8",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "c7c3ccccc9cc00c7c9bebfff",
+      "translations": {
+        "it": "SPECCHIO"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b44d4",
+      "byte_length": 14,
+      "original": "BST EQUALIZER",
+      "pointer_sources": [
+        "0x4b4470"
+      ],
+      "id": "hns_native_4b44d4",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "bccdce00bfcbcfbbc6c3d4bfccff",
+      "translations": {
+        "it": "STAT. UGUALI"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b44e4",
+      "byte_length": 14,
+      "original": "ONE TYPE ONLY",
+      "pointer_sources": [
+        "0x4b4460"
+      ],
+      "id": "hns_native_4b44e4",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "c9c8bf00ced3cabf00c9c8c6d3ff",
+      "translations": {
+        "it": "TIPO UNICO"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b44f4",
+      "byte_length": 10,
+      "original": "EVO LIMIT",
+      "pointer_sources": [
+        "0x4b4450"
+      ],
+      "id": "hns_native_4b44f4",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "bfd0c900c6c3c7c3ceff",
+      "translations": {
+        "it": "LIMITE EVO"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b4500",
+      "byte_length": 17,
+      "original": "ULTRA EXPENSIVE!",
+      "pointer_sources": [
+        "0x4b4440"
+      ],
+      "id": "hns_native_4b4500",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "cfc6ceccbb00bfd2cabfc8cdc3d0bfabff",
+      "translations": {
+        "it": "PREZZI ALTI!"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b4514",
+      "byte_length": 9,
+      "original": "\\pk\\mnCENTER",
+      "pointer_sources": [
+        "0x4b4430"
+      ],
+      "id": "hns_native_4b4514",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "5354bdbfc8cebfccff",
+      "translations": {
+        "it": "CENTRO PKMN"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b4528",
+      "byte_length": 49,
+      "original": "The player keeps the enemies party\\nafter battle!",
+      "pointer_sources": [
+        "0x4b4524"
+      ],
+      "id": "hns_native_4b4528",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "cedcd900e4e0d5edd9e600dfd9d9e4e700e8dcd900d9e2d9e1ddd9e700e4d5e6e8edfed5dae8d9e600d6d5e8e8e0d9abff",
+      "translations": {
+        "it": "Tieni la squadra nemica\\ndopo la lotta!"
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b455c",
+      "byte_length": 52,
+      "original": "The player gets their own party\\nback after battles.",
+      "pointer_sources": [
+        "0x4b4520"
+      ],
+      "id": "hns_native_4b455c",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "cedcd900e4e0d5edd9e600dbd9e8e700e8dcd9dde600e3ebe200e4d5e6e8edfed6d5d7df00d5dae8d9e600d6d5e8e8e0d9e7adff",
+      "translations": {
+        "it": "Riottieni la tua squadra\\ndopo la lotta."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b4598",
+      "byte_length": 65,
+      "original": "In Trainer battles, the player gets\\na copy of the enemy’s party!",
+      "pointer_sources": [
+        "0x4b4594"
+      ],
+      "id": "hns_native_4b4598",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "c3e200cee6d5dde2d9e600d6d5e8e8e0d9e7b800e8dcd900e4e0d5edd9e600dbd9e8e7fed500d7e3e4ed00e3da00e8dcd900d9e2d9e1edb4e700e4d5e6e8edabff",
+      "translations": {
+        "it": "Nelle lotte con Allenatori, usi\\nuna copia della squadra nemica!"
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b45dc",
+      "byte_length": 33,
+      "original": "The player uses their own party.",
+      "pointer_sources": [
+        "0x4b4590"
+      ],
+      "id": "hns_native_4b45dc",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "cedcd900e4e0d5edd9e600e9e7d9e700e8dcd9dde600e3ebe200e4d5e6e8edadff",
+      "translations": {
+        "it": "Usi la tua squadra."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b4610",
+      "byte_length": 52,
+      "original": "\\pk\\mn stats are calculated with\\n500 of each base stat.",
+      "pointer_sources": [
+        "0x4b460c"
+      ],
+      "id": "hns_native_4b4610",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "535400e7e8d5e8e700d5e6d900d7d5e0d7e9e0d5e8d9d800ebdde8dcfea6a1a100e3da00d9d5d7dc00d6d5e7d900e7e8d5e8adff",
+      "translations": {
+        "it": "Le statistiche base dei Pokémon\\nsono tutte pari a 500."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b4644",
+      "byte_length": 52,
+      "original": "\\pk\\mn stats are calculated with\\n255 of each base stat.",
+      "pointer_sources": [
+        "0x4b4608"
+      ],
+      "id": "hns_native_4b4644",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "535400e7e8d5e8e700d5e6d900d7d5e0d7e9e0d5e8d9d800ebdde8dcfea3a6a600e3da00d9d5d7dc00d6d5e7d900e7e8d5e8adff",
+      "translations": {
+        "it": "Le statistiche base dei Pokémon\\nsono tutte pari a 255."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b4678",
+      "byte_length": 52,
+      "original": "\\pk\\mn stats are calculated with\\n100 of each base stat.",
+      "pointer_sources": [
+        "0x4b4604"
+      ],
+      "id": "hns_native_4b4678",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "535400e7e8d5e8e700d5e6d900d7d5e0d7e9e0d5e8d9d800ebdde8dcfea2a1a100e3da00d9d5d7dc00d6d5e7d900e7e8d5e8adff",
+      "translations": {
+        "it": "Le statistiche base dei Pokémon\\nsono tutte pari a 100."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b46ac",
+      "byte_length": 39,
+      "original": "All \\pk\\mn have their original\\nbase stats.",
+      "pointer_sources": [
+        "0x4b4600"
+      ],
+      "id": "hns_native_4b46ac",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "bbe0e000535400dcd5ead900e8dcd9dde600e3e6dddbdde2d5e0fed6d5e7d900e7e8d5e8e7adff",
+      "translations": {
+        "it": "I Pokémon mantengono le loro\\nstatistiche base originali."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b4724",
+      "byte_length": 55,
+      "original": "Allow only one \\pk\\mn type the\\nplayer can capture and use.",
+      "pointer_sources": [
+        "0x4b46d4",
+        "0x4b46d8",
+        "0x4b46dc",
+        "0x4b46e0",
+        "0x4b46e4",
+        "0x4b46e8",
+        "0x4b46ec",
+        "0x4b46f0",
+        "0x4b46f4",
+        "0x4b46f8",
+        "0x4b46fc",
+        "0x4b4700",
+        "0x4b4704",
+        "0x4b4708",
+        "0x4b470c",
+        "0x4b4710",
+        "0x4b4714",
+        "0x4b4718",
+        "0x4b471c",
+        "0x4b4720"
+      ],
+      "id": "hns_native_4b4724",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "bbe0e0e3eb00e3e2e0ed00e3e2d900535400e8ede4d900e8dcd9fee4e0d5edd9e600d7d5e200d7d5e4e8e9e6d900d5e2d800e9e7d9adff",
+      "translations": {
+        "it": "Puoi catturare e usare Pokémon\\ndi un solo tipo."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b4768",
+      "byte_length": 26,
+      "original": "\\pk\\mn can NOT evolve at all!",
+      "pointer_sources": [
+        "0x4b4764"
+      ],
+      "id": "hns_native_4b4768",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "535400d7d5e200c8c9ce00d9eae3e0ead900d5e800d5e0e0abff",
+      "translations": {
+        "it": "I Pokémon non possono evolversi!"
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b4784",
+      "byte_length": 47,
+      "original": "\\pk\\mn can only evolve into their\\nfirst evolution.",
+      "pointer_sources": [
+        "0x4b4760"
+      ],
+      "id": "hns_native_4b4784",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "535400d7d5e200e3e2e0ed00d9eae3e0ead900dde2e8e300e8dcd9dde6fedadde6e7e800d9eae3e0e9e8dde3e2adff",
+      "translations": {
+        "it": "È consentita solo la prima\\nevoluzione dei Pokémon."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b47b4",
+      "byte_length": 23,
+      "original": "\\pk\\mn evolve as expected.",
+      "pointer_sources": [
+        "0x4b475c"
+      ],
+      "id": "hns_native_4b47b4",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "535400d9eae3e0ead900d5e700d9ece4d9d7e8d9d8adff",
+      "translations": {
+        "it": "I Pokémon si evolvono normalmente."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b47dc",
+      "byte_length": 57,
+      "original": "Everything is 50 times more\\nexpensive! Ultra capitalism!",
+      "pointer_sources": [
+        "0x4b47d8"
+      ],
+      "id": "hns_native_4b47dc",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "bfead9e6ede8dcdde2db00dde700a6a100e8dde1d9e700e1e3e6d9fed9ece4d9e2e7ddead9ab00cfe0e8e6d500d7d5e4dde8d5e0dde7e1abff",
+      "translations": {
+        "it": "I prezzi aumentano di 50 volte!\\nCapitalismo estremo!"
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b4818",
+      "byte_length": 60,
+      "original": "Everything is 10 times more\\nexpensive! Good ol’ capitalism.",
+      "pointer_sources": [
+        "0x4b47d4"
+      ],
+      "id": "hns_native_4b4818",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "bfead9e6ede8dcdde2db00dde700a2a100e8dde1d9e700e1e3e6d9fed9ece4d9e2e7ddead9ab00c1e3e3d800e3e0b400d7d5e4dde8d5e0dde7e1adff",
+      "translations": {
+        "it": "I prezzi aumentano di 10 volte!\\nIl caro vecchio capitalismo."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b4854",
+      "byte_length": 38,
+      "original": "Everything is 5 times more\\nexpensive!",
+      "pointer_sources": [
+        "0x4b47d0"
+      ],
+      "id": "hns_native_4b4854",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "bfead9e6ede8dcdde2db00dde700a600e8dde1d9e700e1e3e6d9fed9ece4d9e2e7ddead9abff",
+      "translations": {
+        "it": "I prezzi aumentano di 5 volte!"
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b487c",
+      "byte_length": 31,
+      "original": "Everything has the usual cost.",
+      "pointer_sources": [
+        "0x4b47cc"
+      ],
+      "id": "hns_native_4b487c",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "bfead9e6ede8dcdde2db00dcd5e700e8dcd900e9e7e9d5e000d7e3e7e8adff",
+      "translations": {
+        "it": "I prezzi restano quelli normali."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b48a4",
+      "byte_length": 61,
+      "original": "The player CAN’T visit \\pk\\mncenters\\nor other locations to heal.",
+      "pointer_sources": [
+        "0x4b48a0"
+      ],
+      "id": "hns_native_4b48a4",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "cedcd900e4e0d5edd9e600bdbbc8b4ce00eadde7dde8005354d7d9e2e8d9e6e7fee3e600e3e8dcd9e600e0e3d7d5e8dde3e2e700e8e300dcd9d5e0adff",
+      "translations": {
+        "it": "Non puoi curarti nei Centri\\nPokémon o in altri luoghi."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b48e4",
+      "byte_length": 60,
+      "original": "The player can visit \\pk\\mncenters\\nand other locations to heal.",
+      "pointer_sources": [
+        "0x4b489c"
+      ],
+      "id": "hns_native_4b48e4",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "cedcd900e4e0d5edd9e600d7d5e200eadde7dde8005354d7d9e2e8d9e6e7fed5e2d800e3e8dcd9e600e0e3d7d5e8dde3e2e700e8e300dcd9d5e0adff",
+      "translations": {
+        "it": "Puoi curarti nei Centri Pokémon\\ne negli altri luoghi previsti."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b49e0",
+      "byte_length": 5,
+      "original": "NEXT",
+      "pointer_sources": [
+        "0x4b49d0"
+      ],
+      "id": "hns_native_4b49e0",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "c8bfd2ceff",
+      "translations": {
+        "it": "AVANTI"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b49e8",
+      "byte_length": 16,
+      "original": "ESC. ROPE / DIG",
+      "pointer_sources": [
+        "0x4b49c0"
+      ],
+      "id": "hns_native_4b49e8",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "bfcdbdad00ccc9cabf00ba00bec3c1ff",
+      "translations": {
+        "it": "FUNE / FOSSA"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b49f8",
+      "byte_length": 13,
+      "original": "LESS ESCAPES",
+      "pointer_sources": [
+        "0x4b49b0"
+      ],
+      "id": "hns_native_4b49f8",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "c6bfcdcd00bfcdbdbbcabfcdff",
+      "translations": {
+        "it": "FUGA DIFFICILE"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b4a08",
+      "byte_length": 12,
+      "original": "TRAINER EVs",
+      "pointer_sources": [
+        "0x4b49a0"
+      ],
+      "id": "hns_native_4b4a08",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "ceccbbc3c8bfcc00bfd0e7ff",
+      "translations": {
+        "it": "EV AVVERSARI"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b4a14",
+      "byte_length": 11,
+      "original": "PLAYER EVs",
+      "pointer_sources": [
+        "0x4b4990"
+      ],
+      "id": "hns_native_4b4a14",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "cac6bbd3bfcc00bfd0e7ff",
+      "translations": {
+        "it": "EV GIOCATORE"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b4a20",
+      "byte_length": 12,
+      "original": "TRAINER IVs",
+      "pointer_sources": [
+        "0x4b4980"
+      ],
+      "id": "hns_native_4b4a20",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "ceccbbc3c8bfcc00c3d0e7ff",
+      "translations": {
+        "it": "IV AVVERSARI"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b4a2c",
+      "byte_length": 11,
+      "original": "PLAYER IVs",
+      "pointer_sources": [
+        "0x4b4970"
+      ],
+      "id": "hns_native_4b4a2c",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "cac6bbd3bfcc00c3d0e7ff",
+      "translations": {
+        "it": "IV GIOCATORE"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b4a38",
+      "byte_length": 14,
+      "original": "TRAINER ITEMS",
+      "pointer_sources": [
+        "0x4b4960"
+      ],
+      "id": "hns_native_4b4a38",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "ceccbbc3c8bfcc00c3cebfc7cdff",
+      "translations": {
+        "it": "STRUM. NEMICI"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b4a48",
+      "byte_length": 13,
+      "original": "PLAYER ITEMS",
+      "pointer_sources": [
+        "0x4b4950"
+      ],
+      "id": "hns_native_4b4a48",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "cac6bbd3bfcc00c3cebfc7cdff",
+      "translations": {
+        "it": "STRUM. PROPRI"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b4a58",
+      "byte_length": 16,
+      "original": "EXP. MULTIPLIER",
+      "pointer_sources": [
+        "0x4b4940"
+      ],
+      "id": "hns_native_4b4a58",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "bfd2caad00c7cfc6cec3cac6c3bfccff",
+      "translations": {
+        "it": "MOLTIPL. ESP."
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b4a68",
+      "byte_length": 10,
+      "original": "LEVEL CAP",
+      "pointer_sources": [
+        "0x4b4930"
+      ],
+      "id": "hns_native_4b4a68",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "c6bfd0bfc600bdbbcaff",
+      "translations": {
+        "it": "LIV. MASSIMO"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b4a74",
+      "byte_length": 12,
+      "original": "PARTY LIMIT",
+      "pointer_sources": [
+        "0x4b4920"
+      ],
+      "id": "hns_native_4b4a74",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "cabbccced300c6c3c7c3ceff",
+      "translations": {
+        "it": "LIM. SQUADRA"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b4a84",
+      "byte_length": 31,
+      "original": "Continue to challenge options.",
+      "pointer_sources": [
+        "0x4b4a80"
+      ],
+      "id": "hns_native_4b4a84",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "bde3e2e8dde2e9d900e8e300d7dcd5e0e0d9e2dbd900e3e4e8dde3e2e7adff",
+      "translations": {
+        "it": "Passa alle opzioni delle sfide."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b4aac",
+      "byte_length": 52,
+      "original": "ESCAPE ROPE and DIG can’t be used\\nto exit dungeons.",
+      "pointer_sources": [
+        "0x4b4aa8"
+      ],
+      "id": "hns_native_4b4aac",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "bfcdbdbbcabf00ccc9cabf00d5e2d800bec3c100d7d5e2b4e800d6d900e9e7d9d8fee8e300d9ecdde800d8e9e2dbd9e3e2e7adff",
+      "translations": {
+        "it": "Non puoi usare Fune di Fuga\\ne Fossa per uscire dai dungeon."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b4ae0",
+      "byte_length": 50,
+      "original": "ESCAPE ROPE and DIG can be used to\\nexit dungeons.",
+      "pointer_sources": [
+        "0x4b4aa4"
+      ],
+      "id": "hns_native_4b4ae0",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "bfcdbdbbcabf00ccc9cabf00d5e2d800bec3c100d7d5e200d6d900e9e7d9d800e8e3fed9ecdde800d8e9e2dbd9e3e2e7adff",
+      "translations": {
+        "it": "Puoi usare Fune di Fuga e Fossa\\nper uscire dai dungeon."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b4b1c",
+      "byte_length": 59,
+      "original": "The player can’t easily run away\\nfrom battles. Use repels!",
+      "pointer_sources": [
+        "0x4b4b18"
+      ],
+      "id": "hns_native_4b4b1c",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "cedcd900e4e0d5edd9e600d7d5e2b4e800d9d5e7dde0ed00e6e9e200d5ebd5edfedae6e3e100d6d5e8e8e0d9e7ad00cfe7d900e6d9e4d9e0e7abff",
+      "translations": {
+        "it": "Fuggire dalle lotte è difficile.\\nUsa i Repellenti!"
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b4b58",
+      "byte_length": 55,
+      "original": "The player can easily run away from\\nbattles, as usual.",
+      "pointer_sources": [
+        "0x4b4b14"
+      ],
+      "id": "hns_native_4b4b58",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "cedcd900e4e0d5edd9e600d7d5e200d9d5e7dde0ed00e6e9e200d5ebd5ed00dae6e3e1fed6d5e8e8e0d9e7b800d5e700e9e7e9d5e0adff",
+      "translations": {
+        "it": "Puoi fuggire dalle lotte\\ncon la normale facilità."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b4b9c",
+      "byte_length": 64,
+      "original": "IVs are set between 30 and 31 to\\nallow different Hidden Powers.",
+      "pointer_sources": [
+        "0x4b4b98"
+      ],
+      "id": "hns_native_4b4b9c",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "c3d0e700d5e6d900e7d9e800d6d9e8ebd9d9e200a4a100d5e2d800a4a200e8e3fed5e0e0e3eb00d8dddadad9e6d9e2e800c2ddd8d8d9e200cae3ebd9e6e7adff",
+      "translations": {
+        "it": "IV tra 30 e 31 per consentire\\ndiversi tipi di Introforza."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b4bdc",
+      "byte_length": 55,
+      "original": "The IVs of your \\pk\\mn are set\\nalways to the maximum (31).",
+      "pointer_sources": [
+        "0x4b4b94"
+      ],
+      "id": "hns_native_4b4bdc",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "cedcd900c3d0e700e3da00ede3e9e600535400d5e6d900e7d9e8fed5e0ebd5ede700e8e300e8dcd900e1d5ecdde1e9e1005ca4a25dadff",
+      "translations": {
+        "it": "Gli IV dei tuoi Pokémon sono\\nsempre al massimo (31)."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b4c14",
+      "byte_length": 50,
+      "original": "Your \\pk\\mn have the expected IVs\\n(between 0 and 31).",
+      "pointer_sources": [
+        "0x4b4b90"
+      ],
+      "id": "hns_native_4b4c14",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "d3e3e9e600535400dcd5ead900e8dcd900d9ece4d9d7e8d9d800c3d0e7fe5cd6d9e8ebd9d9e200a100d5e2d800a4a25dadff",
+      "translations": {
+        "it": "I tuoi Pokémon hanno IV normali\\n(compresi tra 0 e 31)."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b4c58",
+      "byte_length": 40,
+      "original": "All Trainer \\pk\\mn have 252 EVs!\\nVery Hard!",
+      "pointer_sources": [
+        "0x4b4c54"
+      ],
+      "id": "hns_native_4b4c58",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "bbe0e000cee6d5dde2d9e600535400dcd5ead900a3a6a300bfd0e7abfed0d9e6ed00c2d5e6d8abff",
+      "translations": {
+        "it": "I Pokémon nemici hanno 252 EV!\\nMolto difficile!"
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b4c80",
+      "byte_length": 30,
+      "original": "All Trainer \\pk\\mn have high EVs!",
+      "pointer_sources": [
+        "0x4b4c50"
+      ],
+      "id": "hns_native_4b4c80",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "bbe0e000cee6d5dde2d9e600535400dcd5ead900dcdddbdc00bfd0e7abff",
+      "translations": {
+        "it": "I Pokémon nemici hanno EV alti!"
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b4ca0",
+      "byte_length": 48,
+      "original": "The EVs of Trainer \\pk\\mn increase\\nwith gym badges!",
+      "pointer_sources": [
+        "0x4b4c4c"
+      ],
+      "id": "hns_native_4b4ca0",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "cedcd900bfd0e700e3da00cee6d5dde2d9e600535400dde2d7e6d9d5e7d9feebdde8dc00dbede100d6d5d8dbd9e7abff",
+      "translations": {
+        "it": "Gli EV dei Pokémon nemici\\naumentano con le Medaglie!"
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b4cd0",
+      "byte_length": 37,
+      "original": "The \\pk\\mn of enemy Trainer have\\nno EVs.",
+      "pointer_sources": [
+        "0x4b4c48"
+      ],
+      "id": "hns_native_4b4cd0",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "cedcd900535400e3da00d9e2d9e1ed00cee6d5dde2d9e600dcd5ead9fee2e300bfd0e7adff",
+      "translations": {
+        "it": "I Pokémon degli Allenatori\\navversari non hanno EV."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b4d04",
+      "byte_length": 33,
+      "original": "All Trainer \\pk\\mn have perfect IVs!",
+      "pointer_sources": [
+        "0x4b4d00"
+      ],
+      "id": "hns_native_4b4d04",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "bbe0e000cee6d5dde2d9e600535400dcd5ead900e4d9e6dad9d7e800c3d0e7abff",
+      "translations": {
+        "it": "I Pokémon nemici hanno IV perfetti!"
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b4d28",
+      "byte_length": 48,
+      "original": "The IVs of Trainer \\pk\\mn increase\\nwith gym badges!",
+      "pointer_sources": [
+        "0x4b4cfc"
+      ],
+      "id": "hns_native_4b4d28",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "cedcd900c3d0e700e3da00cee6d5dde2d9e600535400dde2d7e6d9d5e7d9feebdde8dc00dbede100d6d5d8dbd9e7abff",
+      "translations": {
+        "it": "Gli IV dei Pokémon nemici\\naumentano con le Medaglie!"
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b4d58",
+      "byte_length": 47,
+      "original": "The \\pk\\mn of enemy Trainer have\\nthe expected IVs.",
+      "pointer_sources": [
+        "0x4b4cf8"
+      ],
+      "id": "hns_native_4b4d58",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "cedcd900535400e3da00d9e2d9e1ed00cee6d5dde2d9e600dcd5ead9fee8dcd900d9ece4d9d7e8d9d800c3d0e7adff",
+      "translations": {
+        "it": "I Pokémon degli Allenatori\\navversari hanno IV normali."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b4d90",
+      "byte_length": 47,
+      "original": "The player’s \\pk\\mn do NOT gain any\\neffort values!",
+      "pointer_sources": [
+        "0x4b4d8c"
+      ],
+      "id": "hns_native_4b4d90",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "cedcd900e4e0d5edd9e6b4e700535400d8e300c8c9ce00dbd5dde200d5e2edfed9dadae3e6e800ead5e0e9d9e7abff",
+      "translations": {
+        "it": "I tuoi Pokémon non guadagnano\\npunti allenamento (EV)!"
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b4dc0",
+      "byte_length": 48,
+      "original": "The player’s \\pk\\mn gain effort\\nvalues as expected.",
+      "pointer_sources": [
+        "0x4b4d88"
+      ],
+      "id": "hns_native_4b4dc0",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "cedcd900e4e0d5edd9e6b4e700535400dbd5dde200d9dadae3e6e8feead5e0e9d9e700d5e700d9ece4d9d7e8d9d8adff",
+      "translations": {
+        "it": "I tuoi Pokémon guadagnano\\npunti allenamento normalmente."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b4df8",
+      "byte_length": 41,
+      "original": "Enemy trainers can NOT use battle\\nitems.",
+      "pointer_sources": [
+        "0x4b4df4"
+      ],
+      "id": "hns_native_4b4df8",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "bfe2d9e1ed00e8e6d5dde2d9e6e700d7d5e200c8c9ce00e9e7d900d6d5e8e8e0d9fedde8d9e1e7adff",
+      "translations": {
+        "it": "Gli Allenatori avversari non\\npossono usare strumenti in lotta."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b4e24",
+      "byte_length": 37,
+      "original": "Enemy trainers can use battle items.",
+      "pointer_sources": [
+        "0x4b4df0"
+      ],
+      "id": "hns_native_4b4e24",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "bfe2d9e1ed00e8e6d5dde2d9e6e700d7d5e200e9e7d900d6d5e8e8e0d900dde8d9e1e7adff",
+      "translations": {
+        "it": "Gli Allenatori avversari possono\\nusare strumenti in lotta."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b4e54",
+      "byte_length": 61,
+      "original": "The player can NOT use battle items.\\nHold items are allowed!",
+      "pointer_sources": [
+        "0x4b4e50"
+      ],
+      "id": "hns_native_4b4e54",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "cedcd900e4e0d5edd9e600d7d5e200c8c9ce00e9e7d900d6d5e8e8e0d900dde8d9e1e7adfec2e3e0d800dde8d9e1e700d5e6d900d5e0e0e3ebd9d8abff",
+      "translations": {
+        "it": "Non puoi usare strumenti in lotta.\\nQuelli tenuti sono consentiti!"
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b4e94",
+      "byte_length": 33,
+      "original": "The player can use battle items.",
+      "pointer_sources": [
+        "0x4b4e4c"
+      ],
+      "id": "hns_native_4b4e94",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "cedcd900e4e0d5edd9e600d7d5e200e9e7d900d6d5e8e8e0d900dde8d9e1e7adff",
+      "translations": {
+        "it": "Puoi usare strumenti in lotta."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b4ec8",
+      "byte_length": 63,
+      "original": "\\pk\\mn gain ZERO EXP. Points!!!\\nApplies to HARD MODE EXP. as well.",
+      "pointer_sources": [
+        "0x4b4ec4"
+      ],
+      "id": "hns_native_4b4ec8",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "535400dbd5dde200d4bfccc900bfd2caad00cae3dde2e8e7abababfebbe4e4e0ddd9e700e8e300c2bbccbe00c7c9bebf00bfd2caad00d5e700ebd9e0e0adff",
+      "translations": {
+        "it": "I Pokémon non ricevono ESP.!\\nVale anche in modalità difficile."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b4f08",
+      "byte_length": 55,
+      "original": "\\pk\\mn gain double EXP. Points!\\nStacks with HARD MODE EXP.",
+      "pointer_sources": [
+        "0x4b4ec0"
+      ],
+      "id": "hns_native_4b4f08",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "535400dbd5dde200d8e3e9d6e0d900bfd2caad00cae3dde2e8e7abfecde8d5d7dfe700ebdde8dc00c2bbccbe00c7c9bebf00bfd2caadff",
+      "translations": {
+        "it": "ESP. doppi! Si aggiungono a quelli\\ndella modalità difficile."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b4f40",
+      "byte_length": 64,
+      "original": "\\pk\\mn gain 50 percent more EXP.\\nPoints! Stacks with HARD MODE EXP.",
+      "pointer_sources": [
+        "0x4b4ebc"
+      ],
+      "id": "hns_native_4b4f40",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "535400dbd5dde200a6a100e4d9e6d7d9e2e800e1e3e6d900bfd2caadfecae3dde2e8e7ab00cde8d5d7dfe700ebdde8dc00c2bbccbe00c7c9bebf00bfd2caadff",
+      "translations": {
+        "it": "ESP. aumentati del 50%! Cumulabile\\ncon la modalità difficile."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b4f80",
+      "byte_length": 55,
+      "original": "\\pk\\mn gain normal EXP. Points.\\nStacks with HARD MODE EXP.",
+      "pointer_sources": [
+        "0x4b4eb8"
+      ],
+      "id": "hns_native_4b4f80",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "535400dbd5dde200e2e3e6e1d5e000bfd2caad00cae3dde2e8e7adfecde8d5d7dfe700ebdde8dc00c2bbccbe00c7c9bebf00bfd2caadff",
+      "translations": {
+        "it": "ESP. normali, cumulabili con quelli\\ndella modalità difficile."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b4fc4",
+      "byte_length": 58,
+      "original": "Maximum level is based on the next\\ngym’s lowest \\pk\\mn level.",
+      "pointer_sources": [
+        "0x4b4fc0"
+      ],
+      "id": "hns_native_4b4fc4",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "c7d5ecdde1e9e100e0d9ead9e000dde700d6d5e7d9d800e3e200e8dcd900e2d9ece8fedbede1b4e700e0e3ebd9e7e800535400e0d9ead9e0adff",
+      "translations": {
+        "it": "Livello massimo: il più basso dei\\nPokémon della prossima Palestra."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b5000",
+      "byte_length": 59,
+      "original": "Maximum level is based on the next\\ngym’s highest \\pk\\mn level.",
+      "pointer_sources": [
+        "0x4b4fbc"
+      ],
+      "id": "hns_native_4b5000",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "c7d5ecdde1e9e100e0d9ead9e000dde700d6d5e7d9d800e3e200e8dcd900e2d9ece8fedbede1b4e700dcdddbdcd9e7e800535400e0d9ead9e0adff",
+      "translations": {
+        "it": "Livello massimo: il più alto dei\\nPokémon della prossima Palestra."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b503c",
+      "byte_length": 37,
+      "original": "No level cap. Overleveling possible.",
+      "pointer_sources": [
+        "0x4b4fb8"
+      ],
+      "id": "hns_native_4b503c",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "c8e300e0d9ead9e000d7d5e4ad00c9ead9e6e0d9ead9e0dde2db00e4e3e7e7ddd6e0d9adff",
+      "translations": {
+        "it": "Nessun limite di livello."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b507c",
+      "byte_length": 68,
+      "original": "Limits the amount of \\pk\\mn in the\\nparty. 1 has visual bugs in DOUBLES.",
+      "pointer_sources": [
+        "0x4b5064",
+        "0x4b5068",
+        "0x4b506c",
+        "0x4b5070",
+        "0x4b5074",
+        "0x4b5078"
+      ],
+      "id": "hns_native_4b507c",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "c6dde1dde8e700e8dcd900d5e1e3e9e2e800e3da00535400dde200e8dcd9fee4d5e6e8edad00a200dcd5e700eadde7e9d5e000d6e9dbe700dde200bec9cfbcc6bfcdadff",
+      "translations": {
+        "it": "Limita la squadra. Con 1 Pokémon,\\nci sono bug visivi nelle Doppie."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b5130",
+      "byte_length": 5,
+      "original": "NEXT",
+      "pointer_sources": [
+        "0x4b5120"
+      ],
+      "id": "hns_native_4b5130",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "c8bfd2ceff",
+      "translations": {
+        "it": "AVANTI"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b5138",
+      "byte_length": 16,
+      "original": "INF. RARE CANDY",
+      "pointer_sources": [
+        "0x4b5110"
+      ],
+      "id": "hns_native_4b5138",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "c3c8c0ad00ccbbccbf00bdbbc8bed3ff",
+      "translations": {
+        "it": "CARAM. INFINITE"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b5148",
+      "byte_length": 9,
+      "original": "FAINTING",
+      "pointer_sources": [
+        "0x4b5100"
+      ],
+      "id": "hns_native_4b5148",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "c0bbc3c8cec3c8c1ff",
+      "translations": {
+        "it": "ESAURIMENTO"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b5154",
+      "byte_length": 10,
+      "original": "NICKNAMES",
+      "pointer_sources": [
+        "0x4b50f0"
+      ],
+      "id": "hns_native_4b5154",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "c8c3bdc5c8bbc7bfcdff",
+      "translations": {
+        "it": "SOPRANNOMI"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b5160",
+      "byte_length": 13,
+      "original": "SHINY CLAUSE",
+      "pointer_sources": [
+        "0x4b50e0"
+      ],
+      "id": "hns_native_4b5160",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "cdc2c3c8d300bdc6bbcfcdbfff",
+      "translations": {
+        "it": "REGOLA CROM."
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b5170",
+      "byte_length": 13,
+      "original": "DUPES CLAUSE",
+      "pointer_sources": [
+        "0x4b50d0"
+      ],
+      "id": "hns_native_4b5170",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "becfcabfcd00bdc6bbcfcdbfff",
+      "translations": {
+        "it": "REGOLA DOPPIONI"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b5180",
+      "byte_length": 9,
+      "original": "NUZLOCKE",
+      "pointer_sources": [
+        "0x4b50c0"
+      ],
+      "id": "hns_native_4b5180",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "c8cfd4c6c9bdc5bfff",
+      "translations": {
+        "it": "NUZLOCKE"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b5190",
+      "byte_length": 32,
+      "original": "Continue to difficulty options.",
+      "pointer_sources": [
+        "0x4b518c"
+      ],
+      "id": "hns_native_4b5190",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "bde3e2e8dde2e9d900e8e300d8dddadaddd7e9e0e8ed00e3e4e8dde3e2e7adff",
+      "translations": {
+        "it": "Passa alle opzioni di difficoltà."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b51b8",
+      "byte_length": 52,
+      "original": "Player will not have access to\\nInfinite Rare Candy.",
+      "pointer_sources": [
+        "0x4b51b4"
+      ],
+      "id": "hns_native_4b51b8",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "cae0d5edd9e600ebdde0e000e2e3e800dcd5ead900d5d7d7d9e7e700e8e3fec3e2dadde2dde8d900ccd5e6d900bdd5e2d8edadff",
+      "translations": {
+        "it": "Nessun accesso alle\\nCaramelle Rare infinite."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b51ec",
+      "byte_length": 62,
+      "original": "Infinite Rare Candy will be in the\\nplayer’s PC at game start.",
+      "pointer_sources": [
+        "0x4b51b0"
+      ],
+      "id": "hns_native_4b51ec",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "c3e2dadde2dde8d900ccd5e6d900bdd5e2d8ed00ebdde0e000d6d900dde200e8dcd9fee4e0d5edd9e6b4e700cabd00d5e800dbd5e1d900e7e8d5e6e8adff",
+      "translations": {
+        "it": "Caramelle Rare infinite nel PC\\ndel giocatore a inizio partita."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b5234",
+      "byte_length": 38,
+      "original": "Fainted \\pk\\mn are released after\\nbattle!",
+      "pointer_sources": [
+        "0x4b5230"
+      ],
+      "id": "hns_native_4b5234",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "c0d5dde2e8d9d800535400d5e6d900e6d9e0d9d5e7d9d800d5dae8d9e6fed6d5e8e8e0d9abff",
+      "translations": {
+        "it": "I Pokémon esausti vengono\\nliberati dopo la lotta!"
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b525c",
+      "byte_length": 67,
+      "original": "Fainted \\pk\\mn are sent to the PC\\nafter battle and can’t be retrieved.",
+      "pointer_sources": [
+        "0x4b522c"
+      ],
+      "id": "hns_native_4b525c",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "c0d5dde2e8d9d800535400d5e6d900e7d9e2e800e8e300e8dcd900cabdfed5dae8d9e600d6d5e8e8e0d900d5e2d800d7d5e2b4e800d6d900e6d9e8e6ddd9ead9d8adff",
+      "translations": {
+        "it": "I Pokémon esausti vanno nel PC\\ne non sono più recuperabili."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b52a8",
+      "byte_length": 24,
+      "original": "Nicknames are optional.",
+      "pointer_sources": [
+        "0x4b52a4"
+      ],
+      "id": "hns_native_4b52a8",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "c8ddd7dfe2d5e1d9e700d5e6d900e3e4e8dde3e2d5e0adff",
+      "translations": {
+        "it": "I soprannomi sono facoltativi."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b52c0",
+      "byte_length": 53,
+      "original": "Forces the player to nickname every\\n\\pk\\mn. RECOMMENDED!",
+      "pointer_sources": [
+        "0x4b52a0"
+      ],
+      "id": "hns_native_4b52c0",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "c0e3e6d7d9e700e8dcd900e4e0d5edd9e600e8e300e2ddd7dfe2d5e1d900d9ead9e6edfe5354ad00ccbfbdc9c7c7bfc8bebfbeabff",
+      "translations": {
+        "it": "Soprannome obbligatorio per\\nogni Pokémon. Consigliato!"
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b5300",
+      "byte_length": 66,
+      "original": "The player can only catch a shiny\\n\\pk\\mn if it’s the first encounter.",
+      "pointer_sources": [
+        "0x4b52fc"
+      ],
+      "id": "hns_native_4b5300",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "cedcd900e4e0d5edd9e600d7d5e200e3e2e0ed00d7d5e8d7dc00d500e7dcdde2edfe535400ddda00dde8b4e700e8dcd900dadde6e7e800d9e2d7e3e9e2e8d9e6adff",
+      "translations": {
+        "it": "Puoi catturare un cromatico solo\\nse è il primo incontro."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b5344",
+      "byte_length": 51,
+      "original": "The player can always catch shiny\\n\\pk\\mn. RECOMMENDED!",
+      "pointer_sources": [
+        "0x4b52f8"
+      ],
+      "id": "hns_native_4b5344",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "cedcd900e4e0d5edd9e600d7d5e200d5e0ebd5ede700d7d5e8d7dc00e7dcdde2edfe5354ad00ccbfbdc9c7c7bfc8bebfbeabff",
+      "translations": {
+        "it": "Puoi sempre catturare i Pokémon\\ncromatici. Consigliato!"
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b5380",
+      "byte_length": 55,
+      "original": "The player always has to catch the\\nfirst \\pk\\mn per route.",
+      "pointer_sources": [
+        "0x4b537c"
+      ],
+      "id": "hns_native_4b5380",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "cedcd900e4e0d5edd9e600d5e0ebd5ede700dcd5e700e8e300d7d5e8d7dc00e8dcd9fedadde6e7e800535400e4d9e600e6e3e9e8d9adff",
+      "translations": {
+        "it": "Devi catturare il primo Pokémon\\nincontrato in ogni percorso."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b53b8",
+      "byte_length": 64,
+      "original": "Only not prior caught \\pk\\mn count\\nas first encounter. RECOMMENDED!",
+      "pointer_sources": [
+        "0x4b5378"
+      ],
+      "id": "hns_native_4b53b8",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "c9e2e0ed00e2e3e800e4e6dde3e600d7d5e9dbdce800535400d7e3e9e2e8fed5e700dadde6e7e800d9e2d7e3e9e2e8d9e6ad00ccbfbdc9c7c7bfc8bebfbeabff",
+      "translations": {
+        "it": "Primo incontro: solo specie mai\\ncatturate prima. Consigliato!"
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b5408",
+      "byte_length": 59,
+      "original": "Same rules as NORMAL but also\\ndeletes SAVE on battle loss!",
+      "pointer_sources": [
+        "0x4b5404"
+      ],
+      "id": "hns_native_4b5408",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "cdd5e1d900e6e9e0d9e700d5e700c8c9ccc7bbc600d6e9e800d5e0e7e3fed8d9e0d9e8d9e700cdbbd0bf00e3e200d6d5e8e8e0d900e0e3e7e7abff",
+      "translations": {
+        "it": "Regole normali, ma una sconfitta\\ncancella anche il salvataggio!"
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b5444",
+      "byte_length": 55,
+      "original": "One catch per route! Fainted \\pk\\mn\\ncan’t be used anymore.",
+      "pointer_sources": [
+        "0x4b5400"
+      ],
+      "id": "hns_native_4b5444",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "c9e2d900d7d5e8d7dc00e4d9e600e6e3e9e8d9ab00c0d5dde2e8d9d8005354fed7d5e2b4e800d6d900e9e7d9d800d5e2ede1e3e6d9adff",
+      "translations": {
+        "it": "Una cattura per percorso!\\nNon puoi usare Pokémon esausti."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b547c",
+      "byte_length": 62,
+      "original": "Fainted \\pk\\mn can’t be used anymore!\\nNo more rules are enforced.",
+      "pointer_sources": [
+        "0x4b53fc"
+      ],
+      "id": "hns_native_4b547c",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "c0d5dde2e8d9d800535400d7d5e2b4e800d6d900e9e7d9d800d5e2ede1e3e6d9abfec8e300e1e3e6d900e6e9e0d9e700d5e6d900d9e2dae3e6d7d9d8adff",
+      "translations": {
+        "it": "Non puoi usare Pokémon esausti!\\nNessun'altra regola aggiuntiva."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b54bc",
+      "byte_length": 27,
+      "original": "Nuzlocke mode is disabled.",
+      "pointer_sources": [
+        "0x4b53f8"
+      ],
+      "id": "hns_native_4b54bc",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "c8e9eee0e3d7dfd900e1e3d8d900dde700d8dde7d5d6e0d9d8adff",
+      "translations": {
+        "it": "Modalità Nuzlocke disattivata."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b55f8",
+      "byte_length": 5,
+      "original": "NEXT",
+      "pointer_sources": [
+        "0x4b55e8"
+      ],
+      "id": "hns_native_4b55f8",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "c8bfd2ceff",
+      "translations": {
+        "it": "AVANTI"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b5600",
+      "byte_length": 11,
+      "original": "CHAOS MODE",
+      "pointer_sources": [
+        "0x4b55d8"
+      ],
+      "id": "hns_native_4b5600",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "bdc2bbc9cd00c7c9bebfff",
+      "translations": {
+        "it": "MODALITÀ CAOS"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b560c",
+      "byte_length": 6,
+      "original": "ITEMS",
+      "pointer_sources": [
+        "0x4b55c8"
+      ],
+      "id": "hns_native_4b560c",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "c3cebfc7cdff",
+      "translations": {
+        "it": "STRUMENTI"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b5614",
+      "byte_length": 14,
+      "original": "EFFECTIVENESS",
+      "pointer_sources": [
+        "0x4b55b8"
+      ],
+      "id": "hns_native_4b5614",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "bfc0c0bfbdcec3d0bfc8bfcdcdff",
+      "translations": {
+        "it": "EFFICACIA"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b5624",
+      "byte_length": 10,
+      "original": "EVO LINES",
+      "pointer_sources": [
+        "0x4b55a8"
+      ],
+      "id": "hns_native_4b5624",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "bfd0c900c6c3c8bfcdff",
+      "translations": {
+        "it": "LINEE EVO"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b5630",
+      "byte_length": 11,
+      "original": "EVOLUTIONS",
+      "pointer_sources": [
+        "0x4b5598"
+      ],
+      "id": "hns_native_4b5630",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "bfd0c9c6cfcec3c9c8cdff",
+      "translations": {
+        "it": "EVOLUZIONI"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b563c",
+      "byte_length": 10,
+      "original": "ABILITIES",
+      "pointer_sources": [
+        "0x4b5588"
+      ],
+      "id": "hns_native_4b563c",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "bbbcc3c6c3cec3bfcdff",
+      "translations": {
+        "it": "ABILITÀ"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b5648",
+      "byte_length": 6,
+      "original": "MOVES",
+      "pointer_sources": [
+        "0x4b5578"
+      ],
+      "id": "hns_native_4b5648",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "c7c9d0bfcdff",
+      "translations": {
+        "it": "MOSSE"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b5650",
+      "byte_length": 5,
+      "original": "TYPE",
+      "pointer_sources": [
+        "0x4b5568"
+      ],
+      "id": "hns_native_4b5650",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "ced3cabfff",
+      "translations": {
+        "it": "TIPO"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b5658",
+      "byte_length": 10,
+      "original": "GEN SCOPE",
+      "pointer_sources": [
+        "0x4b5558"
+      ],
+      "id": "hns_native_4b5658",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "c1bfc800cdbdc9cabfff",
+      "translations": {
+        "it": "GENERAZIONI"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b5664",
+      "byte_length": 12,
+      "original": "LEGENDARIES",
+      "pointer_sources": [
+        "0x4b5548"
+      ],
+      "id": "hns_native_4b5664",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "c6bfc1bfc8bebbccc3bfcdff",
+      "translations": {
+        "it": "LEGGENDARI"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b5670",
+      "byte_length": 10,
+      "original": "BALANCING",
+      "pointer_sources": [
+        "0x4b5538"
+      ],
+      "id": "hns_native_4b5670",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "bcbbc6bbc8bdc3c8c1ff",
+      "translations": {
+        "it": "BILANCIAMENTO"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b567c",
+      "byte_length": 10,
+      "original": "STATIC \\pk\\mn",
+      "pointer_sources": [
+        "0x4b5528"
+      ],
+      "id": "hns_native_4b567c",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "cdcebbcec3bd005354ff",
+      "translations": {
+        "it": "PKMN FISSI"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b5688",
+      "byte_length": 8,
+      "original": "TRAINER",
+      "pointer_sources": [
+        "0x4b5518"
+      ],
+      "id": "hns_native_4b5688",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "ceccbbc3c8bfccff",
+      "translations": {
+        "it": "ALLENATORI"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b5690",
+      "byte_length": 11,
+      "original": "MAP SEEDED",
+      "pointer_sources": [
+        "0x4b5508"
+      ],
+      "id": "hns_native_4b5690",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "c7bbca00cdbfbfbebfbeff",
+      "translations": {
+        "it": "PER MAPPA"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b569c",
+      "byte_length": 8,
+      "original": "WILD \\pk\\mn",
+      "pointer_sources": [
+        "0x4b54f8"
+      ],
+      "id": "hns_native_4b569c",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "d1c3c6be005354ff",
+      "translations": {
+        "it": "PKMN SELVATICI"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b56a4",
+      "byte_length": 11,
+      "original": "STARTER \\pk\\mn",
+      "pointer_sources": [
+        "0x4b54e8"
+      ],
+      "id": "hns_native_4b56a4",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "cdcebbcccebfcc005354ff",
+      "translations": {
+        "it": "PKMN INIZIALI"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b56b0",
+      "byte_length": 11,
+      "original": "RANDOMIZER",
+      "pointer_sources": [
+        "0x4b54d8"
+      ],
+      "id": "hns_native_4b56b0",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "ccbbc8bec9c7c3d4bfccff",
+      "translations": {
+        "it": "CASUALITÀ"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b56c0",
+      "byte_length": 30,
+      "original": "Continue to Nuzlocke options.",
+      "pointer_sources": [
+        "0x4b56bc"
+      ],
+      "id": "hns_native_4b56c0",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "bde3e2e8dde2e9d900e8e300c8e9eee0e3d7dfd900e3e4e8dde3e2e7adff",
+      "translations": {
+        "it": "Passa alle opzioni Nuzlocke."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b56e8",
+      "byte_length": 65,
+      "original": "Every above chosen option will be\\nvery chaotic. NOT recommended!",
+      "pointer_sources": [
+        "0x4b56e4"
+      ],
+      "id": "hns_native_4b56e8",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "bfead9e6ed00d5d6e3ead900d7dce3e7d9e200e3e4e8dde3e200ebdde0e000d6d9feead9e6ed00d7dcd5e3e8ddd7ad00c8c9ce00e6d9d7e3e1e1d9e2d8d9d8abff",
+      "translations": {
+        "it": "Rende molto caotiche le opzioni\\nscelte sopra. Sconsigliato!"
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b572c",
+      "byte_length": 21,
+      "original": "Chaos mode disabled.",
+      "pointer_sources": [
+        "0x4b56e0"
+      ],
+      "id": "hns_native_4b572c",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "bddcd5e3e700e1e3d8d900d8dde7d5d6e0d9d8adff",
+      "translations": {
+        "it": "Modalità caos disattivata."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b574c",
+      "byte_length": 68,
+      "original": "Randomize found, hidden and received\\nitems. KEY items are excluded!",
+      "pointer_sources": [
+        "0x4b5748"
+      ],
+      "id": "hns_native_4b574c",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "ccd5e2d8e3e1ddeed900dae3e9e2d8b800dcddd8d8d9e200d5e2d800e6d9d7d9ddead9d8fedde8d9e1e7ad00c5bfd300dde8d9e1e700d5e6d900d9ecd7e0e9d8d9d8abff",
+      "translations": {
+        "it": "Strumenti trovati e ricevuti\\ncasuali, esclusi quelli base!"
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b5790",
+      "byte_length": 62,
+      "original": "All found or received items are the\\nsame as in the base game.",
+      "pointer_sources": [
+        "0x4b5744"
+      ],
+      "id": "hns_native_4b5790",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "bbe0e000dae3e9e2d800e3e600e6d9d7d9ddead9d800dde8d9e1e700d5e6d900e8dcd9fee7d5e1d900d5e700dde200e8dcd900d6d5e7d900dbd5e1d9adff",
+      "translations": {
+        "it": "Strumenti trovati e ricevuti\\ncome nel gioco originale."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b57d8",
+      "byte_length": 53,
+      "original": "Randomize type effectiveness.\\nWARNING: CAN BE BUGGY!",
+      "pointer_sources": [
+        "0x4b57d4"
+      ],
+      "id": "hns_native_4b57d8",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "ccd5e2d8e3e1ddeed900e8ede4d900d9dadad9d7e8ddead9e2d9e7e7adfed1bbccc8c3c8c1f000bdbbc800bcbf00bccfc1c1d3abff",
+      "translations": {
+        "it": "Efficacia dei tipi casuale.\\nAttenzione: possibili bug!"
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b5810",
+      "byte_length": 67,
+      "original": "Type effectiveness chart will remain\\nthe same as in the base game.",
+      "pointer_sources": [
+        "0x4b57d0"
+      ],
+      "id": "hns_native_4b5810",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "ceede4d900d9dadad9d7e8ddead9e2d9e7e700d7dcd5e6e800ebdde0e000e6d9e1d5dde2fee8dcd900e7d5e1d900d5e700dde200e8dcd900d6d5e7d900dbd5e1d9adff",
+      "translations": {
+        "it": "Efficacia dei tipi invariata\\nrispetto al gioco originale."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b585c",
+      "byte_length": 64,
+      "original": "Randomize evolution lines. Allows\\nnew evolution lines to occur!",
+      "pointer_sources": [
+        "0x4b5858"
+      ],
+      "id": "hns_native_4b585c",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "ccd5e2d8e3e1ddeed900d9eae3e0e9e8dde3e200e0dde2d9e7ad00bbe0e0e3ebe7fee2d9eb00d9eae3e0e9e8dde3e200e0dde2d9e700e8e300e3d7d7e9e6abff",
+      "translations": {
+        "it": "Linee evolutive casuali:\\npossono nascere nuove linee!"
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b589c",
+      "byte_length": 50,
+      "original": "The \\pk\\mn that can potentially\\nevolve are unchanged.",
+      "pointer_sources": [
+        "0x4b5854"
+      ],
+      "id": "hns_native_4b589c",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "cedcd900535400e8dcd5e800d7d5e200e4e3e8d9e2e8ddd5e0e0edfed9eae3e0ead900d5e6d900e9e2d7dcd5e2dbd9d8adff",
+      "translations": {
+        "it": "I Pokémon che possono evolversi\\nrestano gli stessi."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b58d8",
+      "byte_length": 29,
+      "original": "Randomize all \\pk\\mn evolutions.",
+      "pointer_sources": [
+        "0x4b58d4"
+      ],
+      "id": "hns_native_4b58d8",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "ccd5e2d8e3e1ddeed900d5e0e000535400d9eae3e0e9e8dde3e2e7adff",
+      "translations": {
+        "it": "Evoluzioni dei Pokémon casuali."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b58f8",
+      "byte_length": 49,
+      "original": "\\pk\\mn evolutions stay the same as\\nin the base game.",
+      "pointer_sources": [
+        "0x4b58d0"
+      ],
+      "id": "hns_native_4b58f8",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "535400d9eae3e0e9e8dde3e2e700e7e8d5ed00e8dcd900e7d5e1d900d5e7fedde200e8dcd900d6d5e7d900dbd5e1d9adff",
+      "translations": {
+        "it": "Evoluzioni dei Pokémon\\ncome nel gioco originale."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b5934",
+      "byte_length": 28,
+      "original": "Randomize all \\pk\\mn abilities.",
+      "pointer_sources": [
+        "0x4b5930"
+      ],
+      "id": "hns_native_4b5934",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "ccd5e2d8e3e1ddeed900d5e0e000535400d5d6dde0dde8ddd9e7adff",
+      "translations": {
+        "it": "Abilità dei Pokémon casuali."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b5950",
+      "byte_length": 48,
+      "original": "\\pk\\mn abilities stay the same as\\nin the base game.",
+      "pointer_sources": [
+        "0x4b592c"
+      ],
+      "id": "hns_native_4b5950",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "535400d5d6dde0dde8ddd9e700e7e8d5ed00e8dcd900e7d5e1d900d5e7fedde200e8dcd900d6d5e7d900dbd5e1d9adff",
+      "translations": {
+        "it": "Abilità dei Pokémon\\ncome nel gioco originale."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b5988",
+      "byte_length": 24,
+      "original": "Randomize all \\pk\\mn moves.",
+      "pointer_sources": [
+        "0x4b5984"
+      ],
+      "id": "hns_native_4b5988",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "ccd5e2d8e3e1ddeed900d5e0e000535400e1e3ead9e7adff",
+      "translations": {
+        "it": "Mosse dei Pokémon casuali."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b59a0",
+      "byte_length": 44,
+      "original": "\\pk\\mn moves stay the same as in\\nthe base game.",
+      "pointer_sources": [
+        "0x4b5980"
+      ],
+      "id": "hns_native_4b59a0",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "535400e1e3ead9e700e7e8d5ed00e8dcd900e7d5e1d900d5e700dde2fee8dcd900d6d5e7d900dbd5e1d9adff",
+      "translations": {
+        "it": "Mosse dei Pokémon\\ncome nel gioco originale."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b59d4",
+      "byte_length": 24,
+      "original": "Randomize all \\pk\\mn types.",
+      "pointer_sources": [
+        "0x4b59d0"
+      ],
+      "id": "hns_native_4b59d4",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "ccd5e2d8e3e1ddeed900d5e0e000535400e8ede4d9e7adff",
+      "translations": {
+        "it": "Tipi dei Pokémon casuali."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b59ec",
+      "byte_length": 44,
+      "original": "\\pk\\mn types stay the same as in\\nthe base game.",
+      "pointer_sources": [
+        "0x4b59cc"
+      ],
+      "id": "hns_native_4b59ec",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "535400e8ede4d9e700e7e8d5ed00e8dcd900e7d5e1d900d5e700dde2fee8dcd900d6d5e7d900dbd5e1d9adff",
+      "translations": {
+        "it": "Tipi dei Pokémon\\ncome nel gioco originale."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b5a20",
+      "byte_length": 48,
+      "original": "Only GEN 1-3 \\pk\\mn and their\\ncross-gen evolutions.",
+      "pointer_sources": [
+        "0x4b5a1c"
+      ],
+      "id": "hns_native_4b5a20",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "c9e2e0ed00c1bfc800a2aea400535400d5e2d800e8dcd9dde6fed7e6e3e7e7aedbd9e200d9eae3e0e9e8dde3e2e7adff",
+      "translations": {
+        "it": "Solo Pokémon di Gen. 1-3 e loro\\nevoluzioni di altre generazioni."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b5a50",
+      "byte_length": 41,
+      "original": "Randomize into \\pk\\mn from every\\ngeneration.",
+      "pointer_sources": [
+        "0x4b5a18"
+      ],
+      "id": "hns_native_4b5a50",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "ccd5e2d8e3e1ddeed900dde2e8e300535400dae6e3e100d9ead9e6edfedbd9e2d9e6d5e8dde3e2adff",
+      "translations": {
+        "it": "Pokémon casuali provenienti\\nda tutte le generazioni."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b5a84",
+      "byte_length": 39,
+      "original": "Include legendary \\pk\\mn in\\nrandomization!",
+      "pointer_sources": [
+        "0x4b5a80"
+      ],
+      "id": "hns_native_4b5a84",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "c3e2d7e0e9d8d900e0d9dbd9e2d8d5e6ed00535400dde2fee6d5e2d8e3e1ddeed5e8dde3e2abff",
+      "translations": {
+        "it": "Include anche i Pokémon\\nleggendari nella casualità!"
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b5aac",
+      "byte_length": 50,
+      "original": "Legendary \\pk\\mn will not be\\nincluded and randomized.",
+      "pointer_sources": [
+        "0x4b5a7c"
+      ],
+      "id": "hns_native_4b5aac",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "c6d9dbd9e2d8d5e6ed00535400ebdde0e000e2e3e800d6d9fedde2d7e0e9d8d9d800d5e2d800e6d5e2d8e3e1ddeed9d8adff",
+      "translations": {
+        "it": "Esclude i Pokémon leggendari\\ndalla casualità."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b5ae8",
+      "byte_length": 55,
+      "original": "Distribution of \\pk\\mn not balanced\\naround their strength!",
+      "pointer_sources": [
+        "0x4b5ae4"
+      ],
+      "id": "hns_native_4b5ae8",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "bedde7e8e6ddd6e9e8dde3e200e3da00535400e2e3e800d6d5e0d5e2d7d9d8fed5e6e3e9e2d800e8dcd9dde600e7e8e6d9e2dbe8dcabff",
+      "translations": {
+        "it": "La distribuzione dei Pokémon\\nnon tiene conto della forza!"
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b5b20",
+      "byte_length": 69,
+      "original": "\\pk\\mn replaced with similar tiered\\nones. Currently based on evo stages.",
+      "pointer_sources": [
+        "0x4b5ae0"
+      ],
+      "id": "hns_native_4b5b20",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "535400e6d9e4e0d5d7d9d800ebdde8dc00e7dde1dde0d5e600e8ddd9e6d9d8fee3e2d9e7ad00bde9e6e6d9e2e8e0ed00d6d5e7d9d800e3e200d9eae300e7e8d5dbd9e7adff",
+      "translations": {
+        "it": "Sostituti di forza simile, in base\\nagli stadi evolutivi attuali."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b5b70",
+      "byte_length": 70,
+      "original": "Named \\pk\\mn, casino \\pk\\mn, roamers, and\\nsome other special \\pk\\mn won’t change.",
+      "pointer_sources": [
+        "0x4b5b6c"
+      ],
+      "id": "hns_native_4b5b70",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "c8d5e1d9d8005354b800d7d5e7dde2e3005354b800e6e3d5e1d9e6e7b800d5e2d8fee7e3e1d900e3e8dcd9e600e7e4d9d7ddd5e000535400ebe3e2b4e800d7dcd5e2dbd9adff",
+      "translations": {
+        "it": "Pokémon con nome, casinò, vaganti\\ne alcuni speciali: nessun cambio."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b5bb8",
+      "byte_length": 56,
+      "original": "Static encounters will be the same\\nas in the base game.",
+      "pointer_sources": [
+        "0x4b5b68"
+      ],
+      "id": "hns_native_4b5bb8",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "cde8d5e8ddd700d9e2d7e3e9e2e8d9e6e700ebdde0e000d6d900e8dcd900e7d5e1d9fed5e700dde200e8dcd900d6d5e7d900dbd5e1d9adff",
+      "translations": {
+        "it": "Incontri fissi uguali\\na quelli del gioco originale."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b5bf8",
+      "byte_length": 33,
+      "original": "Randomize enemy trainer parties.",
+      "pointer_sources": [
+        "0x4b5bf4"
+      ],
+      "id": "hns_native_4b5bf8",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "ccd5e2d8e3e1ddeed900d9e2d9e1ed00e8e6d5dde2d9e600e4d5e6e8ddd9e7adff",
+      "translations": {
+        "it": "Squadre degli Allenatori casuali."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b5c1c",
+      "byte_length": 40,
+      "original": "Trainer will have their expected\\nparty.",
+      "pointer_sources": [
+        "0x4b5bf0"
+      ],
+      "id": "hns_native_4b5c1c",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "cee6d5dde2d9e600ebdde0e000dcd5ead900e8dcd9dde600d9ece4d9d7e8d9d8fee4d5e6e8edadff",
+      "translations": {
+        "it": "Gli Allenatori hanno\\nle squadre previste."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b5c4c",
+      "byte_length": 70,
+      "original": "Wild encounters are seeded per map.\\nSame area always has the same \\pk\\mn.",
+      "pointer_sources": [
+        "0x4b5c48"
+      ],
+      "id": "hns_native_4b5c4c",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "d1dde0d800d9e2d7e3e9e2e8d9e6e700d5e6d900e7d9d9d8d9d800e4d9e600e1d5e4adfecdd5e1d900d5e6d9d500d5e0ebd5ede700dcd5e700e8dcd900e7d5e1d9005354adff",
+      "translations": {
+        "it": "Incontri fissi per mappa:\\nstessa zona, stessi Pokémon."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b5c94",
+      "byte_length": 45,
+      "original": "Wild encounters are fully random\\nevery time.",
+      "pointer_sources": [
+        "0x4b5c44"
+      ],
+      "id": "hns_native_4b5c94",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "d1dde0d800d9e2d7e3e9e2e8d9e6e700d5e6d900dae9e0e0ed00e6d5e2d8e3e1fed9ead9e6ed00e8dde1d9adff",
+      "translations": {
+        "it": "Incontri selvatici completamente\\ncasuali ogni volta."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b5ccc",
+      "byte_length": 19,
+      "original": "Randomize wild \\pk\\mn.",
+      "pointer_sources": [
+        "0x4b5cc8"
+      ],
+      "id": "hns_native_4b5ccc",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "ccd5e2d8e3e1ddeed900ebdde0d8005354adff",
+      "translations": {
+        "it": "Pokémon selvatici casuali."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b5ce0",
+      "byte_length": 41,
+      "original": "Same wild encounter as in the\\nbase game.",
+      "pointer_sources": [
+        "0x4b5cc4"
+      ],
+      "id": "hns_native_4b5ce0",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "cdd5e1d900ebdde0d800d9e2d7e3e9e2e8d9e600d5e700dde200e8dcd9fed6d5e7d900dbd5e1d9adff",
+      "translations": {
+        "it": "Incontri selvatici\\ncome nel gioco originale."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b5d14",
+      "byte_length": 22,
+      "original": "Randomize starter \\pk\\mn.",
+      "pointer_sources": [
+        "0x4b5d10"
+      ],
+      "id": "hns_native_4b5d14",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "ccd5e2d8e3e1ddeed900e7e8d5e6e8d9e6005354adff",
+      "translations": {
+        "it": "Pokémon iniziali casuali."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b5d2c",
+      "byte_length": 21,
+      "original": "Standard starter \\pk\\mn.",
+      "pointer_sources": [
+        "0x4b5d0c"
+      ],
+      "id": "hns_native_4b5d2c",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "cde8d5e2d8d5e6d800e7e8d5e6e8d9e6005354adff",
+      "translations": {
+        "it": "Pokémon iniziali standard."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b5d4c",
+      "byte_length": 42,
+      "original": "Play the game randomized.\\nSettings below!",
+      "pointer_sources": [
+        "0x4b5d48"
+      ],
+      "id": "hns_native_4b5d4c",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "cae0d5ed00e8dcd900dbd5e1d900e6d5e2d8e3e1ddeed9d8adfecdd9e8e8dde2dbe700d6d9e0e3ebabff",
+      "translations": {
+        "it": "Gioca con elementi casuali.\\nOpzioni qui sotto!"
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b5d78",
+      "byte_length": 29,
+      "original": "Game will not be randomized.",
+      "pointer_sources": [
+        "0x4b5d44"
+      ],
+      "id": "hns_native_4b5d78",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "c1d5e1d900ebdde0e000e2e3e800d6d900e6d5e2d8e3e1ddeed9d8adff",
+      "translations": {
+        "it": "Gli elementi non saranno casuali."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b5df8",
+      "byte_length": 5,
+      "original": "NEXT",
+      "pointer_sources": [
+        "0x4b5de8"
+      ],
+      "id": "hns_native_4b5df8",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "c8bfd2ceff",
+      "translations": {
+        "it": "AVANTI"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b5e00",
+      "byte_length": 14,
+      "original": "FRONTIER BANS",
+      "pointer_sources": [
+        "0x4b5dd8"
+      ],
+      "id": "hns_native_4b5e00",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "c0ccc9c8cec3bfcc00bcbbc8cdff",
+      "translations": {
+        "it": "DIVIETI PARCO"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b5e10",
+      "byte_length": 10,
+      "original": "ITEM DROP",
+      "pointer_sources": [
+        "0x4b5dc8"
+      ],
+      "id": "hns_native_4b5e10",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "c3cebfc700beccc9caff",
+      "translations": {
+        "it": "STRUM. LASCIATI"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b5e1c",
+      "byte_length": 10,
+      "original": "ALT SHINY",
+      "pointer_sources": [
+        "0x4b5db8"
+      ],
+      "id": "hns_native_4b5e1c",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "bbc6ce00cdc2c3c8d3ff",
+      "translations": {
+        "it": "CROM. ALTERN."
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b5e28",
+      "byte_length": 13,
+      "original": "SHINY CHANCE",
+      "pointer_sources": [
+        "0x4b5da8"
+      ],
+      "id": "hns_native_4b5e28",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "cdc2c3c8d300bdc2bbc8bdbfff",
+      "translations": {
+        "it": "PROB. CROM."
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b5e38",
+      "byte_length": 11,
+      "original": "CLOCK TYPE",
+      "pointer_sources": [
+        "0x4b5d98"
+      ],
+      "id": "hns_native_4b5e38",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "bdc6c9bdc500ced3cabfff",
+      "translations": {
+        "it": "OROLOGIO"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b5e48",
+      "byte_length": 32,
+      "original": "Continue to Randomizer options.",
+      "pointer_sources": [
+        "0x4b5e44"
+      ],
+      "id": "hns_native_4b5e48",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "bde3e2e8dde2e9d900e8e300ccd5e2d8e3e1ddeed9e600e3e4e8dde3e2e7adff",
+      "translations": {
+        "it": "Passa alle opzioni di casualità."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b5e70",
+      "byte_length": 45,
+      "original": "Some shiny \\pk\\mn have brand new\\ncolor palettes.",
+      "pointer_sources": [
+        "0x4b5e6c"
+      ],
+      "id": "hns_native_4b5e70",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "cde3e1d900e7dcdde2ed00535400dcd5ead900d6e6d5e2d800e2d9ebfed7e3e0e3e600e4d5e0d9e8e8d9e7adff",
+      "translations": {
+        "it": "Nuove colorazioni per\\nalcuni Pokémon cromatici."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b5ea0",
+      "byte_length": 50,
+      "original": "Original shiny color palette for\\nall \\pk\\mn. Default.",
+      "pointer_sources": [
+        "0x4b5e68"
+      ],
+      "id": "hns_native_4b5ea0",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "c9e6dddbdde2d5e000e7dcdde2ed00d7e3e0e3e600e4d5e0d9e8e8d900dae3e6fed5e0e0005354ad00bed9dad5e9e0e8adff",
+      "translations": {
+        "it": "Colorazioni cromatiche originali\\nper tutti i Pokémon. Predefinito."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b5edc",
+      "byte_length": 67,
+      "original": "All legendaries are allowed to\\nparticipate in the BATTLE FRONTIER.",
+      "pointer_sources": [
+        "0x4b5ed8"
+      ],
+      "id": "hns_native_4b5edc",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "bbe0e000e0d9dbd9e2d8d5e6ddd9e700d5e6d900d5e0e0e3ebd9d800e8e3fee4d5e6e8ddd7dde4d5e8d900dde200e8dcd900bcbbcecec6bf00c0ccc9c8cec3bfccadff",
+      "translations": {
+        "it": "Tutti i leggendari possono\\npartecipare al Parco Lotta."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b5f20",
+      "byte_length": 66,
+      "original": "Powerful legendary \\pk\\mn are banned\\nin the BATTLE FRONTIER. Default.",
+      "pointer_sources": [
+        "0x4b5ed4"
+      ],
+      "id": "hns_native_4b5f20",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "cae3ebd9e6dae9e000e0d9dbd9e2d8d5e6ed00535400d5e6d900d6d5e2e2d9d8fedde200e8dcd900bcbbcecec6bf00c0ccc9c8cec3bfccad00bed9dad5e9e0e8adff",
+      "translations": {
+        "it": "Leggendari potenti vietati\\nal Parco Lotta. Predefinito."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b5f6c",
+      "byte_length": 56,
+      "original": "Wild \\pk\\mn will drop their hold\\nitem after defeating them.",
+      "pointer_sources": [
+        "0x4b5f68"
+      ],
+      "id": "hns_native_4b5f6c",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "d1dde0d800535400ebdde0e000d8e6e3e400e8dcd9dde600dce3e0d8fedde8d9e100d5dae8d9e600d8d9dad9d5e8dde2db00e8dcd9e1adff",
+      "translations": {
+        "it": "I Pokémon selvatici lasciano lo\\nstrumento tenuto quando sconfitti."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b5fa4",
+      "byte_length": 60,
+      "original": "Wild \\pk\\mn items will be only\\nobtainable via capture or THIEF.",
+      "pointer_sources": [
+        "0x4b5f64"
+      ],
+      "id": "hns_native_4b5fa4",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "d1dde0d800535400dde8d9e1e700ebdde0e000d6d900e3e2e0edfee3d6e8d5dde2d5d6e0d900eaddd500d7d5e4e8e9e6d900e3e600cec2c3bfc0adff",
+      "translations": {
+        "it": "Strumenti dei selvatici ottenibili\\nsolo con cattura o Furto."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b5ff4",
+      "byte_length": 37,
+      "original": "Very high chance of SHINY encounter.",
+      "pointer_sources": [
+        "0x4b5ff0"
+      ],
+      "id": "hns_native_4b5ff4",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "d0d9e6ed00dcdddbdc00d7dcd5e2d7d900e3da00cdc2c3c8d300d9e2d7e3e9e2e8d9e6adff",
+      "translations": {
+        "it": "Probabilità di cromatici altissima."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b601c",
+      "byte_length": 32,
+      "original": "High chance of SHINY encounter.",
+      "pointer_sources": [
+        "0x4b5fec"
+      ],
+      "id": "hns_native_4b601c",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "c2dddbdc00d7dcd5e2d7d900e3da00cdc2c3c8d300d9e2d7e3e9e2e8d9e6adff",
+      "translations": {
+        "it": "Probabilità di cromatici alta."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b603c",
+      "byte_length": 34,
+      "original": "Decent chance of SHINY encounter.",
+      "pointer_sources": [
+        "0x4b5fe8"
+      ],
+      "id": "hns_native_4b603c",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "bed9d7d9e2e800d7dcd5e2d7d900e3da00cdc2c3c8d300d9e2d7e3e9e2e8d9e6adff",
+      "translations": {
+        "it": "Probabilità di cromatici discreta."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b6060",
+      "byte_length": 67,
+      "original": "Low chance of SHINY encounter.\\nDefault chance from Generation VI\\+.",
+      "pointer_sources": [
+        "0x4b5fe4"
+      ],
+      "id": "hns_native_4b6060",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "c6e3eb00d7dcd5e2d7d900e3da00cdc2c3c8d300d9e2d7e3e9e2e8d9e6adfebed9dad5e9e0e800d7dcd5e2d7d900dae6e3e100c1d9e2d9e6d5e8dde3e200d0c32eadff",
+      "translations": {
+        "it": "Probabilità di cromatici bassa.\\nStandard dalla Gen. VI in poi."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b60a4",
+      "byte_length": 72,
+      "original": "Very low chance of SHINY encounter.\\nDefault chance from Generation III.",
+      "pointer_sources": [
+        "0x4b5fe0"
+      ],
+      "id": "hns_native_4b60a4",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "d0d9e6ed00e0e3eb00d7dcd5e2d7d900e3da00cdc2c3c8d300d9e2d7e3e9e2e8d9e6adfebed9dad5e9e0e800d7dcd5e2d7d900dae6e3e100c1d9e2d9e6d5e8dde3e200c3c3c3adff",
+      "translations": {
+        "it": "Cromatici: probabilità bassissima.\\nStandard della Gen. III."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b60f4",
+      "byte_length": 61,
+      "original": "Use a fake Real Time Clock.\\n1h in real life = 1 day in-game.",
+      "pointer_sources": [
+        "0x4b60f0"
+      ],
+      "id": "hns_native_4b60f4",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "cfe7d900d500dad5dfd900ccd9d5e000cedde1d900bde0e3d7dfadfea2dc00dde200e6d9d5e000e0dddad9003500a200d8d5ed00dde2aedbd5e1d9adff",
+      "translations": {
+        "it": "Orologio simulato: un'ora reale\\nequivale a un giorno nel gioco."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b6134",
+      "byte_length": 29,
+      "original": "Use vanilla Real Time Clock.",
+      "pointer_sources": [
+        "0x4b60ec"
+      ],
+      "id": "hns_native_4b6134",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "cfe7d900ead5e2dde0e0d500ccd9d5e000cedde1d900bde0e3d7dfadff",
+      "translations": {
+        "it": "Usa l'orologio in tempo reale."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b6170",
+      "byte_length": 4,
+      "original": "OFF",
+      "pointer_sources": [
+        "0x4b6154"
+      ],
+      "id": "hns_native_4b6170",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "c9c0c0ff",
+      "translations": {
+        "it": "NO"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b6180",
+      "byte_length": 4,
+      "original": "ALL",
+      "pointer_sources": [
+        "0x4b617c"
+      ],
+      "id": "hns_native_4b6180",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "bbc6c6ff",
+      "translations": {
+        "it": "TUTTE"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b6184",
+      "byte_length": 6,
+      "original": "FIRST",
+      "pointer_sources": [
+        "0x4b6178"
+      ],
+      "id": "hns_native_4b6184",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "c0c3cccdceff",
+      "translations": {
+        "it": "PRIMA"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b618c",
+      "byte_length": 4,
+      "original": "OFF",
+      "pointer_sources": [
+        "0x4b6174"
+      ],
+      "id": "hns_native_4b618c",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "c9c0c0ff",
+      "translations": {
+        "it": "NO"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b61b0",
+      "byte_length": 4,
+      "original": "OFF",
+      "pointer_sources": [
+        "0x4b6190"
+      ],
+      "id": "hns_native_4b61b0",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "c9c0c0ff",
+      "translations": {
+        "it": "NO"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b61c0",
+      "byte_length": 4,
+      "original": "YES",
+      "pointer_sources": [
+        "0x4b61b4"
+      ],
+      "id": "hns_native_4b61c0",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "d3bfcdff",
+      "translations": {
+        "it": "SÌ"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b61d0",
+      "byte_length": 8,
+      "original": "NO (HP)",
+      "pointer_sources": [
+        "0x4b61cc"
+      ],
+      "id": "hns_native_4b61d0",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "c8c9005cc2ca5dff",
+      "translations": {
+        "it": "NO (INTROF.)"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b61dc",
+      "byte_length": 4,
+      "original": "YES",
+      "pointer_sources": [
+        "0x4b61c4"
+      ],
+      "id": "hns_native_4b61dc",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "d3bfcdff",
+      "translations": {
+        "it": "SÌ"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b61f0",
+      "byte_length": 7,
+      "original": "EXTREM",
+      "pointer_sources": [
+        "0x4b61ec"
+      ],
+      "id": "hns_native_4b61f0",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "bfd2ceccbfc7ff",
+      "translations": {
+        "it": "ESTR."
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b61f8",
+      "byte_length": 5,
+      "original": "HARD",
+      "pointer_sources": [
+        "0x4b61e8"
+      ],
+      "id": "hns_native_4b61f8",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "c2bbccbeff",
+      "translations": {
+        "it": "DURA"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b6200",
+      "byte_length": 6,
+      "original": "SCALE",
+      "pointer_sources": [
+        "0x4b61e4"
+      ],
+      "id": "hns_native_4b6200",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "cdbdbbc6bfff",
+      "translations": {
+        "it": "SCALA"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b6208",
+      "byte_length": 4,
+      "original": "OFF",
+      "pointer_sources": [
+        "0x4b61e0"
+      ],
+      "id": "hns_native_4b6208",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "c9c0c0ff",
+      "translations": {
+        "it": "NO"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b6218",
+      "byte_length": 5,
+      "original": "HARD",
+      "pointer_sources": [
+        "0x4b6214"
+      ],
+      "id": "hns_native_4b6218",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "c2bbccbeff",
+      "translations": {
+        "it": "DURA"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b6220",
+      "byte_length": 6,
+      "original": "SCALE",
+      "pointer_sources": [
+        "0x4b6210"
+      ],
+      "id": "hns_native_4b6220",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "cdbdbbc6bfff",
+      "translations": {
+        "it": "SCALA"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b6228",
+      "byte_length": 4,
+      "original": "OFF",
+      "pointer_sources": [
+        "0x4b620c"
+      ],
+      "id": "hns_native_4b6228",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "c9c0c0ff",
+      "translations": {
+        "it": "NO"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b6268",
+      "byte_length": 5,
+      "original": "HARD",
+      "pointer_sources": [
+        "0x4b6264"
+      ],
+      "id": "hns_native_4b6268",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "c2bbccbeff",
+      "translations": {
+        "it": "DURA"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b6270",
+      "byte_length": 7,
+      "original": "NORMAL",
+      "pointer_sources": [
+        "0x4b6260"
+      ],
+      "id": "hns_native_4b6270",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "c8c9ccc7bbc6ff",
+      "translations": {
+        "it": "NORM."
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b6278",
+      "byte_length": 4,
+      "original": "OFF",
+      "pointer_sources": [
+        "0x4b625c"
+      ],
+      "id": "hns_native_4b6278",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "c9c0c0ff",
+      "translations": {
+        "it": "NO"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b62a8",
+      "byte_length": 4,
+      "original": "OFF",
+      "pointer_sources": [
+        "0x4b627c"
+      ],
+      "id": "hns_native_4b62a8",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "c9c0c0ff",
+      "translations": {
+        "it": "NO"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b62b4",
+      "byte_length": 8,
+      "original": "RELEASE",
+      "pointer_sources": [
+        "0x4b62b0"
+      ],
+      "id": "hns_native_4b62b4",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "ccbfc6bfbbcdbfff",
+      "translations": {
+        "it": "LIBERA"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b62bc",
+      "byte_length": 9,
+      "original": "CEMETERY",
+      "pointer_sources": [
+        "0x4b62ac"
+      ],
+      "id": "hns_native_4b62bc",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "bdbfc7bfcebfccd3ff",
+      "translations": {
+        "it": "CIMITERO"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b62d8",
+      "byte_length": 5,
+      "original": "HARD",
+      "pointer_sources": [
+        "0x4b62d4"
+      ],
+      "id": "hns_native_4b62d8",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "c2bbccbeff",
+      "translations": {
+        "it": "DURA"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b62e0",
+      "byte_length": 7,
+      "original": "NORMAL",
+      "pointer_sources": [
+        "0x4b62d0"
+      ],
+      "id": "hns_native_4b62e0",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "c8c9ccc7bbc6ff",
+      "translations": {
+        "it": "NORM."
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b62e8",
+      "byte_length": 5,
+      "original": "EASY",
+      "pointer_sources": [
+        "0x4b62cc"
+      ],
+      "id": "hns_native_4b62e8",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "bfbbcdd3ff",
+      "translations": {
+        "it": "BASE"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b62f0",
+      "byte_length": 4,
+      "original": "OFF",
+      "pointer_sources": [
+        "0x4b62c8"
+      ],
+      "id": "hns_native_4b62f0",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "c9c0c0ff",
+      "translations": {
+        "it": "NO"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b6334",
+      "byte_length": 9,
+      "original": "FAKE RTC",
+      "pointer_sources": [
+        "0x4b6330"
+      ],
+      "id": "hns_native_4b6334",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "c0bbc5bf00cccebdff",
+      "translations": {
+        "it": "SIMULATO"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b6340",
+      "byte_length": 4,
+      "original": "RTC",
+      "pointer_sources": [
+        "0x4b632c"
+      ],
+      "id": "hns_native_4b6340",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "cccebdff",
+      "translations": {
+        "it": "REALE"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b634c",
+      "byte_length": 6,
+      "original": "UNBAN",
+      "pointer_sources": [
+        "0x4b6348"
+      ],
+      "id": "hns_native_4b634c",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "cfc8bcbbc8ff",
+      "translations": {
+        "it": "AMMESSI"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b6354",
+      "byte_length": 4,
+      "original": "BAN",
+      "pointer_sources": [
+        "0x4b6344"
+      ],
+      "id": "hns_native_4b6354",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "bcbbc8ff",
+      "translations": {
+        "it": "VIETATI"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b6364",
+      "byte_length": 4,
+      "original": "YES",
+      "pointer_sources": [
+        "0x4b6358"
+      ],
+      "id": "hns_native_4b6364",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "d3bfcdff",
+      "translations": {
+        "it": "SÌ"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b6370",
+      "byte_length": 6,
+      "original": "CHAOS",
+      "pointer_sources": [
+        "0x4b636c"
+      ],
+      "id": "hns_native_4b6370",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "bdc2bbc9cdff",
+      "translations": {
+        "it": "CAOS"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b6378",
+      "byte_length": 4,
+      "original": "OFF",
+      "pointer_sources": [
+        "0x4b6368"
+      ],
+      "id": "hns_native_4b6378",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "c9c0c0ff",
+      "translations": {
+        "it": "NO"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b6384",
+      "byte_length": 8,
+      "original": "GEN 1-3",
+      "pointer_sources": [
+        "0x4b6380"
+      ],
+      "id": "hns_native_4b6384",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "c1bfc800a2aea4ff",
+      "translations": {
+        "it": "GEN 1-3"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b638c",
+      "byte_length": 8,
+      "original": "GEN 1-9",
+      "pointer_sources": [
+        "0x4b637c"
+      ],
+      "id": "hns_native_4b638c",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "c1bfc800a2aeaaff",
+      "translations": {
+        "it": "GEN 1-9"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b639c",
+      "byte_length": 7,
+      "original": "RANDOM",
+      "pointer_sources": [
+        "0x4b6398"
+      ],
+      "id": "hns_native_4b639c",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "ccbbc8bec9c7ff",
+      "translations": {
+        "it": "CASUALE"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b63a4",
+      "byte_length": 4,
+      "original": "OFF",
+      "pointer_sources": [
+        "0x4b6394"
+      ],
+      "id": "hns_native_4b63a4",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "c9c0c0ff",
+      "translations": {
+        "it": "NO"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b63ac",
+      "byte_length": 29,
+      "original": "Save choices and continue...",
+      "pointer_sources": [
+        "0x4b63a8"
+      ],
+      "id": "hns_native_4b63ac",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "cdd5ead900d7dce3ddd7d9e700d5e2d800d7e3e2e8dde2e9d9adadadff",
+      "translations": {
+        "it": "Salva le scelte e continua..."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b649c",
+      "byte_length": 5,
+      "original": "NEXT",
+      "pointer_sources": [
+        "0x4b648c"
+      ],
+      "id": "hns_native_4b649c",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "c8bfd2ceff",
+      "translations": {
+        "it": "AVANTI"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b64a4",
+      "byte_length": 15,
+      "original": "RECHARGE MOVES",
+      "pointer_sources": [
+        "0x4b642c"
+      ],
+      "id": "hns_native_4b64a4",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "ccbfbdc2bbccc1bf00c7c9d0bfcdff",
+      "translations": {
+        "it": "RICARICA MOSSE"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b64b4",
+      "byte_length": 14,
+      "original": "PHYS/SP SPLIT",
+      "pointer_sources": [
+        "0x4b63ec"
+      ],
+      "id": "hns_native_4b64b4",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "cac2d3cdbacdca00cdcac6c3ceff",
+      "translations": {
+        "it": "FISICO/SPECIALE"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b64c4",
+      "byte_length": 15,
+      "original": "SURVIVE POISON",
+      "pointer_sources": [
+        "0x4b647c"
+      ],
+      "id": "hns_native_4b64c4",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "cdcfccd0c3d0bf00cac9c3cdc9c8ff",
+      "translations": {
+        "it": "RES. VELENO"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b64d4",
+      "byte_length": 13,
+      "original": "NATURE MINTS",
+      "pointer_sources": [
+        "0x4b641c"
+      ],
+      "id": "hns_native_4b64d4",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "c8bbcecfccbf00c7c3c8cecdff",
+      "translations": {
+        "it": "MENTE NATURA"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b64e4",
+      "byte_length": 13,
+      "original": "REUSABLE TMS",
+      "pointer_sources": [
+        "0x4b640c"
+      ],
+      "id": "hns_native_4b64e4",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "ccbfcfcdbbbcc6bf00cec7cdff",
+      "translations": {
+        "it": "MT RIUSABILI"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b64f4",
+      "byte_length": 17,
+      "original": "LEGEN. ABILITIES",
+      "pointer_sources": [
+        "0x4b646c"
+      ],
+      "id": "hns_native_4b64f4",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "c6bfc1bfc8ad00bbbcc3c6c3cec3bfcdff",
+      "translations": {
+        "it": "ABIL. LEGGEND."
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b6508",
+      "byte_length": 15,
+      "original": "ADD FAIRY TYPE",
+      "pointer_sources": [
+        "0x4b63fc"
+      ],
+      "id": "hns_native_4b6508",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "bbbebe00c0bbc3ccd300ced3cabfff",
+      "translations": {
+        "it": "TIPO FOLLETTO"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b6518",
+      "byte_length": 13,
+      "original": "SITRUS BERRY",
+      "pointer_sources": [
+        "0x4b645c"
+      ],
+      "id": "hns_native_4b6518",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "cdc3cecccfcd00bcbfccccd3ff",
+      "translations": {
+        "it": "BACCA CEDRO"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b6528",
+      "byte_length": 7,
+      "original": "STURDY",
+      "pointer_sources": [
+        "0x4b644c"
+      ],
+      "id": "hns_native_4b6528",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "cdcecfccbed3ff",
+      "translations": {
+        "it": "VIGORE"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b6530",
+      "byte_length": 12,
+      "original": "SYNCHRONIZE",
+      "pointer_sources": [
+        "0x4b643c"
+      ],
+      "id": "hns_native_4b6530",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "cdd3c8bdc2ccc9c8c3d4bfff",
+      "translations": {
+        "it": "SINCRONISMO"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b653c",
+      "byte_length": 12,
+      "original": "\\pk\\mn MOVEPOOL",
+      "pointer_sources": [
+        "0x4b63dc"
+      ],
+      "id": "hns_native_4b653c",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "535400c7c9d0bfcac9c9c6ff",
+      "translations": {
+        "it": "MOSSE PKMN"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b6548",
+      "byte_length": 9,
+      "original": "GAMEMODE",
+      "pointer_sources": [
+        "0x4b63cc"
+      ],
+      "id": "hns_native_4b6548",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "c1bbc7bfc7c9bebfff",
+      "translations": {
+        "it": "MODALITÀ"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b6558",
+      "byte_length": 27,
+      "original": "Continue to the next page.",
+      "pointer_sources": [
+        "0x4b6554"
+      ],
+      "id": "hns_native_4b6558",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "bde3e2e8dde2e9d900e8e300e8dcd900e2d9ece800e4d5dbd9adff",
+      "translations": {
+        "it": "Continua alla pagina successiva."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b657c",
+      "byte_length": 66,
+      "original": "If a RECHARGE MOVE KO’s the opponent,\\nno recharge turn is needed.",
+      "pointer_sources": [
+        "0x4b6578"
+      ],
+      "id": "hns_native_4b657c",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "c3da00d500ccbfbdc2bbccc1bf00c7c9d0bf00c5c9b4e700e8dcd900e3e4e4e3e2d9e2e8b8fee2e300e6d9d7dcd5e6dbd900e8e9e6e200dde700e2d9d9d8d9d8adff",
+      "translations": {
+        "it": "Se una mossa da ricarica manda KO\\nil nemico, non serve ricaricare."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b65c0",
+      "byte_length": 71,
+      "original": "RECHARGE MOVES like HYPER BEAM will\\nalways need to recharge after use.",
+      "pointer_sources": [
+        "0x4b6574"
+      ],
+      "id": "hns_native_4b65c0",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "ccbfbdc2bbccc1bf00c7c9d0bfcd00e0dddfd900c2d3cabfcc00bcbfbbc700ebdde0e0fed5e0ebd5ede700e2d9d9d800e8e300e6d9d7dcd5e6dbd900d5dae8d9e600e9e7d9adff",
+      "translations": {
+        "it": "Mosse come Iper Raggio richiedono\\nsempre un turno di ricarica."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b6610",
+      "byte_length": 6,
+      "original": "GEN 1",
+      "pointer_sources": [
+        "0x4b660c"
+      ],
+      "id": "hns_native_4b6610",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "c1bfc800a2ff",
+      "translations": {
+        "it": "GEN 1"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b6618",
+      "byte_length": 6,
+      "original": "GEN 3",
+      "pointer_sources": [
+        "0x4b6608"
+      ],
+      "id": "hns_native_4b6618",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "c1bfc800a4ff",
+      "translations": {
+        "it": "GEN 3"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b6628",
+      "byte_length": 6,
+      "original": "GEN 7",
+      "pointer_sources": [
+        "0x4b6624"
+      ],
+      "id": "hns_native_4b6628",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "c1bfc800a8ff",
+      "translations": {
+        "it": "GEN 7"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b6630",
+      "byte_length": 6,
+      "original": "GEN 3",
+      "pointer_sources": [
+        "0x4b6620"
+      ],
+      "id": "hns_native_4b6630",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "c1bfc800a4ff",
+      "translations": {
+        "it": "GEN 3"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b6640",
+      "byte_length": 46,
+      "original": "PHYSICAL and SPECIAL MOVES\\nare MOVE specific.",
+      "pointer_sources": [
+        "0x4b663c"
+      ],
+      "id": "hns_native_4b6640",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "cac2d3cdc3bdbbc600d5e2d800cdcabfbdc3bbc600c7c9d0bfcdfed5e6d900c7c9d0bf00e7e4d9d7dddaddd7adff",
+      "translations": {
+        "it": "Danno fisico o speciale\\ndeterminato dalla singola mossa."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b6670",
+      "byte_length": 50,
+      "original": "PHYSICAL and SPECIAL MOVES\\ndepend on the \\pk\\mn TYPE.",
+      "pointer_sources": [
+        "0x4b6638"
+      ],
+      "id": "hns_native_4b6670",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "cac2d3cdc3bdbbc600d5e2d800cdcabfbdc3bbc600c7c9d0bfcdfed8d9e4d9e2d800e3e200e8dcd900535400ced3cabfadff",
+      "translations": {
+        "it": "Danno fisico o speciale\\ndeterminato dal tipo della mossa."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b66ac",
+      "byte_length": 49,
+      "original": "Your \\pk\\mn will survive the POISON\\nstatus with 1HP.",
+      "pointer_sources": [
+        "0x4b66a8"
+      ],
+      "id": "hns_native_4b66ac",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "d3e3e9e600535400ebdde0e000e7e9e6eaddead900e8dcd900cac9c3cdc9c8fee7e8d5e8e9e700ebdde8dc00a2c2caadff",
+      "translations": {
+        "it": "I tuoi Pokémon sopravvivono\\nall'avvelenamento con 1 PS."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b66e0",
+      "byte_length": 41,
+      "original": "Your \\pk\\mn will faint if they are\\nPOISONED.",
+      "pointer_sources": [
+        "0x4b66a4"
+      ],
+      "id": "hns_native_4b66e0",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "d3e3e9e600535400ebdde0e000dad5dde2e800ddda00e8dcd9ed00d5e6d9fecac9c3cdc9c8bfbeadff",
+      "translations": {
+        "it": "I tuoi Pokémon possono andare KO\\na causa dell'avvelenamento."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b6714",
+      "byte_length": 60,
+      "original": "Mints can be bought at the\\nFLOWER SHOP after the 3rd badge.",
+      "pointer_sources": [
+        "0x4b6710"
+      ],
+      "id": "hns_native_4b6714",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "c7dde2e8e700d7d5e200d6d900d6e3e9dbdce800d5e800e8dcd9fec0c6c9d1bfcc00cdc2c9ca00d5dae8d9e600e8dcd900a4e6d800d6d5d8dbd9adff",
+      "translations": {
+        "it": "Mente in vendita al negozio\\ndi fiori dopo la terza Medaglia."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b6750",
+      "byte_length": 57,
+      "original": "Mints are not available ingame until\\nfinishing the game.",
+      "pointer_sources": [
+        "0x4b670c"
+      ],
+      "id": "hns_native_4b6750",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "c7dde2e8e700d5e6d900e2e3e800d5ead5dde0d5d6e0d900dde2dbd5e1d900e9e2e8dde0fedadde2dde7dcdde2db00e8dcd900dbd5e1d9adff",
+      "translations": {
+        "it": "Le mente sono disponibili solo\\ndopo aver completato il gioco."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b6794",
+      "byte_length": 18,
+      "original": "TMs are reusable.",
+      "pointer_sources": [
+        "0x4b6790"
+      ],
+      "id": "hns_native_4b6794",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "cec7e700d5e6d900e6d9e9e7d5d6e0d9adff",
+      "translations": {
+        "it": "Le MT sono riutilizzabili."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b67a8",
+      "byte_length": 44,
+      "original": "TMs are not reusable.\\nLike in the original.",
+      "pointer_sources": [
+        "0x4b678c"
+      ],
+      "id": "hns_native_4b67a8",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "cec7e700d5e6d900e2e3e800e6d9e9e7d5d6e0d9adfec6dddfd900dde200e8dcd900e3e6dddbdde2d5e0adff",
+      "translations": {
+        "it": "Le MT si consumano dopo l'uso,\\ncome nel gioco originale."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b67dc",
+      "byte_length": 56,
+      "original": "Legendaries have PRESSURE changed\\nfor a better ability.",
+      "pointer_sources": [
+        "0x4b67d8"
+      ],
+      "id": "hns_native_4b67dc",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "c6d9dbd9e2d8d5e6ddd9e700dcd5ead900caccbfcdcdcfccbf00d7dcd5e2dbd9d8fedae3e600d500d6d9e8e8d9e600d5d6dde0dde8edadff",
+      "translations": {
+        "it": "I leggendari ricevono un'abilità\\nmigliore al posto di Pressione."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b6814",
+      "byte_length": 56,
+      "original": "PRESSURE stays as the main\\nability of some legendaries.",
+      "pointer_sources": [
+        "0x4b67d4"
+      ],
+      "id": "hns_native_4b6814",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "caccbfcdcdcfccbf00e7e8d5ede700d5e700e8dcd900e1d5dde2fed5d6dde0dde8ed00e3da00e7e3e1d900e0d9dbd9e2d8d5e6ddd9e7adff",
+      "translations": {
+        "it": "Pressione resta l'abilità\\nprincipale di alcuni leggendari."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b6854",
+      "byte_length": 59,
+      "original": "FAIRY TYPE is added / changed to\\ncertain \\pk\\mn, as in GEN VI.",
+      "pointer_sources": [
+        "0x4b6850"
+      ],
+      "id": "hns_native_4b6854",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "c0bbc3ccd300ced3cabf00dde700d5d8d8d9d800ba00d7dcd5e2dbd9d800e8e3fed7d9e6e8d5dde2005354b800d5e700dde200c1bfc800d0c3adff",
+      "translations": {
+        "it": "Aggiunge il tipo Folletto ai\\nPokémon che lo hanno in Gen. VI."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b6890",
+      "byte_length": 52,
+      "original": "FAIRY TYPE isn’t added to \\pk\\mn\\nthat got it in GEN VI.",
+      "pointer_sources": [
+        "0x4b684c"
+      ],
+      "id": "hns_native_4b6890",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "c0bbc3ccd300ced3cabf00dde7e2b4e800d5d8d8d9d800e8e3005354fee8dcd5e800dbe3e800dde800dde200c1bfc800d0c3adff",
+      "translations": {
+        "it": "Nessun tipo Folletto aggiunto\\nai Pokémon, come prima di Gen. VI."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b68cc",
+      "byte_length": 62,
+      "original": "SITRUS BERRY restores 25% of\\ntotal HP. Same as GEN IV and up.",
+      "pointer_sources": [
+        "0x4b68c8"
+      ],
+      "id": "hns_native_4b68cc",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "cdc3cecccfcd00bcbfccccd300e6d9e7e8e3e6d9e700a3a65b00e3dafee8e3e8d5e000c2caad00cdd5e1d900d5e700c1bfc800c3d000d5e2d800e9e4adff",
+      "translations": {
+        "it": "Bacca Cedro: cura il 25% dei PS\\ntotali, come dalla Gen. IV."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b690c",
+      "byte_length": 45,
+      "original": "SITRUS BERRY restores 30HP.\\nSame as GEN III.",
+      "pointer_sources": [
+        "0x4b68c4"
+      ],
+      "id": "hns_native_4b690c",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "cdc3cecccfcd00bcbfccccd300e6d9e7e8e3e6d9e700a4a1c2caadfecdd5e1d900d5e700c1bfc800c3c3c3adff",
+      "translations": {
+        "it": "Bacca Cedro: cura 30 PS,\\ncome nella Gen. III."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b6944",
+      "byte_length": 60,
+      "original": "STURDY works as in GEN V\\+.\\n\\pk\\mn survive lethal hits with 1HP.",
+      "pointer_sources": [
+        "0x4b6940"
+      ],
+      "id": "hns_native_4b6944",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "cdcecfccbed300ebe3e6dfe700d5e700dde200c1bfc800d02eadfe535400e7e9e6eaddead900e0d9e8dcd5e000dcdde8e700ebdde8dc00a2c2caadff",
+      "translations": {
+        "it": "Vigore come dalla Gen. V: resiste\\nai colpi letali con 1 PS."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b6980",
+      "byte_length": 71,
+      "original": "STURDY works as in GEN III. Only\\nnegates OHKO moves (GUILLOTINE, etc.)",
+      "pointer_sources": [
+        "0x4b693c"
+      ],
+      "id": "hns_native_4b6980",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "cdcecfccbed300ebe3e6dfe700d5e700dde200c1bfc800c3c3c3ad00c9e2e0edfee2d9dbd5e8d9e700c9c2c5c900e1e3ead9e7005cc1cfc3c6c6c9cec3c8bfb800d9e8d7ad5dff",
+      "translations": {
+        "it": "Vigore come in Gen. III: blocca\\nsolo mosse da KO in un colpo."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b69d0",
+      "byte_length": 63,
+      "original": "SYNCHRONIZE works as in GEN VIII\\+.\\n100% chance to copy nature.",
+      "pointer_sources": [
+        "0x4b69cc"
+      ],
+      "id": "hns_native_4b69d0",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "cdd3c8bdc2ccc9c8c3d4bf00ebe3e6dfe700d5e700dde200c1bfc800d0c3c3c32eadfea2a1a15b00d7dcd5e2d7d900e8e300d7e3e4ed00e2d5e8e9e6d9adff",
+      "translations": {
+        "it": "Sincronismo come dalla Gen. VIII:\\ncopia la natura al 100%."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b6a10",
+      "byte_length": 60,
+      "original": "SYNCHRONIZE works as in GEN III.\\n50% chance to copy nature.",
+      "pointer_sources": [
+        "0x4b69c8"
+      ],
+      "id": "hns_native_4b6a10",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "cdd3c8bdc2ccc9c8c3d4bf00ebe3e6dfe700d5e700dde200c1bfc800c3c3c3adfea6a15b00d7dcd5e2d7d900e8e300d7e3e4ed00e2d5e8e9e6d9adff",
+      "translations": {
+        "it": "Sincronismo come in Gen. III:\\ncopia la natura al 50%."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b6a54",
+      "byte_length": 55,
+      "original": "Generation 7 LEARNSETS and EGG\\n MOVES \\+ minor changes.",
+      "pointer_sources": [
+        "0x4b6a50"
+      ],
+      "id": "hns_native_4b6a54",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "c1d9e2d9e6d5e8dde3e200a800c6bfbbccc8cdbfcecd00d5e2d800bfc1c1fe00c7c9d0bfcd002e00e1dde2e3e600d7dcd5e2dbd9e7adff",
+      "translations": {
+        "it": "Mosse apprese e Uovo di Gen. 7,\\ncon piccole modifiche."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b6a8c",
+      "byte_length": 55,
+      "original": "Generation 3 LEARNSETS and EGG\\n MOVES with no changes.",
+      "pointer_sources": [
+        "0x4b6a4c"
+      ],
+      "id": "hns_native_4b6a8c",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "c1d9e2d9e6d5e8dde3e200a400c6bfbbccc8cdbfcecd00d5e2d800bfc1c1fe00c7c9d0bfcd00ebdde8dc00e2e300d7dcd5e2dbd9e7adff",
+      "translations": {
+        "it": "Mosse apprese e Uovo di Gen. 3,\\nsenza modifiche."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b6acc",
+      "byte_length": 23,
+      "original": "Choose your own rules.",
+      "pointer_sources": [
+        "0x4b6ac8"
+      ],
+      "id": "hns_native_4b6acc",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "bddce3e3e7d900ede3e9e600e3ebe200e6e9e0d9e7adff",
+      "translations": {
+        "it": "Scegli le tue regole."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b6ae4",
+      "byte_length": 22,
+      "original": "Recommended settings.",
+      "pointer_sources": [
+        "0x4b6ac4"
+      ],
+      "id": "hns_native_4b6ae4",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "ccd9d7e3e1e1d9e2d8d9d800e7d9e8e8dde2dbe7adff",
+      "translations": {
+        "it": "Impostazioni consigliate."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x4b6b04",
+      "byte_length": 7,
+      "original": "MODERN",
+      "pointer_sources": [
+        "0x4b6b00"
+      ],
+      "id": "hns_native_4b6b04",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "c7c9bebfccc8ff",
+      "translations": {
+        "it": "MOD."
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b6b0c",
+      "byte_length": 9,
+      "original": "ORIGINAL",
+      "pointer_sources": [
+        "0x4b6afc"
+      ],
+      "id": "hns_native_4b6b0c",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "c9ccc3c1c3c8bbc6ff",
+      "translations": {
+        "it": "ORIG."
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b6b20",
+      "byte_length": 7,
+      "original": "CUSTOM",
+      "pointer_sources": [
+        "0x4b6b1c"
+      ],
+      "id": "hns_native_4b6b20",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "bdcfcdcec9c7ff",
+      "translations": {
+        "it": "PERSONALE"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b6b28",
+      "byte_length": 12,
+      "original": "RECOMMENDED",
+      "pointer_sources": [
+        "0x4b6b18"
+      ],
+      "id": "hns_native_4b6b28",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "ccbfbdc9c7c7bfc8bebfbeff",
+      "translations": {
+        "it": "CONSIGL."
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b6b3c",
+      "byte_length": 4,
+      "original": "OFF",
+      "pointer_sources": [
+        "0x4b6b38"
+      ],
+      "id": "hns_native_4b6b3c",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "c9c0c0ff",
+      "translations": {
+        "it": "NO"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x4b6b50",
+      "byte_length": 4,
+      "original": "OFF",
+      "pointer_sources": [
+        "0x4b6b44"
+      ],
+      "id": "hns_native_4b6b50",
+      "category": "native_ui",
+      "is_pointer_based": true,
+      "expected_hex": "c9c0c0ff",
+      "translations": {
+        "it": "NO"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x38dbd8",
+      "original": "Hi! Sorry to keep you waiting!\\pWelcome to the world of POKéMON!\\pMy name is OAK.\\pPeople call me the POKéMON\\nPROFESSOR.\\p",
+      "byte_length": 119,
+      "pointer_sources": [
+        "0x194c84"
+      ],
+      "id": "hns_native_38dbd8",
+      "category": "native_intro",
+      "is_pointer_based": true,
+      "expected_hex": "c2ddab00cde3e6e6ed00e8e300dfd9d9e400ede3e900ebd5dde8dde2dbabfbd1d9e0d7e3e1d900e8e300e8dcd900ebe3e6e0d800e3da00cac9c51bc7c9c8abfbc7ed00e2d5e1d900dde700c9bbc5adfbcad9e3e4e0d900d7d5e0e000e1d900e8dcd900cac9c51bc7c9c8fecaccc9c0bfcdcdc9ccadfbff",
+      "translations": {
+        "it": "Ciao! Scusa l'attesa!\\pBenvenuto nel mondo dei Pokémon!\\pMi chiamo OAK.\\pTutti mi chiamano\\nPROFESSOR POKÉMON.\\p"
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x38dc73",
+      "original": "This world is widely inhabited by\\ncreatures known as POKéMON.\\pPeople and POKéMON live together,\\nby supporting each other.\\pSome people play with POKéMON,\\nsome battle with them. \\pBut we don’t know everything about\\nPOKéMON yet. \\pThere are still many mysteries\\nto solve. That’s why I study\\lPOKéMON every day.\\p",
+      "byte_length": 306,
+      "pointer_sources": [
+        "0x194604"
+      ],
+      "id": "hns_native_38dc73",
+      "category": "native_intro",
+      "is_pointer_based": true,
+      "expected_hex": "cedcdde700ebe3e6e0d800dde700ebddd8d9e0ed00dde2dcd5d6dde8d9d800d6edfed7e6d9d5e8e9e6d9e700dfe2e3ebe200d5e700cac9c51bc7c9c8adfbcad9e3e4e0d900d5e2d800cac9c51bc7c9c800e0ddead900e8e3dbd9e8dcd9e6b8fed6ed00e7e9e4e4e3e6e8dde2db00d9d5d7dc00e3e8dcd9e6adfbcde3e1d900e4d9e3e4e0d900e4e0d5ed00ebdde8dc00cac9c51bc7c9c8b8fee7e3e1d900d6d5e8e8e0d900ebdde8dc00e8dcd9e1ad00fbbce9e800ebd900d8e3e2b4e800dfe2e3eb00d9ead9e6ede8dcdde2db00d5d6e3e9e8fecac9c51bc7c9c800edd9e8ad00fbcedcd9e6d900d5e6d900e7e8dde0e000e1d5e2ed00e1ede7e8d9e6ddd9e7fee8e300e7e3e0ead9ad00cedcd5e8b4e700ebdced00c300e7e8e9d8edfacac9c51bc7c9c800d9ead9e6ed00d8d5edadfbff",
+      "translations": {
+        "it": "Questo mondo è abitato da\\ncreature chiamate Pokémon.\\pLe persone e i Pokémon vivono\\ninsieme aiutandosi a vicenda.\\pC'è chi gioca con i Pokémon\\ne chi lotta insieme a loro.\\pMa non sappiamo ancora tutto\\nsui Pokémon.\\pCi sono ancora tanti misteri\\nda risolvere. Per questo studio\\li Pokémon ogni giorno.\\p"
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x38dda5",
+      "original": "And you are?",
+      "byte_length": 13,
+      "pointer_sources": [
+        "0x19464c"
+      ],
+      "id": "hns_native_38dda5",
+      "category": "native_intro",
+      "is_pointer_based": true,
+      "expected_hex": "bbe2d800ede3e900d5e6d9acff",
+      "translations": {
+        "it": "E tu chi sei?"
+      },
+      "max_lines": 2,
+      "max_line_width": 16
+    },
+    {
+      "address": "0x38ddb2",
+      "original": "Are you a boy?\\nOr are you a girl?",
+      "byte_length": 34,
+      "pointer_sources": [
+        "0x194be4"
+      ],
+      "id": "hns_native_38ddb2",
+      "category": "native_intro",
+      "is_pointer_based": true,
+      "expected_hex": "bbe6d900ede3e900d500d6e3edacfec9e600d5e6d900ede3e900d500dbdde6e0acff",
+      "translations": {
+        "it": "Sei un ragazzo?\\nO una ragazza?"
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x7d7428",
+      "original": "What challenge are you\\nexpecting?\\p\\CC0104The following settings can be changed\\nfrom the PC once you start the game.\\lHowever, after starting the game, the\\lnuzlocke, randomizer, difficulty and\\lchallenge settings can only be made\\leasier, not harder.",
+      "byte_length": 243,
+      "pointer_sources": [
+        "0x194b30"
+      ],
+      "id": "hns_native_7d7428",
+      "category": "native_intro",
+      "is_pointer_based": true,
+      "expected_hex": "d1dcd5e800d7dcd5e0e0d9e2dbd900d5e6d900ede3e9fed9ece4d9d7e8dde2dbacfbfc0104cedcd900dae3e0e0e3ebdde2db00e7d9e8e8dde2dbe700d7d5e200d6d900d7dcd5e2dbd9d8fedae6e3e100e8dcd900cabd00e3e2d7d900ede3e900e7e8d5e6e800e8dcd900dbd5e1d9adfac2e3ebd9ead9e6b800d5dae8d9e600e7e8d5e6e8dde2db00e8dcd900dbd5e1d9b800e8dcd9fae2e9eee0e3d7dfd9b800e6d5e2d8e3e1ddeed9e6b800d8dddadaddd7e9e0e8ed00d5e2d8fad7dcd5e0e0d9e2dbd900e7d9e8e8dde2dbe700d7d5e200e3e2e0ed00d6d900e1d5d8d9fad9d5e7ddd9e6b800e2e3e800dcd5e6d8d9e6adff",
+      "translations": {
+        "it": "Quale livello di sfida\\nstai cercando?\\p\\CC0104Potrai cambiare queste opzioni\\ndal PC dopo l'inizio del gioco.\\lMa le regole Nuzlocke, la casualità,\\lla difficoltà e le sfide potranno\\lsolo essere rese più facili,\\lnon più difficili."
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x38ddf6",
+      "original": "That sounds like the right\\nlevel of challenge to me!",
+      "byte_length": 53,
+      "pointer_sources": [
+        "0x1940d8"
+      ],
+      "id": "hns_native_38ddf6",
+      "category": "native_intro",
+      "is_pointer_based": true,
+      "expected_hex": "cedcd5e800e7e3e9e2d8e700e0dddfd900e8dcd900e6dddbdce8fee0d9ead9e000e3da00d7dcd5e0e0d9e2dbd900e8e300e1d9abff",
+      "translations": {
+        "it": "Mi sembra proprio\\nil livello di sfida adatto!"
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x38de2b",
+      "original": "And what’s your name?",
+      "byte_length": 22,
+      "pointer_sources": [
+        "0x194ba8"
+      ],
+      "id": "hns_native_38de2b",
+      "category": "native_intro",
+      "is_pointer_based": true,
+      "expected_hex": "bbe2d800ebdcd5e8b4e700ede3e9e600e2d5e1d9acff",
+      "translations": {
+        "it": "E come ti chiami?"
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x38de41",
+      "original": "Oh! So you’re [player][kun]?",
+      "byte_length": 20,
+      "pointer_sources": [
+        "0x194b6c"
+      ],
+      "id": "hns_native_38de41",
+      "category": "native_intro",
+      "is_pointer_based": true,
+      "expected_hex": "c9dcab00cde300ede3e9b4e6d900fd01fd05acff",
+      "translations": {
+        "it": "Oh! Quindi sei [player][kun]?"
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x38de55",
+      "original": "[player][kun], are you ready?\\pYour very own adventure is about\\nto unfold.\\p",
+      "byte_length": 66,
+      "pointer_sources": [
+        "0x195704"
+      ],
+      "id": "hns_native_38de55",
+      "category": "native_intro",
+      "is_pointer_based": true,
+      "expected_hex": "fd01fd05b800d5e6d900ede3e900e6d9d5d8edacfbd3e3e9e600ead9e6ed00e3ebe200d5d8ead9e2e8e9e6d900dde700d5d6e3e9e8fee8e300e9e2dae3e0d8adfbff",
+      "translations": {
+        "it": "[player][kun], tutto pronto?\\pLa tua avventura\\nsta per cominciare.\\p"
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0x38de97",
+      "original": "You’ll face fun times and tough\\nchallenges.\\pA world of dreams and adventures\\nwith POKéMON awaits! Let’s go!\\pI’ll be seeing you later!\\p",
+      "byte_length": 135,
+      "pointer_sources": [
+        "0x195804"
+      ],
+      "id": "hns_native_38de97",
+      "category": "native_intro",
+      "is_pointer_based": true,
+      "expected_hex": "d3e3e9b4e0e000dad5d7d900dae9e200e8dde1d9e700d5e2d800e8e3e9dbdcfed7dcd5e0e0d9e2dbd9e7adfbbb00ebe3e6e0d800e3da00d8e6d9d5e1e700d5e2d800d5d8ead9e2e8e9e6d9e7feebdde8dc00cac9c51bc7c9c800d5ebd5dde8e7ab00c6d9e8b4e700dbe3abfbc3b4e0e000d6d900e7d9d9dde2db00ede3e900e0d5e8d9e6abfbff",
+      "translations": {
+        "it": "Vivrai momenti felici\\ne affronterai sfide difficili.\\pUn mondo di sogni e avventure\\ncon i Pokémon ti aspetta! Andiamo!\\pCi vediamo presto!\\p"
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "address": "0xd70d7c",
+      "original": "This is what we call a \\qoPOKéMON.\\qc\\CC0860\\p",
+      "byte_length": 38,
+      "pointer_sources": [
+        "0x1946ac"
+      ],
+      "id": "hns_native_d70d7c",
+      "category": "native_intro",
+      "is_pointer_based": true,
+      "expected_hex": "cedcdde700dde700ebdcd5e800ebd900d7d5e0e000d500b1cac9c51bc7c9c8adb2fc0860fbff",
+      "translations": {
+        "it": "Questo è quello che\\nchiamiamo un \\qoPokémon.\\qc\\CC0860\\p"
+      },
+      "max_lines": 2,
+      "max_line_width": 35
+    },
+    {
+      "id": "hns_native_4b6b40",
+      "category": "native_ui",
+      "address": "0x4b6b40",
+      "original": "ON",
+      "byte_length": 3,
+      "pointer_sources": [
+        "0x4b6b34"
+      ],
+      "is_pointer_based": true,
+      "expected_hex": "c9c8ff",
+      "translations": {
+        "it": "SÌ"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "id": "hns_native_4b6b4c",
+      "category": "native_ui",
+      "address": "0x4b6b4c",
+      "original": "ON",
+      "byte_length": 3,
+      "pointer_sources": [
+        "0x4b6b48"
+      ],
+      "is_pointer_based": true,
+      "expected_hex": "c9c8ff",
+      "translations": {
+        "it": "SÌ"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "id": "hns_native_4b4308",
+      "category": "native_ui",
+      "address": "0x4b4308",
+      "original": "\\btn03NEXT",
+      "byte_length": 7,
+      "pointer_sources": [],
+      "is_pointer_based": false,
+      "expected_hex": "f803c8bfd2ceff",
+      "translations": {
+        "it": "\\btn03VAI"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "id": "hns_native_4b4310",
+      "category": "native_ui",
+      "address": "0x4b4310",
+      "original": "\\btn02PREVIOUS",
+      "byte_length": 11,
+      "pointer_sources": [],
+      "is_pointer_based": false,
+      "expected_hex": "f802caccbfd0c3c9cfcdff",
+      "translations": {
+        "it": "\\btn02INDIETRO"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "id": "hns_native_4b431c",
+      "category": "native_ui",
+      "address": "0x4b431c",
+      "original": "\\btn03SAVE",
+      "byte_length": 7,
+      "pointer_sources": [],
+      "is_pointer_based": false,
+      "expected_hex": "f803cdbbd0bfff",
+      "translations": {
+        "it": "\\btn03OK"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "id": "hns_native_4b4324",
+      "category": "native_ui",
+      "address": "0x4b4324",
+      "original": "\\btn01CANCEL",
+      "byte_length": 9,
+      "pointer_sources": [],
+      "is_pointer_based": false,
+      "expected_hex": "f801bdbbc8bdbfc6ff",
+      "translations": {
+        "it": "\\btn01ESCI"
+      },
+      "max_lines": 1,
+      "max_line_width": 16
+    },
+    {
+      "id": "hns_native_4b4294",
+      "category": "native_ui",
+      "address": "0x4b4294",
+      "original": "Confirm your choices?",
+      "byte_length": 22,
+      "pointer_sources": [],
+      "is_pointer_based": false,
+      "expected_hex": "bde3e2dadde6e100ede3e9e600d7dce3ddd7d9e7acff",
+      "translations": {
+        "it": "Confermi le scelte?"
+      },
+      "max_lines": 1,
+      "max_line_width": 24
+    },
+    {
+      "id": "hns_native_4b4384",
+      "category": "native_ui",
+      "address": "0x4b4384",
+      "original": "OFF",
+      "byte_length": 4,
+      "pointer_sources": [],
+      "is_pointer_based": false,
+      "expected_hex": "c9c0c0ff",
+      "translations": {
+        "it": "NO"
+      },
+      "max_lines": 1,
+      "max_line_width": 8
+    },
+    {
+      "id": "hns_native_4b4388",
+      "category": "native_ui",
+      "address": "0x4b4388",
+      "original": "RANDOM",
+      "byte_length": 7,
+      "pointer_sources": [],
+      "is_pointer_based": false,
+      "expected_hex": "ccbbc8bec9c7ff",
+      "translations": {
+        "it": "CASO"
+      },
+      "max_lines": 1,
+      "max_line_width": 8
+    }
+  ]
+}

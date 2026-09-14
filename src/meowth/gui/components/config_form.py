@@ -1,6 +1,7 @@
 """Configuration form component using CustomTkinter."""
 
 from pathlib import Path
+import os
 from tkinter import filedialog
 
 import customtkinter as ctk
@@ -75,7 +76,7 @@ class ConfigForm(ctk.CTkFrame):
         self.target_lang.pack(fill="x", pady=(2, 0))
 
         # --- Row 3: Provider + Model ---
-        ctk.CTkLabel(inner, text="LLM API", font=("", 12, "bold")).pack(anchor="w")
+        ctk.CTkLabel(inner, text="Translation API", font=("", 12, "bold")).pack(anchor="w")
         pm_row = ctk.CTkFrame(inner, fg_color="transparent")
         pm_row.pack(fill="x", pady=(2, 4))
 
@@ -97,7 +98,8 @@ class ConfigForm(ctk.CTkFrame):
         self.model_entry.pack(fill="x", pady=(2, 0))
 
         # --- Row 4: API Key ---
-        ctk.CTkLabel(inner, text="API Key:", font=("", 11)).pack(anchor="w", pady=(4, 0))
+        self.api_key_label = ctk.CTkLabel(inner, text="API Key:", font=("", 11))
+        self.api_key_label.pack(anchor="w", pady=(4, 0))
         self.api_key_entry = ctk.CTkEntry(
             inner, placeholder_text="sk-xxxxxxxxxxxxxxxxxxxxxxxx", height=30, show="*"
         )
@@ -134,8 +136,17 @@ class ConfigForm(ctk.CTkFrame):
         """Update default model when provider changes."""
         preset = PROVIDER_PRESETS.get(provider_name)
         if preset:
+            self.model_entry.configure(state="normal")
             self.model_entry.delete(0, "end")
             self.model_entry.insert(0, preset[1])
+            if provider_name == "deepl":
+                self.model_entry.configure(state="disabled", placeholder_text="Automatic (DeepL)")
+                self.api_key_label.configure(text="API Keys (DeepL): separa più chiavi con una virgola")
+                self.api_key_entry.configure(placeholder_text="chiave1:fx,chiave2:fx,chiave3:fx")
+            else:
+                self.model_entry.configure(placeholder_text="")
+                self.api_key_label.configure(text="API Key:")
+                self.api_key_entry.configure(placeholder_text="sk-xxxxxxxxxxxxxxxxxxxxxxxx")
 
     def _browse_rom(self):
         """Open file dialog to select ROM."""
@@ -203,6 +214,11 @@ class ConfigForm(ctk.CTkFrame):
         rom_path = Path(self.rom_entry.get())
         if not rom_path.exists():
             return False, f"ROM file not found: {rom_path}"
-        if not self.api_key_entry.get().strip():
+        preset = PROVIDER_PRESETS.get(self.provider.get())
+        api_key = self.api_key_entry.get().strip() or (os.environ.get(preset[2], "") if preset else "")
+        if not api_key or (self.provider.get() == "deepl" and not any(key.strip() for key in api_key.split(","))):
             return False, "Please enter your API key"
+        for label, entry in (("Batch Size", self.batch_size), ("Max Workers", self.max_workers)):
+            if not entry.get().isdigit() or int(entry.get()) < 1:
+                return False, f"{label} must be a positive integer"
         return True, ""

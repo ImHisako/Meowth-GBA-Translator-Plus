@@ -28,6 +28,10 @@ class TranslationCallbacks:
         """
         pass
 
+    def on_retry_wait(self, seconds: float):
+        """Called before a scheduled API retry so time estimates include the pause."""
+        pass
+
     def on_stage_change(self, stage: str, status: str):
         """Called when the translation stage changes.
 

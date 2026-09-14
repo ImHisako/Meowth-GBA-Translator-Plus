@@ -2,6 +2,8 @@
 
 import json
 import subprocess
+import threading
+from concurrent.futures import CancelledError
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
@@ -9,12 +11,16 @@ from ..charmap import Charmap
 from ..control_codes import protect, restore
 from ..font_patch import apply_font_patch
 from ..glossary import Glossary
+from ..move_glossary import MoveGlossary
 from ..i18n import Messages
 from ..languages import is_cjk_language
+from ..italian_text import normalize_italian
+from ..native_text import native_entries, native_translation, native_layout_ok
 from ..pcs_codes import FD_MACROS
 from ..rom_writer import RomWriter
 from ..text_wrap import wrap_text
 from ..translator import Translator
+from ..translation_validation import TranslationValidationError, validate_translation
 from .callbacks import TranslationCallbacks
 from .config import TranslationConfig
 
@@ -143,7 +149,7 @@ def _strip_llm_newlines(text: str) -> str:
     """Remove literal newlines inserted by the LLM for formatting."""
     _PARA = "\x00PARA\x00"
     text = text.replace("\n\n", _PARA)
-    text = text.replace("\n", "")
+    text = text.replace("\n", " ")
     text = text.replace(_PARA, "\n\n")
     return text
 
@@ -189,6 +195,10 @@ class TranslationEngine:
         """
         self.config = config
         self.callbacks = callbacks or TranslationCallbacks()
+        self._cancelled = threading.Event()
+        self._progress_total = 0
+        self._progress_completed = 0
+        self.moves = MoveGlossary(config.source_lang, config.target_lang)
 
         self.charmap = charmap or Charmap(target_lang=config.target_lang)
         self.glossary = glossary or Glossary(
@@ -204,7 +214,30 @@ class TranslationEngine:
             api_key_env=config.api_key_env,
             model=config.model,
             cache_dir=config.work_dir / "cache",
+            cancel_event=self._cancelled,
+            on_log=self._log,
+            on_retry_wait=self.callbacks.on_retry_wait,
         )
+
+    def close(self):
+        self.translator.close()
+
+    def cancel(self):
+        self._cancelled.set()
+
+    def _check_cancelled(self):
+        if self._cancelled.is_set():
+            raise CancelledError("Translation cancelled")
+
+    def _protect_text(self, text: str):
+        protected, codes = protect(text)
+        protected, names = self.glossary.protect_pokemon(protected)
+        protected, moves = self.moves.protect(protected)
+        return protected, codes + names + moves
+
+    def _restore_translation(self, source: str, translated: str, codes: list) -> str:
+        validate_translation(source, translated)
+        return normalize_italian(restore(_strip_llm_newlines(translated), codes), self.config.target_lang)
 
     def _log(self, level: str, message: str):
         """Internal helper to send log messages via callbacks."""
@@ -216,9 +249,21 @@ class TranslationEngine:
         """Translate extracted texts JSON with parallel workers."""
         data = json.loads(texts_path.read_text(encoding="utf-8"))
         data = convert_format(data)
+        self._progress_total = sum(len(table["entries"]) for table in data["tables"]) + len(data["free_texts"])
+        self._progress_completed = 0
+        self.callbacks.on_progress("translate", 0, self._progress_total, "Preparing translation")
+
+        # Register every species before translating any dialogue or description.
+        for table in data["tables"]:
+            if table["category"] == "pokemon_names":
+                self.glossary.register_pokemon_names(
+                    entry["original"].strip('"') for entry in table["entries"]
+                )
 
         # Translate table entries
-        for table in data["tables"]:
+        # Resolve names first so descriptions use the same full/short form as menus.
+        for table in sorted(data["tables"], key=lambda table: table["category"] != "move_names"):
+            self._check_cancelled()
             self._translate_table(table)
 
         # Translate free texts in parallel batches
@@ -235,6 +280,7 @@ class TranslationEngine:
         done_count = 0
 
         def process_batch(idx_batch):
+            self._check_cancelled()
             idx, batch = idx_batch
             self._translate_free_batch(batch)
             return idx, batch
@@ -246,21 +292,35 @@ class TranslationEngine:
             }
             for future in as_completed(futures):
                 done_count += 1
-                idx, batch = future.result()
+                try:
+                    idx, batch = future.result()
+                except Exception:
+                    # Wake workers waiting on a rate limit and discard queued
+                    # batches when a terminal error prevents completing the run.
+                    self._cancelled.set()
+                    for pending in futures:
+                        pending.cancel()
+                    raise
                 self._log("info", Messages.BATCH_COMPLETE.format(
                     current=done_count, total=total, batch_id=idx + 1
                 ))
                 sample = next((e for e in batch if e.get("translated")), None)
                 if sample:
                     print(f"  e.g. {sample['original']!r} → {sample['translated']!r}")
-                self.callbacks.on_progress("translate", done_count, total,
-                    f"Batch {idx + 1} completed")
+                self._advance_translation_progress(len(batch), f"Batch {idx + 1} completed")
 
+        self._check_cancelled()
         output_path.parent.mkdir(parents=True, exist_ok=True)
         output_path.write_text(
             json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8"
         )
         return output_path
+
+    def _advance_translation_progress(self, count: int, message: str):
+        """Count entries exactly once, including locally resolved table entries."""
+        if self._progress_total and count:
+            self._progress_completed += count
+            self.callbacks.on_progress("translate", self._progress_completed, self._progress_total, message)
 
     def _translate_table(self, table: dict):
         """Translate a table's entries using glossary lookup."""
@@ -269,6 +329,21 @@ class TranslationEngine:
 
         for entry in table["entries"]:
             original = entry["original"].strip('"')
+            if category == "pokemon_names" and self.config.target_lang == "it":
+                entry["translated"] = original
+                continue
+            if category == "move_names" and self.config.target_lang == "it":
+                entry.setdefault("category", category)
+                capacity = None if entry.get("is_pointer_based") else (entry.get("byte_length") or None)
+                translated = self.moves.fit_name(original, self.charmap, capacity)
+                if translated is None:
+                    translated = original
+                    if original.strip(" ?-"):
+                        reason = "name does not fit the ROM slot" if self.moves.lookup(original) else "unknown move"
+                        self._log("warning", f"Move {original!r}: {reason}; keeping original")
+                entry["translated"] = translated
+                self.moves.set_rendered_name(original, translated)
+                continue
             # Check term overrides (all games, Chinese only)
             if self.config.target_lang == "zh-Hans" and original in _TERM_OVERRIDES:
                 entry["translated"] = _TERM_OVERRIDES[original]
@@ -288,7 +363,8 @@ class TranslationEngine:
                     continue
             # Descriptions, map names without glossary match, and battle text:
             # defer to batch LLM call instead of one-by-one to avoid 500+ API calls
-            if "description" in category or (category == "map_names" and not zh) or category == "battle_text":
+            if ("description" in category or (category == "map_names" and not zh)
+                    or category == "battle_text" or (self.config.target_lang == "it" and not zh)):
                 needs_llm.append(entry)
             elif zh:
                 entry["translated"] = zh
@@ -296,6 +372,7 @@ class TranslationEngine:
                 entry["translated"] = original
 
         # Batch translate all deferred LLM entries
+        self._advance_translation_progress(len(table["entries"]) - len(needs_llm), category)
         if needs_llm:
             self._translate_table_llm_batch(needs_llm)
 
@@ -321,7 +398,7 @@ class TranslationEngine:
         to_translate: list[tuple[dict, str, list]] = []  # (entry, protected, codes)
         for entry in entries:
             original = entry["original"].strip('"')
-            protected, codes = protect(original)
+            protected, codes = self._protect_text(original)
             # Count actual alphabetic letters after stripping {C0}-style placeholders
             cleaned = re.sub(r"\{C\d+\}", "", protected)
             if sum(c.isalpha() for c in cleaned) >= 2:
@@ -330,12 +407,14 @@ class TranslationEngine:
                 # Pure control codes – keep original, nothing to translate
                 entry["translated"] = original
 
+        self._advance_translation_progress(len(entries) - len(to_translate), "Table entries processed")
         if not to_translate:
             return
 
         # Batch translate in groups of batch_size (same as free texts)
         batch_size = self.config.batch_size
         for i in range(0, len(to_translate), batch_size):
+            self._check_cancelled()
             chunk = to_translate[i : i + batch_size]
             protected_list = [p for _, p, _ in chunk]
             all_text = " ".join(e["original"] for e, _, _ in chunk)
@@ -343,15 +422,22 @@ class TranslationEngine:
 
             try:
                 results = self.translator.translate_batch(protected_list, glossary_ctx)
-            except Exception as e:
-                print(f"[Table batch LLM failed: {e}, keeping originals]")
+                if len(results) != len(chunk):
+                    raise TranslationValidationError("Misaligned table batch")
+            except TranslationValidationError as e:
+                self._log("warning", f"Table translation rejected: {e}; keeping originals")
                 for entry, _, _ in chunk:
                     entry["translated"] = entry["original"].strip('"')
+                self._advance_translation_progress(len(chunk), "Table entries processed")
                 continue
 
-            for (entry, _, codes), result in zip(chunk, results):
-                clean = _strip_llm_newlines(result)
-                entry["translated"] = restore(clean, codes)
+            for (entry, protected, codes), result in zip(chunk, results):
+                try:
+                    entry["translated"] = self._restore_translation(protected, result, codes)
+                except TranslationValidationError as error:
+                    self._log("warning", f"Translation rejected: {error}; keeping original")
+                    entry["translated"] = entry["original"]
+            self._advance_translation_progress(len(chunk), "Table entries processed")
 
     def _translate_free_batch(self, batch: list[dict]):
         """Translate a batch of free text entries via LLM."""
@@ -360,7 +446,10 @@ class TranslationEngine:
         for entry in batch:
             entry_id = entry.get("id", "")
             original = entry.get("original", "").strip('"')
-            if (self.config.target_lang == "zh-Hans" and
+            reviewed = native_translation(entry, self.config.target_lang)
+            if reviewed is not None:
+                entry["translated"] = reviewed
+            elif (self.config.target_lang == "zh-Hans" and
                 original in _TERM_OVERRIDES):
                 entry["translated"] = _TERM_OVERRIDES[original]
             elif (self.config.game == "firered" and
@@ -379,7 +468,7 @@ class TranslationEngine:
         protected_list = []
         codes_list = []
         for text in originals:
-            protected, codes = protect(text)
+            protected, codes = self._protect_text(text)
             protected_list.append(protected)
             codes_list.append(codes)
 
@@ -390,17 +479,27 @@ class TranslationEngine:
         # Translate
         try:
             results = self.translator.translate_batch(protected_list, glossary_ctx)
-        except Exception as e:
-            print(f"[Batch failed after retries: {e}, keeping originals]")
+            if len(results) != len(remaining):
+                raise TranslationValidationError("Misaligned dialogue batch")
+        except TranslationValidationError as e:
+            self._log("warning", f"Translation rejected: {e}; keeping originals")
             for entry in remaining:
                 entry["translated"] = entry["original"]
             return
 
         # Restore and wrap
         for i, entry in enumerate(remaining):
-            clean = _strip_llm_newlines(results[i])
-            translated = restore(clean, codes_list[i])
-            entry["translated"] = wrap_text(translated, target_lang=self.config.target_lang)
+            try:
+                translated = self._restore_translation(protected_list[i], results[i], codes_list[i])
+                if entry.get("category") == "native_ui":
+                    if not native_layout_ok(entry, translated):
+                        raise TranslationValidationError("Native menu text exceeds its layout limits")
+                    entry["translated"] = translated
+                else:
+                    entry["translated"] = wrap_text(translated, target_lang=self.config.target_lang)
+            except TranslationValidationError as error:
+                self._log("warning", f"Translation rejected: {error}; keeping original")
+                entry["translated"] = entry["original"]
 
     def _format_glossary(self, text: str) -> str:
         terms = self.glossary.get_context_terms(text)
@@ -415,6 +514,8 @@ class TranslationEngine:
         output_path: Path,
     ) -> Path:
         """Build final translated ROM."""
+        self._check_cancelled()
+        output_path.parent.mkdir(parents=True, exist_ok=True)
         # Auto-detect game
         detected = detect_game(original_rom)
         if detected != "unknown":
@@ -456,7 +557,7 @@ class TranslationEngine:
                 all_entries.append(entry)
 
         # Load manual entries (FireRed-specific)
-        if self.config.game == "firered":
+        if self.config.game == "firered" and self.config.target_lang == "zh-Hans":
             manual_path = Path(__file__).parent.parent / "manual_entries.json"
             if manual_path.exists():
                 manual = json.loads(manual_path.read_text(encoding="utf-8"))
@@ -464,6 +565,18 @@ class TranslationEngine:
                 self._log("info", Messages.ADDED_MANUAL_ENTRIES.format(count=len(manual)))
 
         # Inject texts
+        # Include reviewed native translations when rebuilding an older JSON
+        # that predates native extraction. This requires no translation API.
+        existing_ids = {entry.get("id") for entry in all_entries}
+        added_native = 0
+        for entry in native_entries(original_rom.read_bytes()):
+            reviewed = native_translation(entry, self.config.target_lang)
+            if entry["id"] not in existing_ids and reviewed is not None:
+                entry["translated"] = reviewed
+                all_entries.append(entry)
+                added_native += 1
+        if added_native:
+            self._log("info", f"Added {added_native} reviewed native menu/intro translations (no API calls)")
         self._log("info", Messages.INJECTING_TEXTS.format(count=len(all_entries)))
         rom, stats = writer.inject_texts(rom, all_entries)
         self._log("info", Messages.INJECTION_STATS.format(
@@ -475,6 +588,7 @@ class TranslationEngine:
         ))
 
         # Save
+        self._check_cancelled()
         writer.save_rom(rom, output_path)
         self._log("info", Messages.SAVED_ROM.format(path=output_path))
         return output_path
@@ -488,11 +602,11 @@ class TranslationEngine:
     @staticmethod
     def extract_texts(rom_path: Path, output_path: Path) -> Path:
         """Extract texts from ROM using MeowthBridge."""
-        import os
         import shutil as _shutil
-        from ..resource_path import get_resource_path
+        from ..binaries.loader import find_meowth_bridge_resources
 
-        exe = TranslationEngine.find_meowth_bridge()
+        exe = TranslationEngine.find_meowth_bridge().resolve()
+        resources_src = find_meowth_bridge_resources(exe)
         output_path = output_path.resolve()
         output_path.parent.mkdir(parents=True, exist_ok=True)
         rom_abs = rom_path.resolve()
@@ -502,18 +616,17 @@ class TranslationEngine:
         cwd = output_path.parent
 
         # MeowthBridge (via HMA) needs resources/ to exist in its CWD.
-        # Find the actual resources directory and symlink/copy it into cwd.
-        resources_src = get_resource_path("resources")
+        # Use HMA resources from the selected binary, not the glossary cache.
+        # Refresh existing copies too, repairing incomplete prior runs.
         resources_dst = cwd / "resources"
-        if resources_src.exists() and not resources_dst.exists():
-            try:
-                os.symlink(resources_src, resources_dst)
-            except (OSError, NotImplementedError):
-                _shutil.copytree(str(resources_src), str(resources_dst))
+        if resources_dst.resolve() != resources_src:
+            if resources_dst.is_symlink():
+                resources_dst.unlink()
+            _shutil.copytree(resources_src, resources_dst, dirs_exist_ok=True)
 
         result = subprocess.run(
             [str(exe), "extract", str(rom_abs)],
-            capture_output=True, text=True,
+            capture_output=True, text=True, encoding="utf-8", errors="replace",
             cwd=str(cwd),
         )
         if result.returncode != 0:
@@ -531,6 +644,32 @@ class TranslationEngine:
             raise RuntimeError(Messages.MEOWTH_BRIDGE_NO_OUTPUT.format(path=output_path))
 
         _postprocess_fd_macros(output_path)
+        # Older downloaded bridge binaries scan loadword bytes across the whole
+        # ROM. Filter their false positives before spending API quota on them.
+        from ..pcs_scanner import is_message_pointer, is_real_text
+        extracted = json.loads(output_path.read_text(encoding="utf-8"))
+        rom_data = rom_abs.read_bytes()
+
+        def safe_entry(entry):
+            if entry.get("category") != "scripts":
+                return True
+            try:
+                address = int(entry["address"], 16)
+                sources = entry.get("pointer_sources", [])
+                return is_real_text(entry.get("original", "")) and bool(sources) and all(
+                    is_message_pointer(rom_data, address, int(source, 16)) for source in sources
+                )
+            except (KeyError, ValueError, TypeError):
+                return False
+
+        if "entries" in extracted:
+            extracted["entries"] = [entry for entry in extracted["entries"] if safe_entry(entry)]
+            native = native_entries(rom_data)
+            native_addresses = {entry["address"].lower() for entry in native}
+            extracted["entries"] = [entry for entry in extracted["entries"]
+                                    if entry.get("address", "").lower() not in native_addresses]
+            extracted["entries"].extend(native)
+            output_path.write_text(json.dumps(extracted, ensure_ascii=False, indent=2), encoding="utf-8")
         return output_path
 
     def run_full(
@@ -582,18 +721,21 @@ class TranslationEngine:
         output_path = output_dir / f"{original_name}_{lang_code}.gba"
 
         # Stage 1: Extract
+        self._check_cancelled()
         self.callbacks.on_stage_change("extract", "started")
         self._log("info", Messages.STAGE_EXTRACT)
         self.extract_texts(rom_path, texts_path)
         self.callbacks.on_stage_change("extract", "completed")
 
         # Stage 2: Translate
+        self._check_cancelled()
         self.callbacks.on_stage_change("translate", "started")
         self._log("info", Messages.STAGE_TRANSLATE)
         self.translate_texts(texts_path, translated_path)
         self.callbacks.on_stage_change("translate", "completed")
 
         # Stage 3: Build
+        self._check_cancelled()
         self.callbacks.on_stage_change("build", "started")
         self._log("info", Messages.STAGE_BUILD)
         self.build_rom(rom_path, translated_path, output_path)

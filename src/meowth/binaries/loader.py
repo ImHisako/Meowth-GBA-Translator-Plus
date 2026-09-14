@@ -124,6 +124,30 @@ def find_meowth_bridge() -> Path:
         ) from download_error
 
 
+def find_meowth_bridge_resources(exe_path: Path) -> Path:
+    """Find HMA metadata, preferring the resources shipped with this binary."""
+    from ..resource_path import get_resource_path
+
+    candidates = [
+        exe_path.resolve().parent / "resources",
+        get_resource_path("resources"),
+        get_resource_path("HexManiacAdvance/src/HexManiac.Core/Models/Code"),
+    ]
+    for candidate in candidates:
+        # The application's glossary cache is also named resources. It is not
+        # sufficient to load a ROM: HMA needs its default metadata as well.
+        if (candidate / "default.toml").is_file():
+            return candidate.resolve()
+
+    searched = "\n".join(f"  - {path}" for path in candidates)
+    raise FileNotFoundError(
+        "MeowthBridge resources not found (missing default.toml).\n"
+        f"Searched:\n{searched}\n"
+        "Restore the complete MeowthBridge package, including its resources "
+        "directory next to the executable."
+    )
+
+
 def _download_meowth_bridge() -> Path:
     """Download MeowthBridge ZIP from GitHub release and extract it."""
     exe_name = get_executable_name()

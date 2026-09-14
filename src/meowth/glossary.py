@@ -1,6 +1,7 @@
 """Load official Pokemon terminology from PokeAPI CSV files."""
 
 import csv
+import re
 from pathlib import Path
 
 from .languages import SUPPORTED_LANGUAGES
@@ -41,6 +42,15 @@ CONTEXT_UNSAFE_CATEGORIES = {
 # Manual overrides per target language: source_text → target_text
 # These take priority over PokeAPI glossary data
 MANUAL_OVERRIDES: dict[str, dict[str, str]] = {
+    "it": {
+        "Pokémon": "Pokémon",
+        "Pokemon": "Pokémon",
+        "Pokédex": "Pokédex",
+        "Pokedex": "Pokédex",
+        "Poké Ball": "Poké Ball",
+        "Pokémon Center": "Centro Pokémon",
+        "Pokemon Center": "Centro Pokémon",
+    },
     "zh-Hans": {
         "Pokédex": "图鉴",
         "Pokedex": "图鉴",
@@ -72,9 +82,14 @@ class Glossary:
         self._term_category: dict[str, str] = {}
 
         # Try loading from pre-built JSON first, fall back to CSV
-        json_path = Path(__file__).parent.parent.parent / "resources" / f"glossary_{source_lang}_{target_lang}.json"
-        if json_path.exists():
+        json_path = get_resource_path(f"resources/glossary_{source_lang}_{target_lang}.json")
+        bundled_path = Path(__file__).parent / "data" / f"glossary_{source_lang}_{target_lang}.json"
+        if pokeapi_dir != POKEAPI_DIR:
+            self._load_all(pokeapi_dir)
+        elif json_path.exists():
             self._load_json(json_path)
+        elif bundled_path.exists():
+            self._load_json(bundled_path)
         else:
             self._load_all(pokeapi_dir)
 
@@ -87,16 +102,53 @@ class Glossary:
             compact = source.upper().replace(" ", "").replace("-", "")
             self._compact_index[compact] = target
 
+        self._pokemon_names = {
+            source for source, category in self._term_category.items() if category == "pokemon"
+        }
+        self._pokemon_names.update(
+            name.replace("’", "'").replace(". ", ".")
+            for name in tuple(self._pokemon_names)
+        )
+        self._pokemon_pattern = None
+        self._context_pattern = None
+
+    def register_pokemon_names(self, names) -> None:
+        """Include species introduced or renamed by ROM hacks, before workers start."""
+        self._pokemon_names.update(name for name in names if name and name.strip(" ?-"))
+        self._pokemon_pattern = None
+
+    def protect_pokemon(self, text: str) -> tuple[str, list[tuple[str, str]]]:
+        """Preserve spelling and case of species names in Italian dialogue."""
+        if self.target_lang != "it" or not self._pokemon_names:
+            return text, []
+        if self._pokemon_pattern is None:
+            alternatives = "|".join(re.escape(n) for n in sorted(self._pokemon_names, key=len, reverse=True))
+            self._pokemon_pattern = re.compile(r"(?<!\w)(?:" + alternatives + r")(?!\w)", re.IGNORECASE)
+        names = []
+
+        def replace(match):
+            placeholder = f"{{P{len(names)}}}"
+            names.append((placeholder, match.group()))
+            return placeholder
+
+        return self._pokemon_pattern.sub(replace, text), names
+
     def _load_json(self, path: Path):
         """Load glossary from pre-built JSON file."""
         import json
         data = json.loads(path.read_text(encoding="utf-8"))
         self.source_to_target = data.get("source_to_target", {})
         term_categories = data.get("term_categories", {})
+        # Older GUI bundles omitted categories; recover them from bundled data.
+        if not term_categories:
+            bundled = Path(__file__).parent / "data" / f"glossary_{self.source_lang}_{self.target_lang}.json"
+            if bundled.exists() and bundled != path:
+                term_categories = json.loads(bundled.read_text(encoding="utf-8")).get("term_categories", {})
+        categories_by_upper = {source.upper(): category for source, category in term_categories.items()}
 
         # Build uppercase index and compact index
         for source, target in self.source_to_target.items():
-            category = term_categories.get(source, "unknown")
+            category = categories_by_upper.get(source.upper(), "unknown")
             self._upper_index[source.upper()] = (source, target, category)
             self._term_category[source] = category
             compact = source.upper().replace(" ", "").replace("-", "")
@@ -142,7 +194,10 @@ class Glossary:
         Falls back to compact matching (no spaces/hyphens) for GBA's
         truncated names like THUNDERPUNCH → Thunder Punch.
         """
-        result = self.source_to_target.get(source_text) or self.source_to_target.get(source_text.upper())
+        indexed = self._upper_index.get(source_text.upper())
+        if self.target_lang == "it" and indexed and indexed[2] == "pokemon":
+            return source_text
+        result = self.source_to_target.get(source_text) or (indexed[1] if indexed else None)
         if result:
             return result
         compact = source_text.upper().replace(" ", "").replace("-", "")
@@ -155,6 +210,7 @@ class Glossary:
         self._term_category[source] = category
         compact = source.upper().replace(" ", "").replace("-", "")
         self._compact_index[compact] = target
+        self._context_pattern = None
 
     def apply_to_text(self, text: str) -> str:
         """Apply glossary replacements to text using word-boundary matching."""
@@ -179,13 +235,18 @@ class Glossary:
         Only checks each unique term once against the text.
         """
         found: dict[str, str] = {}
-        text_upper = text.upper()
-        for upper_key, (source, target, category) in self._upper_index.items():
-            # Include safe categories (proper nouns) and manual overrides
-            if category not in CONTEXT_SAFE_CATEGORIES and category not in ("manual", "dynamic"):
-                continue
-            if upper_key in text_upper:
-                found[source] = target
-                if len(found) >= limit:
-                    break
+        if limit <= 0:
+            return found
+        if self._context_pattern is None:
+            keys = [key for key, (_, _, category) in self._upper_index.items()
+                    if category in CONTEXT_SAFE_CATEGORIES or category in ("manual", "dynamic")]
+            self._context_pattern = re.compile(
+                r"(?<!\w)(?:" + "|".join(re.escape(key) for key in sorted(keys, key=len, reverse=True))
+                + r")(?!\w)" if keys else r"(?!)"
+            )
+        for match in self._context_pattern.finditer(text.upper()):
+            source, target, category = self._upper_index[match.group()]
+            found[source] = source if category == "pokemon" and self.target_lang == "it" else target
+            if len(found) >= limit:
+                break
         return found

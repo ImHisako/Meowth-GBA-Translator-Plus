@@ -76,14 +76,11 @@ def protect(text: str) -> tuple[str, list[tuple[str, str]]]:
         codes.append((placeholder, original))
         return placeholder
 
-    # Pre-process: convert HMA break codes to semantic paragraph breaks
-    # \p (page break) and \. (wait-for-button) are semantic break points
-    # \l (scroll) and \n (newline) are pure layout — strip them
+    # Remove layout breaks without merging words. Preserve \p and \. exactly;
+    # the latter encodes the PCS ellipsis character, not a page break.
     result = text
-    result = result.replace("\\.", "\n\n")
-    result = result.replace("\\p", "\n\n")
-    result = result.replace("\\l", "")
-    result = result.replace("\\n", "")
+    result = result.replace("\\l", " ")
+    result = result.replace("\\n", " ")
 
     # Handle literal newlines (0x0A) from HMA extraction
     # Distinguish semantic paragraph breaks from layout line wraps

@@ -87,7 +87,7 @@ jobs:
               if target == 'en':
                   continue
               g = Glossary(source_lang='en', target_lang=target)
-              data = {'source_to_target': g.source_to_target}
+              data = {'source_to_target': g.source_to_target, 'term_categories': g._term_category}
               out = Path('resources') / f'glossary_en_{target}.json'
               out.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding='utf-8')
               print(f'Generated {out} ({len(g.source_to_target)} terms)')
@@ -222,7 +222,7 @@ jobs:
               if target == 'en':
                   continue
               g = Glossary(source_lang='en', target_lang=target)
-              data = {'source_to_target': g.source_to_target}
+              data = {'source_to_target': g.source_to_target, 'term_categories': g._term_category}
               out = Path('resources') / f'glossary_en_{target}.json'
               out.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding='utf-8')
               print(f'Generated {out} ({len(g.source_to_target)} terms)')

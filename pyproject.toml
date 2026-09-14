@@ -10,6 +10,7 @@ requires-python = ">=3.10"
 dependencies = [
     "click>=8.0",
     "httpx>=0.25",
+    "tomli>=2.0; python_version < '3.11'",
 ]
 
 [project.optional-dependencies]
@@ -22,6 +23,10 @@ meowth-gui = "meowth.gui:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
+exclude = ["meowth.binaries.windows*", "meowth.binaries.macos*", "meowth.binaries.linux*"]
+
+[tool.setuptools.package-data]
+meowth = ["data/*.json", "data/*.md", "manual_entries.json"]
 
 # Binary files are downloaded at runtime from GitHub releases
 # Do not include them in the PyPI package to keep size small

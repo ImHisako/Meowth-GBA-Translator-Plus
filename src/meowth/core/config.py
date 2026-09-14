@@ -61,6 +61,17 @@ class TranslationConfig:
     # Game detection (auto-detected if not specified)
     game: str = "firered"
 
+    def __post_init__(self):
+        from ..languages import validate_language
+        validate_language(self.source_lang)
+        validate_language(self.target_lang)
+        for name in ("batch_size", "max_workers"):
+            value = getattr(self, name)
+            if isinstance(value, bool) or not isinstance(value, int) or value < 1:
+                raise ValueError(f"{name} must be a positive integer")
+        self.output_dir = Path(self.output_dir) if self.output_dir is not None else _get_default_output_dir()
+        self.work_dir = Path(self.work_dir) if self.work_dir is not None else _get_default_work_dir()
+
     @classmethod
     def from_toml(cls, path: Path) -> "TranslationConfig":
         """Load configuration from a meowth.toml file.

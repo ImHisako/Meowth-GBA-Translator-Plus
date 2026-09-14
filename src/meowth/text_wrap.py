@@ -14,6 +14,7 @@ Three-level break handling:
 """
 
 import re
+from .pcs_codes import CONTROL_CODE_REGEX
 
 LINE_WIDTH = 32        # max width units per line (16 CJK chars × 2)
 LINES_PER_BOX = 2      # lines per text box
@@ -47,14 +48,15 @@ _COMPOUNDS = [
 
 # Tokenizer: control codes, variables, compound words, ASCII words, or single chars
 _TOKEN_RE = re.compile(
-    r"\\btn[0-9A-Fa-f]{2}"
+    r"(?:" + CONTROL_CODE_REGEX.pattern + r")"
+    r"|\\btn[0-9A-Fa-f]{2}"
     r"|\\CC[0-9A-Fa-f]{4}"
     r"|\\B[0-9A-Fa-f]"
     r"|\\\?[0-9A-Fa-f]{2}"
     r"|\\[plnr]"
     r"|\[[a-zA-Z_]\w*\]"
     r"|" + "|".join(re.escape(w) for w in sorted(_COMPOUNDS, key=len, reverse=True))
-    + r"|[A-Za-z0-9]+"
+    + r"|[A-Za-zÀ-ÖØ-öø-ÿ0-9]+(?:['’\-][A-Za-zÀ-ÖØ-öø-ÿ0-9]+)*"
     r"|.",
     re.DOTALL,
 )
@@ -65,18 +67,19 @@ def wrap_text(text: str, line_width: int = LINE_WIDTH,
     """Wrap translated text to fit GBA text boxes.
 
     Handles three levels of breaks from the input:
-    - \\n\\n (or \\p, \\.) = paragraph break → always emits \\p
+    - \\n\\n (or \\p) = paragraph break → always emits \\p
     - \\n (single) = semantic newline → forced line break within text flow
     - continuous text = auto-wrapped at line_width
     """
     if not text:
         return text
+    if line_width < 1 or lines_per_box < 1:
+        raise ValueError("Text box dimensions must be positive")
 
     text = text.replace("\r\n", "\n").replace("\r", "\n")
 
-    # Step 1: Split on paragraph breaks (\\p, \\., \\n\\n)
+    # Step 1: Split on paragraph breaks (\\p, \\n\\n).
     _PARA = "\x00PARA\x00"
-    text = text.replace("\\.", _PARA)
     text = text.replace("\\p", _PARA)
     text = text.replace("\n\n", _PARA)
 
@@ -86,6 +89,7 @@ def wrap_text(text: str, line_width: int = LINE_WIDTH,
     wrapped_paras = []
     for para in paragraphs:
         if not para.strip():
+            wrapped_paras.append("")
             continue
 
         # Split on semantic newlines (single \n from _classify_newlines)
@@ -94,7 +98,7 @@ def wrap_text(text: str, line_width: int = LINE_WIDTH,
         # Strip HMA layout codes within each segment
         cleaned_segments = []
         for seg in segments:
-            s = seg.replace("\\n", "").replace("\\l", "")
+            s = seg.replace("\\n", " ").replace("\\l", " ")
             if s.strip():
                 cleaned_segments.append(s)
 
@@ -115,6 +119,8 @@ def _token_width(token: str) -> int:
     """Return display width of a token."""
     if token.startswith("\\btn"):
         return 2
+    if token == r"\.":
+        return 1
     if token.startswith("\\"):
         return 0
     if token.startswith("[") and token.endswith("]"):
@@ -155,7 +161,7 @@ def _can_break_before(tokens: list[str], idx: int) -> bool:
 
 def _wrap_to_lines(text: str, line_width: int) -> list[str]:
     """Wrap a continuous text segment into a list of display lines."""
-    tokens = _TOKEN_RE.findall(text)
+    tokens = [match.group() for match in _TOKEN_RE.finditer(text)]
     if not tokens:
         return [text] if text else []
 
@@ -163,6 +169,8 @@ def _wrap_to_lines(text: str, line_width: int) -> list[str]:
     line_pos = 0
 
     for i, tok in enumerate(tokens):
+        if tok.isspace() and line_pos == 0:
+            continue
         w = _token_width(tok)
 
         if w > 0 and line_pos > 0 and line_pos + w > line_width:
@@ -170,10 +178,13 @@ def _wrap_to_lines(text: str, line_width: int) -> list[str]:
                 lines.append([])
                 line_pos = 0
 
+        if tok.isspace() and line_pos == 0:
+            continue
+
         lines[-1].append(tok)
         line_pos += w
 
-    return ["".join(line) for line in lines if line]
+    return ["".join(line).strip() for line in lines if line]
 
 
 def _distribute_lines(lines: list[str], lines_per_box: int) -> str:

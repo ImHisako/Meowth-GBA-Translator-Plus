@@ -1,15 +1,29 @@
 [translation]
 # LLM provider preset. Supported: deepseek, openai, google, groq, mistral,
-# openrouter, siliconflow, zhipu, moonshot, qwen, anthropic
+# openrouter, siliconflow, zhipu, moonshot, qwen, anthropic, deepl
 provider = "deepseek"
 model = "deepseek-chat"
 source_language = "en"
 target_language = "zh-Hans"
+batch_size = 30
+max_workers = 10
+
+# For Italian with DeepL, replace the settings above with:
+# provider = "deepl"
+# source_language = "en"
+# target_language = "it"
+# batch_size = 30
+# max_workers = 2
+# Remove model: DeepL selects its translation model automatically.
 
 [translation.api]
 # Set the actual key in your shell or .env file.
 key_env = "DEEPSEEK_API_KEY"
 # base_url = "https://api.deepseek.com/v1"
+# With provider = "deepl", set key_env = "DEEPL_API_KEY".
+# DEEPL_API_KEY can contain comma-separated keys: "key1:fx,key2:fx".
+# HTTP 456 advances to the next key; HTTP 429 waits and retries the current key.
+# Leave base_url unset: API Free (:fx key suffix) and Pro are selected automatically.
 
 [output]
 dir = "outputs"

@@ -20,6 +20,9 @@ class GUICallbacks(TranslationCallbacks):
     def on_log(self, level: str, message: str):
         self.app.after(0, self.log_view.append, level, message)
 
+    def on_retry_wait(self, seconds: float):
+        self.app.after(0, self.progress_view.add_retry_wait, seconds)
+
     def on_stage_change(self, stage: str, status: str):
         self.app.after(0, self.progress_view.set_stage, stage, status)
 

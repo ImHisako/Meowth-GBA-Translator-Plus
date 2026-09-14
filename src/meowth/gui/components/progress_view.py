@@ -2,6 +2,8 @@
 
 import customtkinter as ctk
 
+from ..eta import TranslationETA, format_duration
+
 
 class ProgressView(ctk.CTkFrame):
     """Progress display: checkmarks for extract/build, progress bar for translate."""
@@ -9,6 +11,9 @@ class ProgressView(ctk.CTkFrame):
     def __init__(self, master):
         """Initialize progress view."""
         super().__init__(master, corner_radius=10)
+        self._eta = TranslationETA()
+        self._timer_id = None
+        self._timer_active = False
 
         ctk.CTkLabel(
             self, text="Progress", font=("", 13, "bold")
@@ -48,9 +53,14 @@ class ProgressView(ctk.CTkFrame):
         self.progress_bar.set(0)
 
         self.batch_label = ctk.CTkLabel(
-            bar_row, text="0/0", text_color="gray", font=("", 11), width=70,
+            bar_row, text="0/0", text_color="gray", font=("", 11), width=100,
         )
         self.batch_label.pack(side="right")
+
+        self.eta_label = ctk.CTkLabel(
+            inner, text="Tempo rimanente stimato: —", text_color="gray", font=("", 12),
+        )
+        self.eta_label.pack(anchor="w", padx=(30, 0), pady=(0, 6))
 
         # --- Step 3: Build ROM ---
         row3 = ctk.CTkFrame(inner, fg_color="transparent")
@@ -63,10 +73,45 @@ class ProgressView(ctk.CTkFrame):
         self.build_label.pack(side="left", padx=(6, 0))
 
     def update(self, stage: str, current: int, total: int, message: str):
-        """Update translate progress bar and batch count."""
+        """Update translation progress and estimate from completed entries."""
         if stage == "translate" and total > 0:
             self.progress_bar.set(current / total)
             self.batch_label.configure(text=f"{current}/{total}")
+            if self._timer_active:
+                self._eta.update(current, total)
+                self._render_eta()
+
+    def _render_eta(self):
+        remaining = self._eta.remaining()
+        if remaining is None:
+            text = "Tempo rimanente stimato: calcolo in corso…"
+        elif remaining == 0:
+            text = "Traduzione dei testi completata"
+        else:
+            text = f"Tempo rimanente stimato: circa {format_duration(remaining)}"
+        self.eta_label.configure(text=text)
+
+    def _tick_eta(self):
+        self._timer_id = None
+        if self._timer_active:
+            self._render_eta()
+            self._timer_id = self.after(1000, self._tick_eta)
+
+    def add_retry_wait(self, seconds: float):
+        if self._timer_active:
+            self._eta.add_wait(seconds)
+            self._render_eta()
+
+    def stop_eta(self, text: str):
+        self._timer_active = False
+        if self._timer_id is not None:
+            self.after_cancel(self._timer_id)
+            self._timer_id = None
+        self.eta_label.configure(text=text)
+
+    def destroy(self):
+        self.stop_eta("")
+        super().destroy()
 
     def set_stage(self, stage: str, status: str):
         """Update stage status with checkmark icons."""
@@ -79,6 +124,17 @@ class ProgressView(ctk.CTkFrame):
         if not pair:
             return
         icon, label = pair
+
+        if stage == "translate":
+            if status == "started":
+                self.stop_eta("")
+                self._eta.reset()
+                self._timer_active = True
+                self._tick_eta()
+            elif status == "completed":
+                self.stop_eta("Traduzione dei testi completata")
+            elif status == "failed":
+                self.stop_eta("Traduzione non completata")
 
         if status == "started":
             icon.configure(text="◉", text_color="#2563eb")
@@ -95,6 +151,8 @@ class ProgressView(ctk.CTkFrame):
 
     def reset(self):
         """Reset progress view."""
+        self.stop_eta("Tempo rimanente stimato: —")
+        self._eta.reset()
         self.progress_bar.set(0)
         self.batch_label.configure(text="0/0")
         for stage in ("extract", "translate", "build"):

@@ -15,6 +15,10 @@ def is_real_text(text: str) -> bool:
     """
     if not text or len(text) < 2:
         return False
+    # HMA renders undefined bytes as \!XX. Removing those escapes before
+    # measuring readability lets machine code and graphics masquerade as text.
+    if re.search(r'\\![0-9A-Fa-f]{2}', text):
+        return False
     # Strip control code representations before checking — their hex digits
     # inflate the ASCII-letter ratio and let garbage slip through.
     clean = re.sub(r'\\CC[0-9A-Fa-f]+', '', text)
@@ -35,6 +39,22 @@ def is_real_text(text: str) -> bool:
     if len(clean) > 0 and ascii_letters / len(clean) < 0.3:
         return False
     return True
+
+
+def is_message_pointer(rom: bytes | bytearray, address: int, source: int) -> bool:
+    """Recognize the standard Gen III msgbox sequence, not an arbitrary 0x0F.
+
+    msgbox expands to loadword 0, text; callstd function. Byte scanning for
+    loadword alone also finds Thumb instructions and compressed graphics.
+    Custom sequences need script-aware extraction before they can be rewritten.
+    """
+    return (
+        0xC0 <= address < len(rom)
+        and 2 <= source and source + 6 <= len(rom)
+        and rom[source - 2:source] == b"\x0F\x00"
+        and int.from_bytes(rom[source:source + 4], "little") == 0x08000000 + address
+        and rom[source + 4] == 0x09
+    )
 
 
 def is_fragment(text: str) -> bool:

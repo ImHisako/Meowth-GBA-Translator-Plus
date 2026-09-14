@@ -1,5 +1,22 @@
 # Meowth GBA Translator
 
+DeepL API Free/Pro is supported in the GUI and CLI. Set `DEEPL_API_KEY` and run
+`meowth full game.gba --source en --target it --provider deepl`.
+DeepL workers share a request queue with adaptive pacing and up to eight attempts
+per request. Retries use exponential backoff, respect `Retry-After`, appear in the
+log, and can be interrupted with Stop. Validated cached translations are reused.
+Enter comma-separated DeepL keys in the GUI or `DEEPL_API_KEY` to use them in order:
+HTTP 456 switches to the next key; HTTP 429 keeps the same key and waits.
+Italian translations preserve Pokémon species names, including custom names
+from the ROM's species table, and include bundled English–Italian terminology.
+See the [Italian guide](README.it.md#tradurre-in-italiano-con-deepl-api) for configuration and testing.
+
+Heart and Soul 2.0.5 also has a fingerprint-verified native text profile for its
+initial settings and Professor Oak introduction, with bundled Italian translations.
+Rebuilding from an older translation JSON includes these texts without API calls.
+Italian apostrophes are encoded correctly, and common article errors around
+Pokémon are corrected when translating or rebuilding an existing translation.
+
 <div align="center">
 
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)

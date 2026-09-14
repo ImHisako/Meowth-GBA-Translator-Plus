@@ -81,6 +81,149 @@ meowth full pokemon.gba --provider deepseek
 
 ## Avvio Rapido
 
+### Tradurre in italiano con DeepL API
+
+DeepL è disponibile sia nella GUI (provider `deepl`, destinazione `Italian`)
+sia nella CLI. Serve una chiave **DeepL API Free o Pro**; il campo modello
+non è necessario. L'endpoint viene selezionato automaticamente dalla chiave.
+
+In PowerShell, dopo l'installazione del progetto:
+
+```powershell
+$env:DEEPL_API_KEY = "la-tua-chiave-api"
+meowth full "gioco.gba" --source en --target it --provider deepl
+
+# Oppure traduci un JSON già estratto:
+meowth translate work/texts.json --source en --target it --provider deepl --workers 2
+```
+
+Puoi inserire più chiavi nel campo **API Keys** della GUI, separate da virgole:
+`chiave1:fx,chiave2:fx,chiave3:fx`. Lo stesso formato funziona nella variabile
+`DEEPL_API_KEY`, per esempio `$env:DEEPL_API_KEY = "chiave1:fx,chiave2:fx"`.
+Spazi e voci vuote vengono ignorati, così come le chiavi duplicate.
+Le chiavi vengono usate nell'ordine indicato: quando una restituisce HTTP 456,
+il programma riprova la richiesta con la successiva e la mantiene per i blocchi
+seguenti. Il log mostra solo il numero della chiave, mai il suo contenuto.
+Gli errori 429 restano soggetti alle pause automatiche sulla stessa chiave;
+gli errori di autenticazione interrompono la traduzione per consentire di correggerla.
+Se tutte le chiavi esauriscono la quota, l'operazione si ferma conservando la cache.
+Puoi combinare chiavi Free e Pro: l'endpoint segue la chiave attiva, salvo un
+`base_url` esplicito. Mantieni ordine, impostazioni e cartella di lavoro al riavvio
+per riutilizzare anche la cache precedente. Più chiavi dello stesso account non
+aumentano la quota complessiva dell'abbonamento: vedi i
+[limiti DeepL](https://developers.deepl.com/api-reference/usage-and-quota/check-usage-and-limits).
+
+Per usarlo come impostazione predefinita, configura `meowth.toml`:
+
+```toml
+[translation]
+provider = "deepl"
+source_language = "en"
+target_language = "it"
+batch_size = 30
+max_workers = 2
+
+[translation.api]
+key_env = "DEEPL_API_KEY"
+```
+
+Rimuovi eventuali `model` e `base_url` del provider precedente. Se occorre un
+endpoint personalizzato, `--api-base` deve includere `/v2`.
+Le richieste rispettano i limiti di 50 testi e 128 KiB. Per ogni traduzione in corso,
+i worker condividono una coda DeepL: una sola richiesta alla volta, con almeno un
+secondo di pausa dopo ogni chiamata. Gli errori 429 aumentano automaticamente la
+pausa (fino a 30 secondi); le chiamate riuscite la riducono gradualmente.
+Gli errori temporanei vengono ritentati fino a 8 tentativi totali per richiesta,
+con attese esponenziali e una piccola variazione casuale. Se DeepL indica
+`Retry-After`, l'attesa rispetta anche quel valore, senza limitarlo a 60 secondi.
+Il log mostra il prossimo tentativo; Stop interrompe le attese.
+La GUI mostra il tempo rimanente stimato nel formato ore:minuti:secondi, aggiornato
+ogni secondo. La stima usa la velocità recente, include le pause API note e viene
+ricalcolata dopo ogni avanzamento. Il conteggio comprende anche nomi e descrizioni;
+si riferisce alla traduzione dei testi, prima della costruzione della ROM.
+All'inizio, o se la previsione scade mentre una richiesta è ancora in corso,
+compare «calcolo in corso» invece di indicare che la traduzione è terminata.
+Questo riduce i 429, ma non può garantire che il servizio non applichi altri limiti.
+Le traduzioni già validate in cache vengono riutilizzate al riavvio.
+Una chiave non valida o il credito esaurito interrompono
+l'operazione con un errore, evitando di dichiarare completata una traduzione fallita.
+Riferimenti: [autenticazione DeepL](https://developers.deepl.com/docs/getting-started/auth)
+e [API di traduzione](https://developers.deepl.com/api-reference/translate/request-translation).
+
+La traduzione italiana conserva i nomi delle specie Pokémon e le loro maiuscole
+nelle tabelle e nei dialoghi. Include un glossario inglese–italiano di oltre
+4.600 termini; i nomi personalizzati delle ROM hack vengono letti dalla tabella
+`pokemon_names` del JSON estratto. Un nome personalizzato assente sia dalla tabella
+sia dal glossario non può essere riconosciuto automaticamente.
+
+I provider LLM ricevono istruzioni specifiche per l'italiano. DeepL usa protezione
+XML per nomi, variabili e termini propri del glossario. Le traduzioni che perdono
+o alterano i segnaposto vengono rifiutate: il testo originale resta al loro posto
+e compare un avviso nel log. Gli accenti e gli apostrofi restano uniti alle parole
+durante l'impaginazione. La cache separa provider, endpoint, lingue e glossario,
+riutilizzando le singole traduzioni anche quando cambia la composizione dei batch.
+
+### Menu nativi e introduzione di Heart and Soul 2.0.5
+
+È incluso un profilo per la ROM originale **Pokémon Heart and Soul (v2.0.5)**:
+traduce in italiano le sei schede delle impostazioni iniziali, le descrizioni
+delle opzioni e l'introduzione del Professor Oak. Questi testi C non venivano
+estratti come dialoghi degli script. Le traduzioni incluse non richiedono API
+e vengono aggiunte anche ricostruendo la ROM da un vecchio JSON tradotto.
+
+Il profilo si attiva solo con SHA-256
+`edf76ecf2a1c23a65c62ab63b1c0e775965978c81baeed20e249e96b3417679b`.
+Altre versioni, ROM già modificate e altri menu non sono coperti automaticamente.
+I riferimenti sono verificati prima della scrittura; le etichette con indirizzi
+relativi restano nei loro spazi originali. I menu non ricevono comandi di pausa
+o paginazione, e una traduzione troppo lunga viene scartata.
+
+Gli apostrofi ASCII e tipografici vengono entrambi codificati correttamente.
+Il ritocco italiano corregge articoli come “gli Pokémon” in “i Pokémon” e
+“degli Pokémon” in “dei Pokémon”; “dell'Pokémon” diventa “del Pokémon”.
+Il numero singolare/plurale non viene dedotto dal nome Pokémon, che è invariabile.
+Queste correzioni si applicano anche ai testi già presenti in cache quando si
+ricostruisce una ROM dalla sorgente originale.
+
+### Nomi italiani delle mosse
+
+Con `--target it`, le tabelle `move_names` usano automaticamente un dizionario
+separato di **937 mosse**, incluse tutte le **354 mosse della terza generazione**.
+Questo evita conflitti con i tipi: `PSYCHIC` diventa **Psichico** come mossa e
+**Psico** come tipo. Funziona con DeepL e con gli altri provider, senza chiamate
+API per i nomi riconosciuti.
+
+Sono riconosciute anche le grafie GBA, come `THUNDERPUNCH`, `VICEGRIP`,
+`FAINT ATTACK` e `HI JUMP KICK`. Nei campi piccoli viene scelta, se necessario,
+una forma italiana storica, come **Att. Rapido**; se la ROM offre abbastanza
+spazio viene mantenuto **Attacco Rapido**. La scrittura usa l'intero campo fisso
+identificato dai metadati dell'estrattore, senza troncare i nomi o spostare le
+singole voci di una tabella indicizzata.
+
+Nei dialoghi inglesi vengono protetti i riferimenti espliciti alle mosse, per
+esempio `used THUNDERBOLT`, `learned CUT` e `the move PSYCHIC`. La forma scelta
+per la tabella viene riutilizzata nel dialogo. Parole comuni come `cut` o `rest`
+in una frase ordinaria restano affidate al traduttore. Per le altre lingue di
+origine è disponibile la corrispondenza esatta dei nomi nelle tabelle.
+
+Le mosse personalizzate non presenti nel dizionario restano invariate con un
+avviso: gli indici delle ROM hack non vengono confusi con gli ID ufficiali.
+Per applicare queste correzioni occorre ripetere la traduzione del JSON estratto
+e ricostruire la ROM. Le [fonti del dizionario](src/meowth/data/README.md) e lo
+script `scripts/update_move_glossary.py` consentono di verificarlo e aggiornarlo.
+
+### Verifica dello sviluppo
+
+```powershell
+pip install -e ".[dev,gui]"
+python -m pytest -q
+```
+
+I test simulano le API e verificano protezione dei nomi, codici di controllo,
+glossario, cache, limiti DeepL e configurazione CLI/GUI. Non richiedono credenziali.
+La verifica grafica e del comportamento di una ROM tradotta richiede anche una
+prova in emulatore sulla ROM specifica.
+
 ### Usando GUI (Più Facile)
 
 ![Screenshot GUI](https://raw.githubusercontent.com/Olcmyk/Meowth-GBA-Translator/main/images/gui-screenshot.png)

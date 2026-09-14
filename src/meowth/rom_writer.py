@@ -5,7 +5,9 @@ from pathlib import Path
 from typing import Optional
 
 from .charmap import Charmap
-from .pcs_scanner import is_real_text
+from .pcs_scanner import is_message_pointer, is_real_text
+from .italian_text import normalize_italian
+from .native_text import native_entries, valid_native_entry
 
 
 class RomWriter:
@@ -27,11 +29,8 @@ class RomWriter:
     # GBA pointer offset
     POINTER_OFFSET = 0x08000000
 
-    # Minimum safe pointer source address.
-    # ARM code section ends around 0x0A0000 in FRLG/Emerald.  Pointer sources
-    # inside the code section are literal-pool entries that look like
-    # pointers but are actually ARM instructions — writing to them
-    # corrupts the executable code and crashes the game.
+    # Exclude the early executable region. This lower bound alone is NOT proof
+    # of safety: hacks can place code anywhere. Validate script context as well.
     MIN_POINTER_SOURCE = 0x0A0000
 
     # Minimum contiguous free block required (bytes)
@@ -42,6 +41,7 @@ class RomWriter:
         self.target_lang = target_lang
         self.FONT_BOUNDARY = self._FONT_BOUNDARIES.get(game, 0x01FD3000)
         self.write_offset = self.EXPANSION_START  # updated in inject()
+        self._native_entries: dict[str, dict] = {}
 
     @staticmethod
     def _find_free_space(rom: bytes, boundary: int) -> int:
@@ -79,6 +79,7 @@ class RomWriter:
         # Load ROM
         with open(rom_path, "rb") as f:
             rom = bytearray(f.read())
+        self._native_entries = {entry["id"]: entry for entry in native_entries(rom)}
 
         # Auto-detect safe expansion start (avoid overwriting hack data)
         free_start = self._find_free_space(rom, self.FONT_BOUNDARY)
@@ -114,7 +115,7 @@ class RomWriter:
     def _process_entry(self, rom: bytearray, entry: dict, stats: dict) -> None:
         """Process a single text entry."""
         original = entry.get("original", "")
-        translated = entry.get("translated", "")
+        translated = normalize_italian(entry.get("translated", ""), self.target_lang)
 
         # Safety check: skip if original looks like garbage (not real text)
         if entry.get("category") == "scripts" and not is_real_text(original):
@@ -124,6 +125,9 @@ class RomWriter:
         address = int(entry.get("address", "0x0").replace("0x", ""), 16)
         entry_id = entry.get("id", "")
         pointer_sources = entry.get("pointer_sources", [])
+        if not self._valid_entry_pointers(rom, entry, address, pointer_sources):
+            stats["skipped"] = stats.get("skipped", 0) + 1
+            return
 
         # Defense-in-depth: never write in-place to the ARM code section
         if address < self.MIN_POINTER_SOURCE and not pointer_sources:
@@ -151,6 +155,11 @@ class RomWriter:
 
         is_pointer_based = entry.get("is_pointer_based", False)
         original_length = entry.get("byte_length", 0)
+
+        move_written = self._write_move_name(rom, entry, address, encoded, original_length)
+        if move_written is not None:
+            stats["written" if move_written else "skipped"] += 1
+            return
 
         # Decide write strategy
         if is_pointer_based and pointer_sources:
@@ -273,6 +282,56 @@ class RomWriter:
                 rom[ptr_addr : ptr_addr + 4] = new_pointer.to_bytes(4, "little")
         self.write_offset += len(encoded)
 
+    def _valid_entry_pointers(self, rom, entry, address, sources) -> bool:
+        """Reject stale metadata and unverified script references before any write."""
+        if entry.get("category", "").startswith("native_") or entry.get("native_profile"):
+            expected = self._native_entries.get(entry.get("id"))
+            if expected is None or not valid_native_entry(rom, entry, expected, sources):
+                return False
+            if not expected["is_pointer_based"]:
+                translated = normalize_italian(entry.get("translated", ""), self.target_lang)
+                if len(self.charmap.encode(translated)) > expected["byte_length"]:
+                    return False
+        if not 0xC0 <= address < len(rom):
+            return False
+        script = entry.get("category") == "scripts"
+        if script and not sources:
+            return False
+        for source in sources:
+            try:
+                source = int(source, 16) if isinstance(source, str) else int(source)
+            except (TypeError, ValueError):
+                return False
+            if source < self.MIN_POINTER_SOURCE or source + 4 > len(rom):
+                return False
+            if int.from_bytes(rom[source:source + 4], "little") != self.POINTER_OFFSET + address:
+                return False
+            if script and not is_message_pointer(rom, address, source):
+                return False
+        return True
+
+    def _write_move_name(self, rom, entry, address, encoded, slot_length) -> bool | None:
+        """Use verified inline move-name slots; never truncate or relocate their names."""
+        if entry.get("category") != "move_names" or entry.get("is_pointer_based"):
+            return None
+        if address <= 0 or slot_length <= 0 or address + slot_length > len(rom):
+            return False
+        verified_slot = (
+            entry.get("table_name") == "data.pokemon.moves.names"
+            and isinstance(entry.get("table_index"), int) and entry["table_index"] >= 0
+        )
+        capacity = slot_length
+        if not verified_slot:
+            # Legacy JSON may describe only a text footprint, not a fixed table.
+            terminator = rom.find(b"\xFF", address, address + slot_length)
+            if terminator >= 0:
+                capacity = terminator - address + 1
+        if len(encoded) > capacity:
+            print(f"Warning: move name {entry.get('translated')!r} does not fit; keeping original")
+            return False
+        self._write_in_place_v2(rom, address, encoded, capacity)
+        return True
+
     def _write_in_place_v2(
         self, rom: bytearray, address: int, encoded: bytes, max_length: int
     ) -> None:
@@ -370,6 +429,7 @@ class RomWriter:
         Returns (rom, stats).
         """
         # Auto-detect safe expansion start
+        self._native_entries = {entry["id"]: entry for entry in native_entries(rom)}
         free_start = self._find_free_space(rom, self.FONT_BOUNDARY)
         available = self.FONT_BOUNDARY - free_start
         if available < self._MIN_FREE_BLOCK:
@@ -396,7 +456,7 @@ class RomWriter:
     def _process_entry_v2(self, rom: bytearray, entry: dict, stats: dict) -> None:
         """Process a single entry for inject_texts (uses different stat keys)."""
         original = entry.get("original", "").strip('"')
-        translated = entry.get("translated", "").strip('"')
+        translated = normalize_italian(entry.get("translated", "").strip('"'), self.target_lang)
 
         # Skip garbage entries (binary data misidentified as text)
         if entry.get("category") == "scripts" and not is_real_text(original):
@@ -405,6 +465,10 @@ class RomWriter:
 
         address = int(entry.get("address", "0x0").replace("0x", ""), 16)
         pointer_sources = entry.get("pointer_addresses", entry.get("pointer_sources", []))
+        if not self._valid_entry_pointers(rom, entry, address, pointer_sources):
+            stats["skipped"] += 1
+            stats["unsafe_ptrs"] = stats.get("unsafe_ptrs", 0) + len(pointer_sources)
+            return
 
         # Defense-in-depth: never write in-place to the ARM code section
         if address < self.MIN_POINTER_SOURCE and not pointer_sources:
@@ -424,6 +488,11 @@ class RomWriter:
 
         is_pointer_based = entry.get("is_pointer_based", bool(pointer_sources))
         original_length = entry.get("byte_length", 0)
+
+        move_written = self._write_move_name(rom, entry, address, encoded, original_length)
+        if move_written is not None:
+            stats["in_place" if move_written else "skipped"] += 1
+            return
 
         if is_pointer_based and pointer_sources:
             self._write_relocated(rom, encoded, pointer_sources)

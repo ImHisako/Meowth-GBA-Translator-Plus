@@ -151,8 +151,9 @@ class MeowthGUI(ctk.CTk):
 
     def _run_translation(self, config):
         """Run translation in background thread."""
+        engine = self.engine
         try:
-            output_path = self.engine.run_full(
+            output_path = engine.run_full(
                 rom_path=config.rom_path,
                 output_dir=config.output_dir,
                 work_dir=config.work_dir,
@@ -160,6 +161,8 @@ class MeowthGUI(ctk.CTk):
             self.after(0, self._on_translation_complete, output_path)
         except Exception as e:
             self.after(0, self._on_translation_error, e)
+        finally:
+            engine.close()
 
     def _on_translation_complete(self, output_path: Path):
         """Handle translation completion."""
@@ -168,15 +171,17 @@ class MeowthGUI(ctk.CTk):
 
     def _on_translation_error(self, error: Exception):
         """Handle translation error."""
+        self.progress_view.stop_eta("Traduzione non completata")
         self.log_view.append("error", f"Translation failed: {error}")
         self._reset_buttons()
 
     def _stop_translation(self):
         """Stop the translation process."""
         if self.engine and self.is_running:
-            self.log_view.append("warning", "Stopping translation...")
-            self.is_running = False
-            self._reset_buttons()
+            self.log_view.append("warning", "Stopping after active requests finish...")
+            self.engine.cancel()
+            self.progress_view.stop_eta("Arresto in corso…")
+            self.stop_button.configure(state="disabled")
 
     def _reset_buttons(self):
         """Reset button states."""

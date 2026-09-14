@@ -56,6 +56,10 @@ class Charmap:
                 self.char_to_bytes[char] = bytes([byte_val])
                 self.bytes_to_char[byte_val] = char
 
+        # Providers normally return ASCII apostrophes. PCS stores the same
+        # punctuation as a right single quote; do not silently drop it.
+        self.char_to_bytes["'"] = bytes([0xB4])
+
     def encode_char(self, ch: str) -> bytes | None:
         """Encode a single character to Font Patch bytes."""
         return self.char_to_bytes.get(ch)
