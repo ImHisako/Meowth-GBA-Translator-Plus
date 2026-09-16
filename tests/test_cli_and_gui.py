@@ -60,9 +60,9 @@ def test_gui_default_paths_and_environment_key(tmp_path, monkeypatch):
 
 def test_gui_deepl_disables_model_and_other_provider_reenables_it():
     form = Mock()
-    ConfigForm._on_provider_change(form, "deepl")
+    ConfigForm._update_provider_fields(form, "deepl")
     assert form.model_entry.configure.call_args.kwargs["state"] == "disabled"
     assert "virgola" in form.api_key_label.configure.call_args.kwargs["text"]
     form.reset_mock()
-    ConfigForm._on_provider_change(form, "deepseek")
+    ConfigForm._update_provider_fields(form, "deepseek")
     assert form.model_entry.configure.call_args_list[0].kwargs["state"] == "normal"

@@ -7,6 +7,9 @@ per request. Retries use exponential backoff, respect `Retry-After`, appear in t
 log, and can be interrupted with Stop. Validated cached translations are reused.
 Enter comma-separated DeepL keys in the GUI or `DEEPL_API_KEY` to use them in order:
 HTTP 456 switches to the next key; HTTP 429 keeps the same key and waits.
+The GUI saves keys per provider in a local, unencrypted `api_keys.json` excluded
+from Git. Keys are restored on restart and also available to the CLI; explicit
+keys and environment variables take precedence. See the Italian guide for paths.
 Italian translations preserve Pokémon species names, including custom names
 from the ROM's species table, and include bundled English–Italian terminology.
 See the [Italian guide](README.it.md#tradurre-in-italiano-con-deepl-api) for configuration and testing.
@@ -14,6 +17,11 @@ See the [Italian guide](README.it.md#tradurre-in-italiano-con-deepl-api) for con
 Heart and Soul 2.0.5 also has a fingerprint-verified native text profile for its
 initial settings and Professor Oak introduction, with bundled Italian translations.
 Rebuilding from an older translation JSON includes these texts without API calls.
+The exact-ROM profile also extracts battle messages, single-trainer dialogue,
+item names and item descriptions. Re-run extraction and translation from the
+original English ROM to translate newly discovered text; rebuilding old JSON
+alone only adds bundled translations and exports missing entries separately.
+Italian wrapping keeps punctuation attached and reflows short English lines.
 Italian apostrophes are encoded correctly, and common article errors around
 Pokémon are corrected when translating or rebuilding an existing translation.
 

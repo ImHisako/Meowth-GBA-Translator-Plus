@@ -200,6 +200,7 @@ CONTROL_CODE_PATTERNS: list[tuple[str, str]] = [
     (r"\\\?[0-9A-Fa-f]{2}", "f7_code"),
     (r"\\v[0-9A-Fa-f]{2}", "variable"),
     (r"\\\\[0-9A-Fa-f]{2}", "fd_escape"),
+    (r"\\[0-9A-Fa-f]{2}", "fd_variable"),
 ]
 
 # Add bracket macro patterns (sorted by length descending for greedy match)

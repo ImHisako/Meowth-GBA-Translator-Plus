@@ -20,6 +20,7 @@ from typing import Callable
 import httpx
 
 from .languages import get_language_name, get_language_name_zh
+from .credentials import CredentialStore
 from .translation_validation import TOKEN_RE, TranslationValidationError, validate_translation
 
 
@@ -168,6 +169,8 @@ class Translator:
         self.model = model or "deepseek-chat"
         env_var = api_key_env or "DEEPSEEK_API_KEY"
         self.api_key = api_key or os.environ.get(env_var, "")
+        if not self.api_key:
+            self.api_key = CredentialStore().get(provider)
         if provider == "deepl":
             self._deepl_keys = list(dict.fromkeys(key.strip() for key in self.api_key.split(",") if key.strip()))
             self._deepl_key_index = 0

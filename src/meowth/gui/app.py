@@ -61,6 +61,14 @@ class MeowthGUI(ctk.CTk):
         self.is_running = False
 
         self._build_ui()
+        self.protocol("WM_DELETE_WINDOW", self._close)
+
+    def _close(self):
+        if not self.config_form.save_api_key():
+            return
+        if self.engine and self.is_running:
+            self.engine.cancel()
+        self.destroy()
 
     def _build_ui(self):
         """Build the user interface."""
@@ -119,6 +127,8 @@ class MeowthGUI(ctk.CTk):
 
     def _start_translation(self):
         """Start the translation process."""
+        if not self.config_form.save_api_key():
+            return
         is_valid, error_message = self.config_form.validate()
         if not is_valid:
             self.log_view.append("error", error_message)

@@ -163,6 +163,25 @@ e compare un avviso nel log. Gli accenti e gli apostrofi restano uniti alle paro
 durante l'impaginazione. La cache separa provider, endpoint, lingue e glossario,
 riutilizzando le singole traduzioni anche quando cambia la composizione dei batch.
 
+### Salvare le chiavi API
+
+L'interfaccia salva le chiavi inserite quando lasci il campo, cambi servizio,
+avvii la traduzione o chiudi la finestra. Puoi anche premere **Salva chiavi**.
+Al prossimo avvio vengono ripristinati l'ultimo servizio e le sue chiavi;
+ogni servizio ha un valore separato. Per DeepL puoi salvare più chiavi separate
+da virgole. Svuota il campo e premi **Salva chiavi** per eliminarle dal file.
+
+Nella versione da sorgente il file è `api_keys.json` nella cartella del progetto.
+Nell'app installata su Windows si trova in `%LOCALAPPDATA%\Meowth\api_keys.json`
+(su macOS in `~/Library/Application Support/Meowth`, su Linux in
+`${XDG_CONFIG_HOME:-~/.config}/meowth`). Il file è locale, **non cifrato** ed
+escluso da Git, insieme ai suoi file temporanei.
+
+Anche la CLI usa le chiavi salvate: una chiave esplicita o una variabile
+d'ambiente ha precedenza sul file. `MEOWTH_API_KEYS_FILE` permette di scegliere
+un percorso diverso. Le chiavi già digitate in sessioni terminate prima di
+questa funzione devono essere inserite una volta di nuovo.
+
 ### Menu nativi e introduzione di Heart and Soul 2.0.5
 
 È incluso un profilo per la ROM originale **Pokémon Heart and Soul (v2.0.5)**:
@@ -170,6 +189,24 @@ traduce in italiano le sei schede delle impostazioni iniziali, le descrizioni
 delle opzioni e l'introduzione del Professor Oak. Questi testi C non venivano
 estratti come dialoghi degli script. Le traduzioni incluse non richiedono API
 e vengono aggiunte anche ricostruendo la ROM da un vecchio JSON tradotto.
+
+L'estrazione include inoltre 763 testi di lotta, 1.534 dialoghi di allenatori,
+1.084 nomi di oggetti (incluse le forme plurali) e 808 descrizioni. Il glossario
+fornisce già 872 nomi italiani; le altre nuove voci richiedono la traduzione.
+Questo profilo non equivale a una localizzazione completa di ogni testo del gioco.
+
+Se una ROM già tradotta mostra ancora l'inglese nelle lotte o nella borsa,
+**riesegui estrazione e traduzione dalla ROM inglese originale** con questa
+versione del programma. Ricostruire soltanto dal vecchio JSON non traduce le
+frasi che mancavano: in quel caso il programma esporta le nuove voci ancora da
+tradurre nel file `.untranslated.json` accanto alla ROM prodotta.
+Le traduzioni valide in cache vengono riutilizzate quando la richiesta coincide.
+
+L'impaginazione italiana ricalcola gli a capo invece di conservare le righe
+inglesi corte, tiene la punteggiatura con la parola precedente e, quando lo
+spazio lo consente, evita una sola parola sull'ultima riga. Le descrizioni
+degli oggetti usano una finestra di tre righe senza comandi di cambio pagina;
+quelle troppo lunghe vengono segnalate e conservate in originale.
 
 Il profilo si attiva solo con SHA-256
 `edf76ecf2a1c23a65c62ab63b1c0e775965978c81baeed20e249e96b3417679b`.

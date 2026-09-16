@@ -38,6 +38,7 @@ _NO_BREAK_BEFORE = set("。，！？、）」』】〉》：；…～")
 
 # CJK punctuation that must not end a line (next char must stay with it)
 _NO_BREAK_AFTER = set("（「『【〈《")
+_LATIN_CLOSING = set(".,!?;:%)]}»”’") | {r"\.", r"\qc"}
 
 # Common compound words that should not be split across lines
 _COMPOUNDS = [
@@ -109,6 +110,8 @@ def wrap_text(text: str, line_width: int = LINE_WIDTH,
         all_lines: list[str] = []
         for seg in cleaned_segments:
             seg_lines = _wrap_to_lines(seg, line_width)
+            if target_lang == "it":
+                seg_lines = _balance_last_line(seg_lines, line_width)
             all_lines.extend(seg_lines)
 
         wrapped_paras.append(_distribute_lines(all_lines, lines_per_box))
@@ -121,6 +124,8 @@ def _token_width(token: str) -> int:
         return 2
     if token == r"\.":
         return 1
+    if re.fullmatch(r"\\[0-9A-F]{2}", token):
+        return _DEFAULT_VAR_WIDTH
     if token.startswith("\\"):
         return 0
     if token.startswith("[") and token.endswith("]"):
@@ -162,16 +167,31 @@ def _can_break_before(tokens: list[str], idx: int) -> bool:
 def _wrap_to_lines(text: str, line_width: int) -> list[str]:
     """Wrap a continuous text segment into a list of display lines."""
     tokens = [match.group() for match in _TOKEN_RE.finditer(text)]
+    # Keep Latin punctuation with its word before measuring the line. Merely
+    # forbidding a break before it can overflow a box that is already full.
+    groups: list[list[str]] = []
+    for token in tokens:
+        if token in _LATIN_CLOSING and groups:
+            while groups and all(part.isspace() for part in groups[-1]):
+                groups.pop()
+            if groups:
+                while len(groups) > 1 and sum(_token_width(part) for part in groups[-1]) == 0:
+                    trailing_controls = groups.pop()
+                    groups[-1].extend(trailing_controls)
+                groups[-1].append(token)
+                continue
+        groups.append([token])
     if not tokens:
         return [text] if text else []
 
     lines: list[list[str]] = [[]]
     line_pos = 0
 
-    for i, tok in enumerate(tokens):
+    tokens = ["".join(group) for group in groups]
+    for i, (tok, group) in enumerate(zip(tokens, groups)):
         if tok.isspace() and line_pos == 0:
             continue
-        w = _token_width(tok)
+        w = sum(_token_width(part) for part in group)
 
         if w > 0 and line_pos > 0 and line_pos + w > line_width:
             if _can_break_before(tokens, i):
@@ -185,6 +205,19 @@ def _wrap_to_lines(text: str, line_width: int) -> list[str]:
         line_pos += w
 
     return ["".join(line).strip() for line in lines if line]
+
+
+def _balance_last_line(lines: list[str], line_width: int) -> list[str]:
+    """Avoid a lone final word when two words still fit without overflow."""
+    if len(lines) < 2 or len(lines[-1].split()) != 1:
+        return lines
+    previous = lines[-2].rsplit(" ", 1)
+    if len(previous) != 2 or len(previous[0].split()) < 2:
+        return lines
+    candidate = previous[1] + " " + lines[-1]
+    if sum(_token_width(m.group()) for m in _TOKEN_RE.finditer(candidate)) <= line_width:
+        lines[-2:] = [previous[0], candidate]
+    return lines
 
 
 def _distribute_lines(lines: list[str], lines_per_box: int) -> str:

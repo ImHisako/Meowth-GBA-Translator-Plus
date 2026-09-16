@@ -20,3 +20,12 @@ Italian spellings documented in these references:
 
 Unknown moves and names that cannot fit even with a documented short spelling
 remain unchanged, with a warning. No arbitrary truncation is used for move names.
+
+`native_hns_2_0_5_battle_items.json` is restricted to the original HnS 2.0.5
+SHA-256 fingerprint. Reproduce it with `scripts/build_hns_text_profile.py ROM`.
+It records item-table fields, battle-table references, verified Thumb literal
+loads in battle-text functions, and expanded single-trainer script commands.
+Every extracted string must encode back to the original bytes. The manifest
+includes glossary translations for item names; an empty translations object
+means that the normal translation stage is still required. Its `sources`
+field links the upstream HnS structures and macros used to inspect the layout.

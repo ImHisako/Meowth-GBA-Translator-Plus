@@ -43,6 +43,11 @@ class RomWriter:
         self.write_offset = self.EXPANSION_START  # updated in inject()
         self._native_entries: dict[str, dict] = {}
 
+    def _verified_low_source(self, source: int) -> bool:
+        return any(source == int(pointer, 16)
+                   for entry in self._native_entries.values()
+                   for pointer in entry.get("literal_instructions", {}))
+
     @staticmethod
     def _find_free_space(rom: bytes, boundary: int) -> int:
         """Find the start of the largest contiguous 0xFF block before boundary.
@@ -203,7 +208,7 @@ class RomWriter:
         new_pointer = self.POINTER_OFFSET + self.write_offset
         for ptr_src in pointer_sources:
             ptr_addr = int(ptr_src.replace("0x", ""), 16)
-            if ptr_addr < self.MIN_POINTER_SOURCE:
+            if ptr_addr < self.MIN_POINTER_SOURCE and not self._verified_low_source(ptr_addr):
                 continue  # Skip: likely machine code, not a real pointer
             if ptr_addr + 4 <= len(rom):
                 rom[ptr_addr : ptr_addr + 4] = new_pointer.to_bytes(4, "little")
@@ -276,7 +281,7 @@ class RomWriter:
         new_pointer = self.POINTER_OFFSET + self.write_offset
         for ptr_src in pointer_sources:
             ptr_addr = int(ptr_src.replace("0x", ""), 16)
-            if ptr_addr < self.MIN_POINTER_SOURCE:
+            if ptr_addr < self.MIN_POINTER_SOURCE and not self._verified_low_source(ptr_addr):
                 continue
             if ptr_addr + 4 <= len(rom):
                 rom[ptr_addr : ptr_addr + 4] = new_pointer.to_bytes(4, "little")
@@ -284,10 +289,12 @@ class RomWriter:
 
     def _valid_entry_pointers(self, rom, entry, address, sources) -> bool:
         """Reject stale metadata and unverified script references before any write."""
+        verified_native = False
         if entry.get("category", "").startswith("native_") or entry.get("native_profile"):
             expected = self._native_entries.get(entry.get("id"))
             if expected is None or not valid_native_entry(rom, entry, expected, sources):
                 return False
+            verified_native = True
             if not expected["is_pointer_based"]:
                 translated = normalize_italian(entry.get("translated", ""), self.target_lang)
                 if len(self.charmap.encode(translated)) > expected["byte_length"]:
@@ -302,7 +309,9 @@ class RomWriter:
                 source = int(source, 16) if isinstance(source, str) else int(source)
             except (TypeError, ValueError):
                 return False
-            if source < self.MIN_POINTER_SOURCE or source + 4 > len(rom):
+            if source < 0xC0 or source + 4 > len(rom):
+                return False
+            if source < self.MIN_POINTER_SOURCE and not (verified_native and self._verified_low_source(source)):
                 return False
             if int.from_bytes(rom[source:source + 4], "little") != self.POINTER_OFFSET + address:
                 return False

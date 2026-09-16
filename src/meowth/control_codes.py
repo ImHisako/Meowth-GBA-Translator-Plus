@@ -57,7 +57,7 @@ def _classify_newlines(text: str) -> str:
     return result
 
 
-def protect(text: str) -> tuple[str, list[tuple[str, str]]]:
+def protect(text: str, *, reflow: bool = False) -> tuple[str, list[tuple[str, str]]]:
     """Replace control codes with numbered placeholders.
 
     Handles both HMA backslash codes and actual newline chars.
@@ -85,7 +85,12 @@ def protect(text: str) -> tuple[str, list[tuple[str, str]]]:
     # Handle literal newlines (0x0A) from HMA extraction
     # Distinguish semantic paragraph breaks from layout line wraps
     result = result.replace("\r\n", "\n")
-    result = _classify_newlines(result)
+    if reflow:
+        # HMA renders ROM line feeds as literal newlines. Their English line
+        # lengths cannot tell us where Italian sentences should break.
+        result = re.sub(r"(?<!\n)\n(?!\n)", " ", result)
+    else:
+        result = _classify_newlines(result)
 
     # Now protect remaining \n\n as paragraph markers
     parts = []

@@ -46,6 +46,8 @@ Desktop.ini
 # Secrets & environment
 # ============================================================
 .env
+api_keys.json
+.api_keys-*.tmp
 *.env.*
 !*.env.example
 

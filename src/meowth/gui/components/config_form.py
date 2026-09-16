@@ -7,6 +7,7 @@ from tkinter import filedialog
 import customtkinter as ctk
 
 from ...core import TranslationConfig
+from ...credentials import CredentialStore, CredentialsError
 from ...translator import PROVIDER_PRESETS
 
 # Language display name -> language code (must match languages.py)
@@ -28,6 +29,8 @@ class ConfigForm(ctk.CTkFrame):
     def __init__(self, master):
         """Initialize configuration form."""
         super().__init__(master, corner_radius=10)
+        self.credential_store = CredentialStore()
+        self._active_provider = "deepseek"
 
         inner = ctk.CTkFrame(self, fg_color="transparent")
         inner.pack(fill="x", padx=14, pady=10)
@@ -104,6 +107,25 @@ class ConfigForm(ctk.CTkFrame):
             inner, placeholder_text="sk-xxxxxxxxxxxxxxxxxxxxxxxx", height=30, show="*"
         )
         self.api_key_entry.pack(fill="x", pady=(2, 0))
+        key_row = ctk.CTkFrame(inner, fg_color="transparent")
+        key_row.pack(fill="x", pady=(4, 0))
+        ctk.CTkButton(key_row, text="Salva chiavi", width=100, height=26,
+                      command=self.save_api_key).pack(side="left", padx=(0, 8))
+        self.key_status = ctk.CTkLabel(key_row, text="", font=("", 11), wraplength=450)
+        self.key_status.pack(side="left", fill="x", expand=True)
+        self.api_key_entry.bind("<FocusOut>", lambda event: self.save_api_key())
+        try:
+            saved = self.credential_store.load()
+            provider = saved.get("last_provider", "deepseek")
+            if provider not in PROVIDER_PRESETS:
+                provider = "deepseek"
+            self._active_provider = provider
+            self.provider.set(provider)
+            self.api_key_entry.insert(0, saved["providers"].get(provider, ""))
+            self._update_provider_fields(provider)
+            self.key_status.configure(text="Salvataggio locale automatico (file non cifrato)")
+        except CredentialsError as error:
+            self.key_status.configure(text=str(error))
 
         # --- Advanced (collapsible) ---
         self.advanced_visible = False
@@ -133,6 +155,34 @@ class ConfigForm(ctk.CTkFrame):
         self.max_workers.pack(fill="x", pady=(2, 0))
 
     def _on_provider_change(self, provider_name: str):
+        """Save the outgoing key and load only the selected provider's key."""
+        if not self.save_api_key():
+            self.provider.set(self._active_provider)
+            return
+        try:
+            key = self.credential_store.get(provider_name)
+        except CredentialsError as error:
+            self.key_status.configure(text=str(error))
+            self.provider.set(self._active_provider)
+            return
+        self._active_provider = provider_name
+        self.api_key_entry.delete(0, "end")
+        self.api_key_entry.insert(0, key)
+        self._update_provider_fields(provider_name)
+        self.save_api_key()
+
+    def save_api_key(self) -> bool:
+        """Persist the visible key, or forget it when the field is empty."""
+        try:
+            self.credential_store.save(self._active_provider, self.api_key_entry.get())
+        except CredentialsError as error:
+            self.key_status.configure(text=str(error))
+            return False
+        self.key_status.configure(text="Chiavi salvate in locale" if self.api_key_entry.get().strip()
+                                  else "Nessuna chiave salvata per questo servizio")
+        return True
+
+    def _update_provider_fields(self, provider_name: str):
         """Update default model when provider changes."""
         preset = PROVIDER_PRESETS.get(provider_name)
         if preset:

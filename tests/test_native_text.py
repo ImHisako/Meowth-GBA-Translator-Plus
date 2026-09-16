@@ -45,10 +45,10 @@ def test_packaged_native_profiles_are_consistent():
         for entry in entries:
             assert charmap.encode(entry["original"]) == bytes.fromhex(entry["expected_hex"])
             assert len(bytes.fromhex(entry["expected_hex"])) == entry["byte_length"]
-            translation = entry["translations"]["it"]
-            assert native_text.native_layout_ok(entry, translation)
-            if not entry["is_pointer_based"]:
-                assert len(charmap.encode(translation)) <= entry["byte_length"]
+            for translation in entry["translations"].values():
+                assert native_text.native_layout_ok(entry, translation)
+                if not entry["is_pointer_based"]:
+                    assert len(charmap.encode(translation)) <= entry["byte_length"]
 
 
 @pytest.fixture

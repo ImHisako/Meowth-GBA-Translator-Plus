@@ -230,7 +230,7 @@ class TranslationEngine:
             raise CancelledError("Translation cancelled")
 
     def _protect_text(self, text: str):
-        protected, codes = protect(text)
+        protected, codes = protect(text, reflow=self.config.target_lang == "it")
         protected, names = self.glossary.protect_pokemon(protected)
         protected, moves = self.moves.protect(protected)
         return protected, codes + names + moves
@@ -475,6 +475,15 @@ class TranslationEngine:
         # Build glossary context
         all_text = " ".join(originals)
         glossary_ctx = self._format_glossary(all_text)
+        constraints = []
+        for index, entry in enumerate(remaining, 1):
+            if entry.get("category") in ("native_item_names", "native_item_descriptions"):
+                constraints.append(
+                    f"Entry {index}: fit within {entry['max_lines']} lines of "
+                    f"{entry['max_line_width']} characters; use concise wording, no page breaks."
+                )
+        if constraints:
+            glossary_ctx += "\nText box limits:\n" + "\n".join(constraints)
 
         # Translate
         try:
@@ -491,7 +500,11 @@ class TranslationEngine:
         for i, entry in enumerate(remaining):
             try:
                 translated = self._restore_translation(protected_list[i], results[i], codes_list[i])
-                if entry.get("category") == "native_ui":
+                category = entry.get("category")
+                if category == "native_item_descriptions":
+                    translated = wrap_text(translated, line_width=entry["max_line_width"],
+                                           lines_per_box=entry["max_lines"], target_lang=self.config.target_lang)
+                if category in ("native_ui", "native_item_names", "native_item_descriptions", "native_battle"):
                     if not native_layout_ok(entry, translated):
                         raise TranslationValidationError("Native menu text exceeds its layout limits")
                     entry["translated"] = translated
@@ -569,14 +582,21 @@ class TranslationEngine:
         # that predates native extraction. This requires no translation API.
         existing_ids = {entry.get("id") for entry in all_entries}
         added_native = 0
+        missing_native = []
         for entry in native_entries(original_rom.read_bytes()):
             reviewed = native_translation(entry, self.config.target_lang)
             if entry["id"] not in existing_ids and reviewed is not None:
                 entry["translated"] = reviewed
                 all_entries.append(entry)
                 added_native += 1
+            elif entry["id"] not in existing_ids:
+                missing_native.append(entry)
         if added_native:
-            self._log("info", f"Added {added_native} reviewed native menu/intro translations (no API calls)")
+            self._log("info", f"Added {added_native} reviewed native translations (no API calls)")
+        if missing_native:
+            missing_path = output_path.with_suffix(".untranslated.json")
+            missing_path.write_text(json.dumps({"entries": missing_native}, ensure_ascii=False, indent=2), encoding="utf-8")
+            self._log("warning", f"{len(missing_native)} native texts need translation; exported to {missing_path}. Run extraction and translation again for complete coverage.")
         self._log("info", Messages.INJECTING_TEXTS.format(count=len(all_entries)))
         rom, stats = writer.inject_texts(rom, all_entries)
         self._log("info", Messages.INJECTION_STATS.format(
@@ -665,9 +685,11 @@ class TranslationEngine:
         if "entries" in extracted:
             extracted["entries"] = [entry for entry in extracted["entries"] if safe_entry(entry)]
             native = native_entries(rom_data)
-            native_addresses = {entry["address"].lower() for entry in native}
+            native_sources = {source.lower() for entry in native for source in entry["pointer_sources"]}
+            # A string can be used by both a C table and an ordinary msgbox.
+            # Keep the independently verified script references to that string.
             extracted["entries"] = [entry for entry in extracted["entries"]
-                                    if entry.get("address", "").lower() not in native_addresses]
+                                    if not native_sources.intersection(s.lower() for s in entry.get("pointer_sources", []))]
             extracted["entries"].extend(native)
             output_path.write_text(json.dumps(extracted, ensure_ascii=False, indent=2), encoding="utf-8")
         return output_path

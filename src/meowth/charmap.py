@@ -122,7 +122,6 @@ class Charmap:
         "\u3001": ",",    # 、 → ,
         "\uFF5E": "~",    # ～ fullwidth tilde
         "\u00B7": ".",    # middle dot
-        "$": "",          # dollar sign (not in charmap, strip)
     }
 
     def _sanitize(self, text: str) -> str:
